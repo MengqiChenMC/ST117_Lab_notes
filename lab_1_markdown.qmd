@@ -56,7 +56,7 @@ data_read <- read.csv("sample_data.csv")
 
 ## 2.3 Finding data online
 
-Datasets can also be found in various online repositories, such as:![Where to get datasets? Top 10 public dataset finders \| SuperAnnotate](https://assets-global.website-files.com/614c82ed388d53640613982e/635b9f2a6dc18549a914e24d_6320786336c3348556931230_top-public-dataset-finders.png){alt="Where to get datasets? Top 10 public dataset finders | SuperAnnotate" width="464"}
+Datasets can also be found in various online repositories, such as:![](images/datasets.png){alt="Where to get datasets? Top 10 public dataset finders | SuperAnnotate" width="464"}
 
 -   [Kaggle](https://www.kaggle.com/datasets) is a popular platform for data science competitions, but it also hosts a wide variety of datasets. These datasets cover a range of topics and complexities and can be a great starting point for projects in statistical modelling, data science, and machine learning
 
@@ -78,7 +78,7 @@ Datasets can also be found in various online repositories, such as:![Where to ge
 
 ## Meet the penguins
 
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png){fig-alt="Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst." style="float:right;" width="310"}
+![](images/lter_penguins.png){fig-alt="Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst." style="float:right;" width="325"}
 
 The `penguins` data from the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins "palmerpenguins R package") package contains size measurements for `r nrow(penguins)` penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.
 
