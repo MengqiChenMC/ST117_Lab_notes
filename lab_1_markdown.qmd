@@ -1,0 +1,245 @@
+---
+title: "ST 117 Lab 1"
+format: html
+editor: visual
+theme: darkly
+---
+
+# 1. Introduction
+
+Welcome to ST117 Introduction to Statistical Modelling Lab 1!
+
+In this lab session, we will focus on how to collect, save, and read data in R. We will also discuss some ways to manipulate and visualise our datasets. You will also have the chance to share and present the data you have collected with you deskmates!
+
+::: {.callout-tip appearance="minimal"}
+[About me](https://warwick.ac.uk/fac/sci/statistics/staff/research_students/mchen)
+
+-   Email: mengqi.chen.2\@warwick.ac.uk
+
+-   Room: MB3.14
+:::
+
+```{r}
+#| label: defining cran repos
+#| include: false
+
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+install.packages("palmerpenguins")
+library(palmerpenguins)
+```
+
+# 2. Data Collection
+
+## 2.1 Saving data into .csv Files
+
+Here's a basic example of how to save a dataset into a .csv file in R:
+
+```{r}
+# Create a sample data frame
+data <- data.frame(
+  id = 1:10,
+  score = runif(10, min=0, max=100)
+)
+
+# Write the data frame to a CSV file
+write.csv(data, "sample_data.csv", row.names = FALSE)
+```
+
+## 2.2 Reading CSV Files
+
+To read a CSV file into R:
+
+```{r}
+# Read the CSV file
+data_read <- read.csv("sample_data.csv")
+```
+
+## 2.3 Finding data online
+
+Datasets can be also found in various online repositories, such as:![Where to get datasets? Top 10 public dataset finders \| SuperAnnotate](https://assets-global.website-files.com/614c82ed388d53640613982e/635b9f2a6dc18549a914e24d_6320786336c3348556931230_top-public-dataset-finders.png){alt="Where to get datasets? Top 10 public dataset finders | SuperAnnotate" width="464"}
+
+-   [Kaggle](https://www.kaggle.com/datasets) is popular platform for data science competitions, but it also hosts a wide variety of datasets. These datasets cover a range of topics and complexities and can be a great starting point for projects in statistical modelling, data science, and machine learning
+
+-   [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php): The University of California, Irvine, maintains a repository of datasets specifically for machine learning. These datasets are well-documented and have been used in numerous academic papers, making them ideal for research.
+
+-   ...
+
+::: callout-important
+## Your turn!
+
+-   Please share your ***A0-collect!*** datasets to your deskmate - you could use email, link sharing, USB etc.
+
+-   Introduce your datasets to each other - how have collected the data? What questions are you trying to answer with your data?
+
+-   After you have received your deskmate's datasets, try to load them into your R workspace.
+:::
+
+# 3 Data Manipulation
+
+## Meet the penguins
+
+![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png){fig-alt="Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst." style="float:right;" width="310"}
+
+The `penguins` data from the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins "palmerpenguins R package") package contains size measurements for `r nrow(penguins)` penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.
+
+We will first install and load the packages:
+
+```{r}
+#| eval: false
+install.packages("palmerpenguins")
+library(palmerpenguins)
+```
+
+Let's take a look at the penguins data:
+
+```{r}
+penguins
+```
+
+What if we are interested in some specific aspects of the penguins?
+
+-   Calculate the mean body mass of penguins (similarly, you can use `var` for variance and `median` for median)
+
+    ```{r}
+    mean(penguins$body_mass_g, na.rm = TRUE) # na.rm indicates whether we remove the NA values
+    ```
+
+-   Get the 5 largest body masses
+
+    ```{r}
+    head(sort(penguins$body_mass_g, decreasing=TRUE), 5)
+    ```
+
+::: callout-note
+## \*Introducing: dplyr package
+
+In data science, [**dplyr**](https://dplyr.tidyverse.org/) is very popular package. It is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges. To install and load dplyr:
+
+```{r}
+#| include: false
+#| 
+# Load the dplyr package for data manipulation
+install.packages("dplyr")
+library(dplyr)
+```
+
+```{r}
+#| eval: false
+
+# Load the dplyr package for data manipulation
+install.packages("dplyr")
+library(dplyr)
+```
+:::
+
+With dplyr, we can do more fun things with our dataset!
+
+-   Count how many penguins are in each species
+
+    ```{r}
+    count(penguins, species)
+    ```
+
+-   Filter the datasets to get the data for female Gentoos only:
+
+    ```{r}
+    filter(penguins, sex == "female", species == "Gentoo")
+    ```
+
+-   Get the mean body mass of penguins by species
+
+    ```{r}
+    summarise(penguins, mean_body_mass = mean(body_mass_g, na.rm = TRUE),
+                .by = species)
+    ```
+
+::: callout-important
+## Your turn!
+
+-   Use these function, or other ones that you like, investigate your and your deskmate's datasets!
+
+    -   If you run into any problems, try solving it by checking the documentation, using the help function, and discussing with each other!
+
+-   Share your findings with your deskmate.
+:::
+
+# 4 Data Visualisation
+
+[**ggplot2**](https://ggplot2.tidyverse.org/) is one of (if not the) the most popular data visualisation packages in R - it is a must-have!
+
+Install and load the ggplot2 package:
+
+```{r}
+#| include: false
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+```{r}
+#| eval: false
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+There are many different kinds of plots that you can generate with ggplot2:
+
+::: panel-tabset
+## Scatter plot
+
+The scatter plot below shows the relationship between flipper and bill lengths of these penguins.
+
+```{r}
+#| label: plot-penguins
+#| warning: false
+
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(
+    title = "Flipper and bill length",
+    x = "Flipper length (mm)", y = "Bill length (mm)",
+    color = "Penguin species", shape = "Penguin species"
+  ) +
+  theme_minimal()
+```
+
+## Histogram
+
+This is a histogram of the penguin's body masses
+
+```{r}
+ggplot(penguins, aes(x=body_mass_g)) +
+  geom_histogram(binwidth=100, fill="blue", color="black") +
+  labs(title="Histogram of Penguin Body Masses",
+       x="Body Mass (g)",
+       y="Count")
+```
+
+## \*Bar plot
+
+We can also generate a pie chart for the number of penguins in each species
+
+```{r}
+# Count the number of penguins in each species
+species_counts <- count(penguins, species)
+
+ggplot(species_counts, aes(x="", y=n, fill=species)) +
+  geom_bar(stat="identity", width=1, color="white") + # build a stacked barchart with one bar
+  coord_polar("y") + # make the barchart circular
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  theme_void() + # remove background, grid, numeric labels
+  labs(fill="Species",
+       title="Distribution of Penguin Species")
+```
+:::
+
+::: callout-important
+## Your turn!
+
+-   Generate plots based on your and your deskmate's datasets
+
+-   Compare your results - did you choose the same plotting function? What did you find?
+:::
+
+------------------------------------------------------------------------
