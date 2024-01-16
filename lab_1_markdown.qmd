@@ -9,7 +9,7 @@ theme: darkly
 
 Welcome to ST117 Introduction to Statistical Modelling Lab 1!
 
-In this lab session, we will focus on how to collect, save, and read data in R. We will also discuss some ways to manipulate and visualise our datasets. You will also have the chance to share and present the data you have collected with you deskmates!
+In this lab session, we will focus on how to collect, save, and read data in R. We will also discuss some ways to manipulate and visualise our datasets. You will also have the chance to share and present the data you have collected with your deskmates!
 
 ::: {.callout-tip appearance="minimal"}
 [About me](https://warwick.ac.uk/fac/sci/statistics/staff/research_students/mchen)
@@ -56,9 +56,9 @@ data_read <- read.csv("sample_data.csv")
 
 ## 2.3 Finding data online
 
-Datasets can be also found in various online repositories, such as:![Where to get datasets? Top 10 public dataset finders \| SuperAnnotate](https://assets-global.website-files.com/614c82ed388d53640613982e/635b9f2a6dc18549a914e24d_6320786336c3348556931230_top-public-dataset-finders.png){alt="Where to get datasets? Top 10 public dataset finders | SuperAnnotate" width="464"}
+Datasets can also be found in various online repositories, such as:![Where to get datasets? Top 10 public dataset finders \| SuperAnnotate](https://assets-global.website-files.com/614c82ed388d53640613982e/635b9f2a6dc18549a914e24d_6320786336c3348556931230_top-public-dataset-finders.png){alt="Where to get datasets? Top 10 public dataset finders | SuperAnnotate" width="464"}
 
--   [Kaggle](https://www.kaggle.com/datasets) is popular platform for data science competitions, but it also hosts a wide variety of datasets. These datasets cover a range of topics and complexities and can be a great starting point for projects in statistical modelling, data science, and machine learning
+-   [Kaggle](https://www.kaggle.com/datasets) is a popular platform for data science competitions, but it also hosts a wide variety of datasets. These datasets cover a range of topics and complexities and can be a great starting point for projects in statistical modelling, data science, and machine learning
 
 -   [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php): The University of California, Irvine, maintains a repository of datasets specifically for machine learning. These datasets are well-documented and have been used in numerous academic papers, making them ideal for research.
 
@@ -67,9 +67,9 @@ Datasets can be also found in various online repositories, such as:![Where to ge
 ::: callout-important
 ## Your turn!
 
--   Please share your ***A0-collect!*** datasets to your deskmate - you could use email, link sharing, USB etc.
+-   Please share your ***A0-collect!*** datasets to your deskmate - you could use email, link sharing, USB, etc.
 
--   Introduce your datasets to each other - how have collected the data? What questions are you trying to answer with your data?
+-   Introduce your datasets to each other - how have you collected the data? What questions are you trying to answer with your data?
 
 -   After you have received your deskmate's datasets, try to load them into your R workspace.
 :::
@@ -113,7 +113,7 @@ What if we are interested in some specific aspects of the penguins?
 ::: callout-note
 ## \*Introducing: dplyr package
 
-In data science, [**dplyr**](https://dplyr.tidyverse.org/) is very popular package. It is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges. To install and load dplyr:
+In data science, [**dplyr**](https://dplyr.tidyverse.org/) is a very popular package. It is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges. To install and load dplyr:
 
 ```{r}
 #| include: false
@@ -156,16 +156,16 @@ With dplyr, we can do more fun things with our dataset!
 ::: callout-important
 ## Your turn!
 
--   Use these function, or other ones that you like, investigate your and your deskmate's datasets!
+-   Use these functions, or other ones that you like, investigate your and your deskmate's datasets!
 
-    -   If you run into any problems, try solving it by checking the documentation, using the help function, and discussing with each other!
+    -   If you run into any problems, try solving them by checking the documentation, using the help function, and discussing with each other!
 
 -   Share your findings with your deskmate.
 :::
 
 # 4 Data Visualisation
 
-[**ggplot2**](https://ggplot2.tidyverse.org/) is one of (if not the) the most popular data visualisation packages in R - it is a must-have!
+[**ggplot2**](https://ggplot2.tidyverse.org/) is one of (if not the) most popular data visualisation packages in R - it is a must-have!
 
 Install and load the ggplot2 package:
 
@@ -186,7 +186,7 @@ There are many different kinds of plots that you can generate with ggplot2:
 ::: panel-tabset
 ## Scatter plot
 
-The scatter plot below shows the relationship between flipper and bill lengths of these penguins.
+The scatter plot below shows the relationship between the flipper and bill lengths of these penguins.
 
 ```{r}
 #| label: plot-penguins
