@@ -1,0 +1,26 @@
+---
+title: "Home"
+format: html
+---
+
+Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. It also contains a variety of resources to assist you in learning R and statistical modelling.
+
+## Useful Resources
+
+The following cheatsheets can be helpful for quick references:
+
+1.  [**R Cheatsheet**](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf): A comprehensive guide to the basics of R programming.
+
+2.  [**Data-Wrangling Cheatsheet**](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf): A summary of various data-wrangling commands with packages `dplyr` and `tidyr`.
+
+3.  [**ggplot2 Cheatsheet**](https://images.datacamp.com/image/upload/v1666806657/Marketing/Blog/ggplot2_cheat_sheet.pdf)**:** `ggplot2` is a powerful tool for making custom plots in R. This cheatsheet provides a concise guide.
+
+4.  [**tidyverse Cheatsheet**](https://images.datacamp.com/image/upload/v1676302697/Marketing/Blog/Tidyverse_Cheat_Sheet.pdf): `tdyverse` is a collection of R packages designed for data science. This cheatsheet covers some of the most commonly used packages.
+
+5.  [**R Markdown Cheatsheet**](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf): This cheatsheet provides a quick reference to the R Markdown syntax.
+
+6.  [**Statistical Distributions Cheatsheet**](https://www.statslab.cam.ac.uk/~rjs57/Distribtns.pdf): A sheet summarising the properties of some basic discrete and continuous distributions.
+
+## Feedback
+
+Please fill out the [**anonymous feedback form**](https://forms.gle/AGjRMmWt4eaecu1R7) to help make the lab sessions better for everyone!

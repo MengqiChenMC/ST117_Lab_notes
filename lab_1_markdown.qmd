@@ -1,5 +1,9 @@
 ---
 title: "ST 117 Lab 1"
+subtitle: "Collecting data, simple data manipulation and visualisation"
+author: "Mengqi Chen"
+date: last-modified
+date-format: long
 format: html
 editor: visual
 theme: darkly

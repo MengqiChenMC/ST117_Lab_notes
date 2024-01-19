@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. It also contains a variety of resources to assist you in learning R and statistical modelling."
+  },
+  {
+    "objectID": "index.html#quarto",
+    "href": "index.html#quarto",
+    "title": "Home",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "index.html#running-code",
+    "href": "index.html#running-code",
+    "title": "Home",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This website is created by Mengqi Chen at Department of Statistics, University of Warwick in term 2, 2024. It is put together with Quarto, which is an open-source scientific and technical publishing system designed to create dynamic and reproducible documents.\nFor feedback on the lab sessions please fill out the anonymous feedback form. For corrections and comments on this site, please email me at mengqi.chen.2@warwick.ac.uk."
+  },
+  {
+    "objectID": "about.html#quarto",
+    "href": "about.html#quarto",
+    "title": "About",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "about.html#running-code",
+    "href": "about.html#running-code",
+    "title": "About",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "lab_1_markdown.html",
+    "href": "lab_1_markdown.html",
+    "title": "ST 117 Lab 1",
+    "section": "",
+    "text": "Welcome to ST117 Introduction to Statistical Modelling Lab 1!\nIn this lab session, we will focus on how to collect, save, and read data in R. We will also discuss some ways to manipulate and visualise our datasets. You will also have the chance to share and present the data you have collected with your deskmates!\n\n\n\n\n\n\nAbout me\n\nEmail: mengqi.chen.2@warwick.ac.uk\nRoom: MB3.14"
+  },
+  {
+    "objectID": "lab_1_markdown.html#saving-data-into-.csv-files",
+    "href": "lab_1_markdown.html#saving-data-into-.csv-files",
+    "title": "ST 117 Lab 1",
+    "section": "2.1 Saving data into .csv Files",
+    "text": "2.1 Saving data into .csv Files\nHere’s a basic example of how to save a dataset into a .csv file in R:\n\n# Create a sample data frame\ndata &lt;- data.frame(\n  id = 1:10,\n  score = runif(10, min=0, max=100)\n)\n\n# Write the data frame to a CSV file\nwrite.csv(data, \"sample_data.csv\", row.names = FALSE)"
+  },
+  {
+    "objectID": "lab_1_markdown.html#reading-csv-files",
+    "href": "lab_1_markdown.html#reading-csv-files",
+    "title": "ST 117 Lab 1",
+    "section": "2.2 Reading CSV Files",
+    "text": "2.2 Reading CSV Files\nTo read a CSV file into R:\n\n# Read the CSV file\ndata_read &lt;- read.csv(\"sample_data.csv\")"
+  },
+  {
+    "objectID": "lab_1_markdown.html#finding-data-online",
+    "href": "lab_1_markdown.html#finding-data-online",
+    "title": "ST 117 Lab 1",
+    "section": "2.3 Finding data online",
+    "text": "2.3 Finding data online\nDatasets can also be found in various online repositories, such as:\n\nKaggle is a popular platform for data science competitions, but it also hosts a wide variety of datasets. These datasets cover a range of topics and complexities and can be a great starting point for projects in statistical modelling, data science, and machine learning\nUCI Machine Learning Repository: The University of California, Irvine, maintains a repository of datasets specifically for machine learning. These datasets are well-documented and have been used in numerous academic papers, making them ideal for research.\n…\n\n\n\n\n\n\n\nYour turn!\n\n\n\n\nPlease share your A0-collect! datasets to your deskmate - you could use email, link sharing, USB, etc.\nIntroduce your datasets to each other - how have you collected the data? What questions are you trying to answer with your data?\nAfter you have received your deskmate’s datasets, try to load them into your R workspace."
+  },
+  {
+    "objectID": "lab_1_markdown.html#meet-the-penguins",
+    "href": "lab_1_markdown.html#meet-the-penguins",
+    "title": "ST 117 Lab 1",
+    "section": "Meet the penguins",
+    "text": "Meet the penguins\n\nThe penguins data from the palmerpenguins package contains size measurements for 344 penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.\nWe will first install and load the packages:\n\ninstall.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\n\nLet’s take a look at the penguins data:\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nWhat if we are interested in some specific aspects of the penguins?\n\nCalculate the mean body mass of penguins (similarly, you can use var for variance and median for median)\n\nmean(penguins$body_mass_g, na.rm = TRUE) # na.rm indicates whether we remove the NA values\n\n[1] 4201.754\n\n\nGet the 5 largest body masses\n\nhead(sort(penguins$body_mass_g, decreasing=TRUE), 5)\n\n[1] 6300 6050 6000 6000 5950\n\n\n\n\n\n\n\n\n\n*Introducing: dplyr package\n\n\n\nIn data science, dplyr is a very popular package. It is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges. To install and load dplyr:\n\n# Load the dplyr package for data manipulation\ninstall.packages(\"dplyr\")\nlibrary(dplyr)\n\n\n\nWith dplyr, we can do more fun things with our dataset!\n\nCount how many penguins are in each species\n\ncount(penguins, species)\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124\n\n\nFilter the datasets to get the data for female Gentoos only:\n\nfilter(penguins, sex == \"female\", species == \"Gentoo\")\n\n# A tibble: 58 × 8\n   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Gentoo  Biscoe           46.1          13.2               211        4500\n 2 Gentoo  Biscoe           48.7          14.1               210        4450\n 3 Gentoo  Biscoe           46.5          13.5               210        4550\n 4 Gentoo  Biscoe           45.4          14.6               211        4800\n 5 Gentoo  Biscoe           43.3          13.4               209        4400\n 6 Gentoo  Biscoe           40.9          13.7               214        4650\n 7 Gentoo  Biscoe           45.5          13.7               214        4650\n 8 Gentoo  Biscoe           45.8          14.6               210        4200\n 9 Gentoo  Biscoe           42            13.5               210        4150\n10 Gentoo  Biscoe           46.2          14.5               209        4800\n# ℹ 48 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nGet the mean body mass of penguins by species\n\nsummarise(penguins, mean_body_mass = mean(body_mass_g, na.rm = TRUE),\n            .by = species)\n\n# A tibble: 3 × 2\n  species   mean_body_mass\n  &lt;fct&gt;              &lt;dbl&gt;\n1 Adelie             3701.\n2 Gentoo             5076.\n3 Chinstrap          3733.\n\n\n\n\n\n\n\n\n\nYour turn!\n\n\n\n\nUse these functions, or other ones that you like, investigate your and your deskmate’s datasets!\n\nIf you run into any problems, try solving them by checking the documentation, using the help function, and discussing with each other!\n\nShare your findings with your deskmate."
+  },
+  {
+    "objectID": "lab_2_markdown.html",
+    "href": "lab_2_markdown.html",
+    "title": "ST 117 Lab 2",
+    "section": "",
+    "text": "An R Project is a self-contained directory that includes all files relevant to a particular set of analyses. Using projects helps in organising your work and ensuring reproducibility.\n\n\n\n\nCreating a Project: In RStudio, go to File &gt; New Project to create a new project.\nSwitching Directories: Use setwd(\"path/to/directory\") to change your working directory in R.\n\n\n\n\nGit is a version control system used to track changes in files. It’s essential for collaboration and maintaining a history of your work.\n\nBasic Git Commands: Use git commit, git push, and git pull to manage your R scripts.\nIntegration with RStudio: RStudio provides tools to integrate Git into your project management workflow."
+  },
+  {
+    "objectID": "lab_2_markdown.html#what-is-an-r-project",
+    "href": "lab_2_markdown.html#what-is-an-r-project",
+    "title": "ST 117 Lab 2",
+    "section": "",
+    "text": "An R Project is a self-contained directory that includes all files relevant to a particular set of analyses. Using projects helps in organising your work and ensuring reproducibility."
+  },
+  {
+    "objectID": "lab_2_markdown.html#creating-and-managing-projects",
+    "href": "lab_2_markdown.html#creating-and-managing-projects",
+    "title": "ST 117 Lab 2",
+    "section": "",
+    "text": "Creating a Project: In RStudio, go to File &gt; New Project to create a new project.\nSwitching Directories: Use setwd(\"path/to/directory\") to change your working directory in R."
+  },
+  {
+    "objectID": "lab_2_markdown.html#introduction-to-git-and-version-control",
+    "href": "lab_2_markdown.html#introduction-to-git-and-version-control",
+    "title": "ST 117 Lab 2",
+    "section": "",
+    "text": "Git is a version control system used to track changes in files. It’s essential for collaboration and maintaining a history of your work.\n\nBasic Git Commands: Use git commit, git push, and git pull to manage your R scripts.\nIntegration with RStudio: RStudio provides tools to integrate Git into your project management workflow."
+  },
+  {
+    "objectID": "lab_2_markdown.html#problem-statement",
+    "href": "lab_2_markdown.html#problem-statement",
+    "title": "ST 117 Lab 2",
+    "section": "Problem Statement",
+    "text": "Problem Statement\nA and B are tossing a fair coin. A wins if HHH appears first; B wins if HHT appears first. Who is more likely to win?"
+  },
+  {
+    "objectID": "lab_2_markdown.html#simulation-code",
+    "href": "lab_2_markdown.html#simulation-code",
+    "title": "ST 117 Lab 2",
+    "section": "Simulation Code",
+    "text": "Simulation Code\n\nsimulate_coin_toss &lt;- function(sequence_a, sequence_b, num_simulations = 10000) {\n  wins_a &lt;- 0\n  wins_b &lt;- 0\n\n  for (i in 1:num_simulations) {\n    coin_sequence &lt;- \"\"\n    while (!grepl(sequence_a, coin_sequence) && !grepl(sequence_b, coin_sequence)) {\n      coin_sequence &lt;- paste0(coin_sequence, sample(c(\"H\", \"T\"), 1, replace = TRUE))\n    }\n\n    if (grepl(sequence_a, coin_sequence)) {\n      wins_a &lt;- wins_a + 1\n    } else {\n      wins_b &lt;- wins_b + 1\n    }\n  }\n\n  prob_a_wins &lt;- wins_a / num_simulations\n  prob_b_wins &lt;- wins_b / num_simulations\n\n  return(c(prob_a_wins, prob_b_wins))\n}\n\n# Test the function\nsimulate_coin_toss(\"HHH\", \"HTH\")\n\n[1] 0.3995 0.6005"
+  },
+  {
+    "objectID": "lab_2_markdown.html#expected-number-of-tosses",
+    "href": "lab_2_markdown.html#expected-number-of-tosses",
+    "title": "ST 117 Lab 2",
+    "section": "Expected Number of Tosses",
+    "text": "Expected Number of Tosses\n\n# Function to calculate expected number of tosses\nexpected_tosses &lt;- function(sequence, num_simulations = 10000) {\n  toss_counts &lt;- numeric(num_simulations)\n\n  for (i in 1:num_simulations) {\n    coin_sequence &lt;- \"\"\n    toss_count &lt;- 0\n\n    while (!grepl(sequence, coin_sequence)) {\n      coin_sequence &lt;- paste0(coin_sequence, sample(c(\"H\", \"T\"), 1, replace = TRUE))\n      toss_count &lt;- toss_count + 1\n    }\n\n    toss_counts[i] &lt;- toss_count\n  }\n\n  mean(toss_counts)\n}\n\n# Calculate for sequences \"HHH\" and \"HHT\"\nexpected_tosses(\"HHH\")\n\n[1] 14.3723\n\nexpected_tosses(\"HHT\")\n\n[1] 7.9871"
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Home",
+    "section": "",
+    "text": "Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. It also contains a variety of resources to assist you in learning R and statistical modelling."
+  },
+  {
+    "objectID": "index.html#useful-resources-and-cheatsheets",
+    "href": "index.html#useful-resources-and-cheatsheets",
+    "title": "Home",
+    "section": "Useful Resources and Cheatsheets",
+    "text": "Useful Resources and Cheatsheets\nThe following cheatsheets can be helpful for quick references:\n\nR Cheatsheet: A comprehensive guide to the basics of R programming. Download R Cheatsheet\nR Markdown Cheatsheet: This cheatsheet provides a quick reference to the R Markdown syntax. Download R Markdown Cheatsheet\nTidyverse Cheatsheet: The Tidyverse is a collection of R packages designed for data science. This cheatsheet covers some of the most commonly used packages. Download Tidyverse Cheatsheet\nStatistical Distributions Cheatsheet: A helpful guide to statistical distributions, which are crucial in statistical modelling. Download Statistical Distributions Cheatsheet"
+  },
+  {
+    "objectID": "index.html#feedback",
+    "href": "index.html#feedback",
+    "title": "Home",
+    "section": "Feedback",
+    "text": "Feedback\nPlease fill out the anonymous feedback form to help make the lab sessions better for everyone!"
+  },
+  {
+    "objectID": "index.html#useful-resources",
+    "href": "index.html#useful-resources",
+    "title": "Home",
+    "section": "Useful Resources",
+    "text": "Useful Resources\nThe following cheatsheets can be helpful for quick references:\n\nR Cheatsheet: A comprehensive guide to the basics of R programming.\nData-Wrangling Cheatsheet: A summary of various data-wrangling commands with packages dplyr and tidyr.\nggplot2 Cheatsheet: ggplot2 is a powerful tool for making custom plots in R. This cheatsheet provides a concise guide.\ntidyverse Cheatsheet: tdyverse is a collection of R packages designed for data science. This cheatsheet covers some of the most commonly used packages.\nR Markdown Cheatsheet: This cheatsheet provides a quick reference to the R Markdown syntax.\nStatistical Distributions Cheatsheet: A sheet summarising the properties of some basic discrete and continuous distributions."
+  }
+]

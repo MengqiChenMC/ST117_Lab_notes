@@ -1,0 +1,96 @@
+---
+title: "ST 117 Lab 2"
+subtitle: "Project management, R markdown, Simulations with R"
+author: "Mengqi Chen"
+date: last-modified
+format: html
+editor: visual
+theme: darkly
+---
+
+# 1. Project Management in R
+
+## What is an R Project?
+
+An R Project is a self-contained directory that includes all files relevant to a particular set of analyses. Using projects helps in organising your work and ensuring reproducibility.
+
+## Creating and Managing Projects
+
+-   **Creating a Project**: In RStudio, go to `File > New Project` to create a new project.
+-   **Switching Directories**: Use `setwd("path/to/directory")` to change your working directory in R.
+
+## Introduction to Git and Version Control
+
+Git is a version control system used to track changes in files. It's essential for collaboration and maintaining a history of your work.
+
+-   **Basic Git Commands**: Use `git commit`, `git push`, and `git pull` to manage your R scripts.
+-   **Integration with RStudio**: RStudio provides tools to integrate Git into your project management workflow.
+
+# 2. R Markdown
+
+R Markdown allows you to weave together narrative text and R code in a single document, which can be rendered in various formats like HTML, PDF, or Word.
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.
+
+# 3. Simulation: Coin Tossing Problem
+
+## Problem Statement
+
+A and B are tossing a fair coin. A wins if HHH appears first; B wins if HHT appears first. Who is more likely to win?
+
+## Simulation Code
+
+```{r}
+simulate_coin_toss <- function(sequence_a, sequence_b, num_simulations = 10000) {
+  wins_a <- 0
+  wins_b <- 0
+
+  for (i in 1:num_simulations) {
+    coin_sequence <- ""
+    while (!grepl(sequence_a, coin_sequence) && !grepl(sequence_b, coin_sequence)) {
+      coin_sequence <- paste0(coin_sequence, sample(c("H", "T"), 1, replace = TRUE))
+    }
+
+    if (grepl(sequence_a, coin_sequence)) {
+      wins_a <- wins_a + 1
+    } else {
+      wins_b <- wins_b + 1
+    }
+  }
+
+  prob_a_wins <- wins_a / num_simulations
+  prob_b_wins <- wins_b / num_simulations
+
+  return(c(prob_a_wins, prob_b_wins))
+}
+
+# Test the function
+simulate_coin_toss("HHH", "HTH")
+```
+
+## Expected Number of Tosses
+
+```{r}
+# Function to calculate expected number of tosses
+expected_tosses <- function(sequence, num_simulations = 10000) {
+  toss_counts <- numeric(num_simulations)
+
+  for (i in 1:num_simulations) {
+    coin_sequence <- ""
+    toss_count <- 0
+
+    while (!grepl(sequence, coin_sequence)) {
+      coin_sequence <- paste0(coin_sequence, sample(c("H", "T"), 1, replace = TRUE))
+      toss_count <- toss_count + 1
+    }
+
+    toss_counts[i] <- toss_count
+  }
+
+  mean(toss_counts)
+}
+
+# Calculate for sequences "HHH" and "HHT"
+expected_tosses("HHH")
+expected_tosses("HHT")
+```

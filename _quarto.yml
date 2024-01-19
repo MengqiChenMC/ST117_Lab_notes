@@ -1,0 +1,30 @@
+project:
+  type: website
+
+website:
+  title: "ST117 Introduction to Statistical Modelling"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Lab Notes"
+        menu:
+          - text: "Lab 1"
+            href: lab_1_markdown.qmd
+          #- text: "Lab 2"
+          #  href: lab_2_markdown.qmd
+      - text: "About"
+        href: about.qmd
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    theme: darkly
+    sidebar:
+      contents:
+        - header: Lab Sessions
+        - text: "Lab 1"
+          href: lab_1_markdown.qmd
+        #- text: "Lab 2"
+        #  href: lab_2_markdown.qmd
