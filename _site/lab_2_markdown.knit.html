@@ -196,7 +196,7 @@ window.Quarto = {
   <li><a href="#data-frame-header" id="toc-data-frame-header" class="nav-link" data-scroll-target="#data-frame-header">1.1 Data frame header</a></li>
   <li><a href="#r-script-vs-console" id="toc-r-script-vs-console" class="nav-link" data-scroll-target="#r-script-vs-console">1.2 R script vs Console</a></li>
   <li><a href="#installing-and-loading-packages" id="toc-installing-and-loading-packages" class="nav-link" data-scroll-target="#installing-and-loading-packages">1.3 Installing and loading packages</a></li>
-  <li><a href="#converting-between-strings-and-numbers" id="toc-converting-between-strings-and-numbers" class="nav-link" data-scroll-target="#converting-between-strings-and-numbers">1.4 Converting Between Strings and Numbers</a></li>
+  <li><a href="#converting-between-strings-and-mumbers" id="toc-converting-between-strings-and-mumbers" class="nav-link" data-scroll-target="#converting-between-strings-and-mumbers">1.4 Converting between strings and mumbers</a></li>
   </ul></li>
   <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link" data-scroll-target="#functions-in-r">2 Functions in R</a></li>
   <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">3 Assignments</a>
@@ -262,9 +262,9 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     5
-2  2     8
-3  3     6</code></pre>
+1  1     7
+2  2    10
+3  3     8</code></pre>
 </div>
 </div>
 <p>Now, we write <code>data</code> into a CSV file</p>
@@ -278,9 +278,9 @@ window.Quarto = {
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_read_header</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     5
-2  2     8
-3  3     6</code></pre>
+1  1     7
+2  2    10
+3  3     8</code></pre>
 </div>
 </div>
 <p>However, if we read with <code>header=FALSE</code>, then “id” and “score” are regarded as values</p>
@@ -290,9 +290,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>  V1    V2
 1 id score
-2  1     5
-3  2     8
-4  3     6</code></pre>
+2  1     7
+3  2    10
+4  3     8</code></pre>
 </div>
 </div>
 <p>In this case, you would run into problems if you simply take the first column of <code>data_read</code>:</p>
@@ -346,8 +346,8 @@ Note
 </div>
 <p>This command does not install the package again, but simply makes its functionality available in your current session.</p>
 </section>
-<section id="converting-between-strings-and-numbers" class="level2">
-<h2 class="anchored" data-anchor-id="converting-between-strings-and-numbers">1.4 Converting Between Strings and Numbers</h2>
+<section id="converting-between-strings-and-mumbers" class="level2">
+<h2 class="anchored" data-anchor-id="converting-between-strings-and-mumbers">1.4 Converting between strings and mumbers</h2>
 <p>To convert a string that represents a number into a numeric format, you can use the <code>as.numeric()</code> function. For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>numbers_as_strings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>)</span>
