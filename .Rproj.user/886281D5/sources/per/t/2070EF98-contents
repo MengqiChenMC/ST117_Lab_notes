@@ -8,8 +8,12 @@ editor: visual
 theme: darkly
 ---
 
+```{r}
+#| label: defining cran repos
+#| include: false
 
-
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+```
 
 # 1 Q&A from the previous session
 
@@ -19,10 +23,7 @@ When we read a CSV file with `read.csv`, there is an argument `header` deciding 
 
 Recall that last time, we generated a random data frame of columns named "id" and "score" first.
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 data <- data.frame(
   id = 1:3,
   score = sample(5:10, 3, replace = TRUE) # sample(list, n) allows you to sample number n values from list
@@ -30,136 +31,42 @@ data <- data.frame(
 data
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-  id score
-1  1     5
-2  2     7
-3  3     5
-```
-
-
-:::
-:::
-
-
 Now, we write `data` into a CSV file
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 # Write the data frame to a CSV file
 write.csv(data, "sample_data.csv", row.names = FALSE)
 ```
-:::
-
 
 If we read with `header=TRUE` (default in this case), "id" and "score" are parsed as column names instead of variable values
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 data_read_header <- read.csv("sample_data.csv", header = TRUE)
 data_read_header
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-  id score
-1  1     5
-2  2     7
-3  3     5
-```
-
-
-:::
-:::
-
-
 However, if we read with `header=FALSE`, then "id" and "score" are regarded as values
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 data_read_noheader <- read.csv("sample_data.csv", header = FALSE)
 data_read_noheader
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-  V1    V2
-1 id score
-2  1     5
-3  2     7
-4  3     5
-```
-
-
-:::
-:::
-
-
 In this case, you would run into problems if you simply take the first column of `data_read`:
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 data_read_noheader[,1]
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] "id" "1"  "2"  "3" 
-```
-
-
-:::
-:::
-
-
 You also run into problems if you are getting a column by its name:
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 data_read_header$id
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 1 2 3
-```
-
-
-:::
-:::
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 data_read_noheader$id
 ```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-NULL
-```
-
-
-:::
-:::
-
 
 ::: callout-note
 ## Note
@@ -177,25 +84,21 @@ In contrast, R Scripts are non-interactive files where code can be written, save
 
 When you find a useful R package that isn't already installed on your system, you use `install.packages()` to download and install it. This is typically a one-time process for each package. For example, to install the `ggplot2` package, you would use:
 
+```{r}
+#| output: false
+#| warning: false
 
-::: {.cell}
-
-```{.r .cell-code}
 install.packages("ggplot2")
 ```
-:::
-
 
 Every time you start a new R session and want to use a previously installed package, you need to load it using the `library()` function. This needs to be done at the beginning of your scripts to ensure that all functions from the package are available. For example:
 
+```{r}
+#| output: false
+#| warning: false
 
-::: {.cell}
-
-```{.r .cell-code}
 library(ggplot2)
 ```
-:::
-
 
 This command does not install the package again, but simply makes its functionality available in your current session.
 
@@ -203,96 +106,49 @@ This command does not install the package again, but simply makes its functional
 
 To convert a string that represents a number into a numeric format, you can use the `as.numeric()` function. For example:
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 numbers_as_strings <- c("1", "2", "3")
 numbers <- as.numeric(numbers_as_strings)
 ```
-:::
-
 
 Conversely, if you need to convert numbers to strings, perhaps for output formatting, use the `as.character()` function:
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 numbers <- c(1, 2, 3)
 numbers_as_strings <- as.character(numbers)
 ```
-:::
-
 
 # 2 Functions in R
 
 In R, a function is defined using the `function` keyword. The basic syntax is:
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 myFunction <- function(arg1, arg2) {
   # Function body
   result <- arg1 + arg2
   return(result)
 }
 ```
-:::
-
 
 This creates a function `myFunction` that takes two arguments `arg1` and `arg2`, adds them together, and returns the result.
 
 Once a function is defined, it can be called with specific values for its arguments.
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 # Calling the function
 result <- myFunction(5, 3)
 print(result) # Outputs 5+3
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 8
-```
-
-
-:::
-:::
-
-
 The `apply` family of functions in R is used to apply a function over the margins of an array or matrix, and it's particularly useful for data frames. For example, `apply` can be used to apply a function to each column or row of a data frame.
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 # Example data frame
 df <- data.frame(a = 1:3, b = 4:6)
 df
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-  a b
-1 1 4
-2 2 5
-3 3 6
-```
-
-
-:::
-:::
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 # Define a simple function to calculate the mean
 meanFunction <- function(x) {
   return(mean(x))
@@ -301,18 +157,6 @@ meanFunction <- function(x) {
 # Apply meanFunction to each column of df to get the mean of each column
 apply(df, MARGIN = 2, FUN = meanFunction) # MARGIN = 1 indicates rows (try it!)
 ```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-a b 
-2 5 
-```
-
-
-:::
-:::
-
 
 This will calculate the mean of each column in the data frame `df`.
 
@@ -334,15 +178,17 @@ The following is the Lab 2 worksheet kindly designed by [**Yujing Lu**](mailto:Y
 
 \(i\) Generate two vectors $(v_1,v_2)$ of 30 random integers each, where the elements in $v_1$ are uniformly drawn from $\{80,81,\dots,100\}$, and the elements in $v_2$ are uniformly drawn from $\{60,61,\dots, 90 \}$, with replacement.
 
-
-
-
+```{r include=FALSE}
+v1<-sample(80:100, 30, replace = TRUE)
+v2<-sample(60:90, 30, replace = TRUE)
+```
 
 \(ii\) Generate a vector of 30 random names using the `randomNames()` function. Remember to install the `randomNames` package and load it!
 
-
-
-
+```{r include=FALSE}
+install.packages("randomNames")
+library("randomNames")
+```
 
 ::: callout-tip
 ## Hint
@@ -350,25 +196,29 @@ The following is the Lab 2 worksheet kindly designed by [**Yujing Lu**](mailto:Y
 `set.seed()` allows the code to be reproducible by setting a specific seed value. When a seed is set, the sequence generated remains deterministic.
 :::
 
-
-
-
+```{r include=FALSE}
+set.seed(21012024)
+names<-randomNames(30)
+```
 
 ### 3.1.2 Create a data frame
 
 We aim to record the names, assignment marks, and exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: "names", "assignment", and "exam".
 
-
-
-
+```{r include=FALSE}
+course1<- data.frame(
+  names=randomNames(30),
+  assignment=sample(80:100,30,replace = TRUE), 
+  exam=sample(60:90,30,replace = TRUE))
+```
 
 ### 3.1.3 Deal with data frame
 
 \(i\) First, calculate the final marks for this course using the formula $$\text{Final mark} = 0.2\times \text{Assignment} + 0.8\times \text{Exam}$$ and add this information to a new column named `finalMark`.
 
-
-
-
+```{r include=FALSE}
+course1$finalMark<-(0.2*course1$assignment+0.8*course1$exam)
+```
 
 \(ii\) Can you find the student with the highest `finalMark`?
 
@@ -379,37 +229,59 @@ We aim to record the names, assignment marks, and exam marks of 30 students from
 2.  Alternatively, you can use the `arrange` function in the [**`dplyr`**](https://dplyr.tidyverse.org/) package for this task (optional).
 :::
 
+```{r include=FALSE}
+course1[order(course1$finalMark,decreasing = TRUE),][1,]
+```
 
+```{r include=FALSE}
+install.packages("dplyr")
+library("dplyr")
+```
 
-
-
-
-
-
+```{r include=FALSE}
+course1 %>% arrange(desc(finalMark)) %>% head()
+```
 
 \(iii\) Next, calculate the means of `assignment`, `exam`, and `finalMarks`, respectively.
 
+```{r include=FALSE}
+round(mean(course1$Assignment))
+round(mean(course1$Exam))
+round(mean(course1$FinalMark))
+```
 
+```{r include=FALSE}
+round(apply(X = course1[,2:4], MARGIN = 2, FUN = mean))
+```
 
-
-
-
-
-
+```{r include=FALSE}
+course1 %>%
+  summarize(across(c(2,3,4),mean)) %>% round()
+```
 
 \(iv\) Then, randomly pick 10 students and set then to have chosen course 2. The other students have not chosen this course. Please add a column `course2` to indicate their choice (0 for yes,1 for no).
 
-
-
-
+```{r include=FALSE}
+random_numbers<-sample(1:30,10,replace = FALSE)
+course1$course2<- 0
+course1[c(random_numbers),]$course2<-1
+```
 
 \(v\) Finally, find the students with marks above 85 and who haven't chosen course 2 by extracting values from the `names` column. You can also use the `apply()` function for this purpose. Verify if these two methods give the same results.
 
+```{r include=FALSE}
+course1[course1$finalMark>85 & course1$course2==0,]$names
+```
 
+```{r include=FALSE}
+check<-function(x){
+  value <- x[1]>85 & x[2]==0
+  return(value)
+}
 
-
-
-
+filter<-apply(X = course1[,c(4,5)], 1, FUN = check)
+course1[filter,]$names
+```
 
 ## 3.2 Define a function
 
@@ -419,11 +291,30 @@ $F_0=0,\ F_1=1,\ F_n=F_{n-1}+F_{n-2}$.
 
 Define a function to produce the nth Fibonacci number with or without a loop.
 
+```{r include=FALSE}
+fb<-function(n){
+  f<-c(0,1)
+  if (n>1){
+  for (i in 2:n){
+    f[i+1] <- f[i] + f[i-1]
+  }}
+  return(f[n+1])
+}
 
+```
 
+```{r include=FALSE}
+fb<-function(n){
+  if(n==0){
+    return(0)
+  }
+  if(n==1){
+    return(1)
+  }
+  fb(n-1)+fb(n-2)
+}
 
-
-
+```
 
 ## 3.3 Uniform distribution and histogram
 
@@ -436,13 +327,37 @@ Simulate 1000 samples from a uniform distribution $X\sim U[0,1]$ and create a hi
 2.  To plot the histogram, you can simply use the `hist` function - alternatively, you can try the `ggplot2` package.
 :::
 
+```{r include=FALSE}
+# generate the samples
+num_sample <- 1000 # you can try different values of num_sample
+sample <- runif(n=num_sample,min=0,max=1)
+```
 
+```{r include=FALSE}
 
+# get 100 evenly spaced values between -0.25 and 1.25 to plot the probability density function of the uniform distribution
+x <- seq(-0.25, 1.25, length.out=100)
 
+#plotting the histogram
+title <- sprintf("Histogram of %d simulations from X~U(%d,%d)", num_sample, 0, 1)
+hist(sample, main = title, xlim = c(-0.5, 1.5), xlab = "x", prob = TRUE,col="lightblue", ylab="f (x)")
+lines(x, dunif(x,min=0,max=1), col = "red", lwd = 2)
+```
 
+```{r include=FALSE}
+# Load ggplot2 library
+library(ggplot2)
 
+# Create a data frame for the samples
+df <- data.frame(sample)
 
-
+# Create the histogram and overlay the probability density function
+ggplot(df, aes(x = sample)) +
+  geom_histogram(aes(y = ..density..), binwidth = 0.08, fill = "lightblue", colour = "black") + 
+  # here (y = ..density..) means that we map the y-axis aesthetic to the density of the data,   rather than the count, which is the default.
+  stat_function(fun = dunif, xlim = c(-0.25, 1.25), args = list(min = 0, max = 1), colour = "red", linewidth = 1) +
+  labs(title = sprintf("Histogram of %d simulations from X~U(%d,%d)", num_sample, 0, 1))
+```
 
 ::: callout-note
 ## Discussion
@@ -466,10 +381,7 @@ A and B are tossing a fair coin. A wins if HHH appears first; B wins if HTH appe
 
 We can write some codes to simulate the game
 
-
-::: {.cell}
-
-```{.r .cell-code}
+```{r}
 simulate_coin_toss <- function(sequence_a, sequence_b, num_simulations = 10000) {
   wins_a <- 0
   wins_b <- 0
@@ -502,17 +414,6 @@ simulate_coin_toss <- function(sequence_a, sequence_b, num_simulations = 10000) 
 simulate_coin_toss("HHH", "HTH")
 ```
 
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 0.406 0.594
-```
-
-
-:::
-:::
-
-
 ::: callout-important
 ## Your turn
 
@@ -520,6 +421,27 @@ simulate_coin_toss("HHH", "HTH")
 2.  Can you prove your winning probabilities algebraically?
 :::
 
+```{r include=FALSE}
+# Function to calculate expected number of tosses
+expected_tosses <- function(sequence, num_simulations = 10000) {
+  toss_counts <- numeric(num_simulations)
 
+  for (i in 1:num_simulations) {
+    coin_sequence <- ""
+    toss_count <- 0
 
+    while (!grepl(sequence, coin_sequence)) {
+      coin_sequence <- paste0(coin_sequence, sample(c("H", "T"), 1, replace = TRUE))
+      toss_count <- toss_count + 1
+    }
 
+    toss_counts[i] <- toss_count
+  }
+
+  mean(toss_counts)
+}
+
+# Calculate for sequences "HHH" and "HHT"
+expected_tosses("HHH")
+expected_tosses("HTT")
+```
