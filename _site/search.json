@@ -39,28 +39,42 @@
     "href": "lab_2_markdown.html",
     "title": "ST117 Lab 2",
     "section": "",
-    "text": "When we read a CSV file with read.csv, there is an argument header deciding whether it reads the first row as the column names of the variables.\nRecall that last time we generated a random dataframe of columns named “id” and “score” first.\n\ndata &lt;- data.frame(\n  id = 1:3,\n  score = sample(5:10, 3, replace = TRUE) # sample(list, n) allows you to sample number n values from list\n)\ndata\n\n  id score\n1  1     9\n2  2     6\n3  3    10\n\n\nNow, we write data into a CSV file\n\n# Write the data frame to a CSV file\nwrite.csv(data, \"sample_data.csv\", row.names = FALSE)\n\nIf we read with header=TRUE (default in this case), “id” and “score” are parsed as column names instead of variable values\n\ndata_read_header &lt;- read.csv(\"sample_data.csv\", header = TRUE)\ndata_read_header\n\n  id score\n1  1     9\n2  2     6\n3  3    10\n\n\nHowever, if we read with header=FALSE, then “id” and “score” are regarded as values\n\ndata_read_noheader &lt;- read.csv(\"sample_data.csv\", header = FALSE)\ndata_read_noheader\n\n  V1    V2\n1 id score\n2  1     9\n3  2     6\n4  3    10\n\n\nIn this case, you would run into problems if you simply taking the first column of data_read:\n\ndata_read_noheader[,1]\n\n[1] \"id\" \"1\"  \"2\"  \"3\" \n\n\nYou also run into problems if you are getting a column by its name:\n\ndata_read_header$id\n\n[1] 1 2 3\n\n\n\ndata_read_noheader$id\n\nNULL\n\n\n\n\n\n\n\n\nNote\n\n\n\nheader is defaulted to TRUE if and only if the first row contains one fewer field than the number of columns. For further details, use ?read.csv to check the full documentation.\n\n\n\n\n\nThe R Console is an interactive platform for immediate execution of individual commands, ideal for exploratory data analysis and quick tests.\nIn contrast, R Scripts are non-interactive files where code can be written, saved, and executed in a structured and reproducible manner, suitable for complex and longer projects."
+    "text": "When we read a CSV file with read.csv, there is an argument header deciding whether it reads the first row as the column names of the variables.\nRecall that last time, we generated a random data frame of columns named “id” and “score” first.\n\ndata &lt;- data.frame(\n  id = 1:3,\n  score = sample(5:10, 3, replace = TRUE) # sample(list, n) allows you to sample number n values from list\n)\ndata\n\n  id score\n1  1     6\n2  2    10\n3  3     8\n\n\nNow, we write data into a CSV file\n\n# Write the data frame to a CSV file\nwrite.csv(data, \"sample_data.csv\", row.names = FALSE)\n\nIf we read with header=TRUE (default in this case), “id” and “score” are parsed as column names instead of variable values\n\ndata_read_header &lt;- read.csv(\"sample_data.csv\", header = TRUE)\ndata_read_header\n\n  id score\n1  1     6\n2  2    10\n3  3     8\n\n\nHowever, if we read with header=FALSE, then “id” and “score” are regarded as values\n\ndata_read_noheader &lt;- read.csv(\"sample_data.csv\", header = FALSE)\ndata_read_noheader\n\n  V1    V2\n1 id score\n2  1     6\n3  2    10\n4  3     8\n\n\nIn this case, you would run into problems if you simply take the first column of data_read:\n\ndata_read_noheader[,1]\n\n[1] \"id\" \"1\"  \"2\"  \"3\" \n\n\nYou also run into problems if you are getting a column by its name:\n\ndata_read_header$id\n\n[1] 1 2 3\n\n\n\ndata_read_noheader$id\n\nNULL\n\n\n\n\n\n\n\n\nNote\n\n\n\nheader is defaulted to TRUE if and only if the first row contains one fewer field than the number of columns. For further details, use ?read.csv to check the full documentation.\n\n\n\n\n\nThe R Console is an interactive platform for immediate execution of individual commands, ideal for exploratory data analysis and quick tests.\nIn contrast, R Scripts are non-interactive files where code can be written, saved, and executed in a structured and reproducible manner, suitable for complex and longer projects."
   },
   {
-    "objectID": "lab_2_markdown.html#what-is-an-r-project",
-    "href": "lab_2_markdown.html#what-is-an-r-project",
-    "title": "ST 117 Lab 2",
-    "section": "What is an R Project?",
-    "text": "What is an R Project?\nAn R Project is a self-contained directory that includes all files relevant to a particular set of analyses. Using projects helps in organising your work and ensuring reproducibility."
+    "objectID": "lab_2_markdown.html#dataframe-header",
+    "href": "lab_2_markdown.html#dataframe-header",
+    "title": "ST117 Lab 2",
+    "section": "",
+    "text": "When we read a CSV file with read.csv, there is an argument header deciding whether it reads the first row as the column names of the variables.\nRecall that last time we generated a random dataframe of columns named “id” and “score” first.\n\ndata &lt;- data.frame(\n  id = 1:3,\n  score = sample(5:10, 3, replace = TRUE) # sample(list, n) allows you to sample number n values from list\n)\ndata\n\n  id score\n1  1     5\n2  2     9\n3  3     5\n\n\nNow, we write data into a CSV file\n\n# Write the data frame to a CSV file\nwrite.csv(data, \"sample_data.csv\", row.names = FALSE)\n\nIf we read with header=TRUE (default in this case), “id” and “score” are parsed as column names instead of variable values\n\ndata_read_header &lt;- read.csv(\"sample_data.csv\", header = TRUE)\ndata_read_header\n\n  id score\n1  1     5\n2  2     9\n3  3     5\n\n\nHowever, if we read with header=FALSE, then “id” and “score” are regarded as values\n\ndata_read_noheader &lt;- read.csv(\"sample_data.csv\", header = FALSE)\ndata_read_noheader\n\n  V1    V2\n1 id score\n2  1     5\n3  2     9\n4  3     5\n\n\nIn this case, you would run into problems if you simply taking the first column of data_read:\n\ndata_read_noheader[,1]\n\n[1] \"id\" \"1\"  \"2\"  \"3\" \n\n\nYou also run into problems if you are getting a column by its name:\n\ndata_read_header$id\n\n[1] 1 2 3\n\n\n\ndata_read_noheader$id\n\nNULL\n\n\n\n\n\n\n\n\nNote\n\n\n\nheader is defaulted to TRUE if and only if the first row contains one fewer field than the number of columns. For further details, use ?read.csv to check the full documentation."
   },
   {
-    "objectID": "lab_2_markdown.html#creating-and-managing-projects",
-    "href": "lab_2_markdown.html#creating-and-managing-projects",
-    "title": "ST 117 Lab 2",
-    "section": "Creating and Managing Projects",
-    "text": "Creating and Managing Projects\n\nCreating a Project: In RStudio, go to File &gt; New Project to create a new project.\nSwitching Directories: Use setwd(\"path/to/directory\") to change your working directory in R."
+    "objectID": "lab_2_markdown.html#r-script-vs-console",
+    "href": "lab_2_markdown.html#r-script-vs-console",
+    "title": "ST117 Lab 2",
+    "section": "",
+    "text": "The R Console is an interactive platform for immediate execution of individual commands, ideal for exploratory data analysis and quick tests.\nIn contrast, R Scripts are non-interactive files where code can be written, saved, and executed in a structured and reproducible manner, suitable for complex and longer projects."
   },
   {
-    "objectID": "lab_2_markdown.html#introduction-to-git-and-version-control",
-    "href": "lab_2_markdown.html#introduction-to-git-and-version-control",
-    "title": "ST 117 Lab 2",
-    "section": "Introduction to Git and Version Control",
-    "text": "Introduction to Git and Version Control\nGit is a version control system used to track changes in files. It’s essential for collaboration and maintaining a history of your work.\n\nBasic Git Commands: Use git commit, git push, and git pull to manage your R scripts.\nIntegration with RStudio: RStudio provides tools to integrate Git into your project management workflow."
+    "objectID": "lab_2_markdown.html#random-numbers-and-dataframe",
+    "href": "lab_2_markdown.html#random-numbers-and-dataframe",
+    "title": "ST117 Lab 2",
+    "section": "3.1 Random numbers and dataframe",
+    "text": "3.1 Random numbers and dataframe\n\n3.1.1 Generating Random Numbers and Names\n(i) Generate two vectors \\((v_1,v_2)\\) of 30 random integers each, where the elements in \\(v_1\\) are uniformly drawn from \\(\\{80,81,\\dots,100\\}\\), and the elements in \\(v_2\\) are uniformly drawn from \\(\\{60,61,\\dots, 90 \\}\\), with replacement.\n(ii) Generate a vector of 30 random names using the randomNames() function. Remember to install the randomNames package and load it!\n\n\n\n\n\n\nHint\n\n\n\nset.seed() allows the code to be reproducible by setting a specific seed value. When a seed is set, the sequence generated remains deterministic.\n\n\n\n\n3.1.2 Create a Dataframe\nWe aim to record names, assignment marks, exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: “Names”, “Assignment”, and “Exam”.\n\n\n3.1.3 Deal with Dataframe\n(i) First, calculate the final marks for this course using the formula \\[\\text{Final mark} = 0.2\\times \\text{Assignment} + 0.8\\times \\text{Exam}\\] and add this information to a new column named “FinalMark”.\n(ii) Can you find the student with highest “FinalMark”?\n\n\n\n\n\n\nHint\n\n\n\n\nYou may consider sorting your data frame in descending order by the values of “FinalMarks” - look up the different between sort and order!\nAlternatively, you can use the arrange function in the dplyr package for this task (optional).\n\n\n\n(iii) Next, calculate the means of “Assignment”,“Exam” and “FinalMarks”.\n(iv) Then, randomly pick 10 of the students who have also chosen course 2, and add a column to indicate their choice (0 for yes,1 for no).\n(v) Finally, find the students with marks above 85 and haven’t chosen course 2 by extracting values from “names” column. You can also use apply() function for this purpose. Verify if these two methods give the same results."
+  },
+  {
+    "objectID": "lab_2_markdown.html#define-a-function",
+    "href": "lab_2_markdown.html#define-a-function",
+    "title": "ST117 Lab 2",
+    "section": "3.2 Define a function",
+    "text": "3.2 Define a function\nRecall that the Fibonacci sequence is defined by recurrent relations:\n\\(F_0=0,\\ F_1=1,\\ F_n=F_{n-1}+F_{n-2}\\).\nDefine a function to produce the nth Fibonacci number with or without a loop."
+  },
+  {
+    "objectID": "lab_2_markdown.html#uniform-distribution-and-histogram",
+    "href": "lab_2_markdown.html#uniform-distribution-and-histogram",
+    "title": "ST117 Lab 2",
+    "section": "3.3 Uniform distribution and histogram",
+    "text": "3.3 Uniform distribution and histogram\nSimulate 10000 samples from a uniform distribution \\(X\\sim U[0,1]\\) and create a histogram of the generated sequence. Overlay the histogram on the probability density function - does the histogram reflect the density well?\n\n\n\n\n\n\nHint\n\n\n\n\nYou can look up dunif(), which defines the probability density function of a uniform distribution.\nTo plot the histogram, you can simply use the hist function - alternatively, you can try the ggplot2 package.\n\n\n\n\n\n\n\n\n\nDiscussion\n\n\n\nIf we increase the number of simulations, does the fit improve?"
   },
   {
     "objectID": "lab_2_markdown.html#problem-statement",
@@ -75,13 +89,6 @@
     "title": "ST117 Lab 2",
     "section": "Simulation Code",
     "text": "Simulation Code\nWe can write some codes to simulate the game\n\nsimulate_coin_toss &lt;- function(sequence_a, sequence_b, num_simulations = 10000) {\n  wins_a &lt;- 0\n  wins_b &lt;- 0\n\n  # play the game num_simulations times\n  for (i in 1:num_simulations) {\n    \n    # keep tossing until there is a winner\n    coin_sequence &lt;- \"\"\n    while (!grepl(sequence_a, coin_sequence) && !grepl(sequence_b, coin_sequence)) {\n      coin_sequence &lt;- paste0(coin_sequence, sample(c(\"H\", \"T\"), 1, replace = TRUE))\n    }\n    \n    # record the winner\n    if (grepl(sequence_a, coin_sequence)) {\n      wins_a &lt;- wins_a + 1\n    } else {\n      wins_b &lt;- wins_b + 1\n    }\n  }\n\n  # use the number of wins to estimate the winning probability\n  prob_a_wins &lt;- wins_a / num_simulations\n  prob_b_wins &lt;- wins_b / num_simulations\n\n  return(c(prob_a_wins, prob_b_wins))\n}\n\n# Call the function\nsimulate_coin_toss(\"HHH\", \"HTH\")\n\n[1] 0.406 0.594\n\n\n\n\n\n\n\n\nYour turn\n\n\n\n\nCan you write some codes to estimate the expected number of tosses needed until a certain player gets a win?\nCan you prove your winning probabilities algebraically?"
-  },
-  {
-    "objectID": "lab_2_markdown.html#expected-number-of-tosses",
-    "href": "lab_2_markdown.html#expected-number-of-tosses",
-    "title": "ST 117 Lab 2",
-    "section": "Expected Number of Tosses",
-    "text": "Expected Number of Tosses\n\n# Function to calculate expected number of tosses\nexpected_tosses &lt;- function(sequence, num_simulations = 10000) {\n  toss_counts &lt;- numeric(num_simulations)\n\n  for (i in 1:num_simulations) {\n    coin_sequence &lt;- \"\"\n    toss_count &lt;- 0\n\n    while (!grepl(sequence, coin_sequence)) {\n      coin_sequence &lt;- paste0(coin_sequence, sample(c(\"H\", \"T\"), 1, replace = TRUE))\n      toss_count &lt;- toss_count + 1\n    }\n\n    toss_counts[i] &lt;- toss_count\n  }\n\n  mean(toss_counts)\n}\n\n# Calculate for sequences \"HHH\" and \"HHT\"\nexpected_tosses(\"HHH\")\n\n[1] 14.0364\n\nexpected_tosses(\"HTT\")\n\n[1] 7.9293"
   },
   {
     "objectID": "index.html",
@@ -109,83 +116,20 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "This website is created by Mengqi Chen at Department of Statistics, University of Warwick in term 2, 2024. It is put together with Quarto, which is an open-source scientific and technical publishing system designed to create dynamic and reproducible documents.\nFor feedback on the lab sessions please fill out the anonymous feedback form. For corrections and comments on this site, please email me at mengqi.chen.2@warwick.ac.uk."
+    "text": "This website is created by Mengqi Chen at Department of Statistics, University of Warwick in term 2, 2024. It is put together with Quarto, which is an open-source scientific and technical publishing system designed to create dynamic and reproducible documents.\nFor feedback on the lab sessions please fill out the anonymous feedback form. For corrections and comments on this site, please email me."
   },
   {
-    "objectID": "lab_2_markdown.html#generating-random-numbers-and-names",
-    "href": "lab_2_markdown.html#generating-random-numbers-and-names",
-    "title": "ST 117 Lab 2",
-    "section": "",
-    "text": "1.1 Generate two vectors of 30 random numbers each, where the first one ranges from 80 to 100, and the second from 60 to 90, with replacement.\n1.2 Generate a vector of 30 random names using the randomNames() function. Remember to install the randomNames package and load it!\n\n\n\n\n\n\nHint\n\n\n\nset.seed() allows the code to be reproducible by setting a specific seed value. When a seed is set, the sequence generated remains deterministic."
-  },
-  {
-    "objectID": "lab_2_markdown.html#create-a-data-frame",
-    "href": "lab_2_markdown.html#create-a-data-frame",
-    "title": "ST 117 Lab 2",
-    "section": "",
-    "text": "We aim to record names, assignment marks, exam marks of 30 students from course 1 in a table. Using random the generators, first generate these items, then combine them into a data frame with three columns: “Names”, “Assignment”, and “Exam”."
-  },
-  {
-    "objectID": "lab_2_markdown.html#deal-with-data-frame",
-    "href": "lab_2_markdown.html#deal-with-data-frame",
-    "title": "ST 117 Lab 2",
-    "section": "",
-    "text": "3.1 First, calculate the final marks for this course using the formula \\[\\text{Final mark} = 0.2\\times \\text{Assignment} + 0.8\\times \\text{Exam}\\] and add this information to a new column named “FinalMark”.\n3.2 Can you find the student with highest “FinalMark”?\n\n\n\n\n\n\nHint\n\n\n\n\nYou may consider sorting your data frame in descending order by the values of “FinalMarks” - look up the different between sort and order!\nAlternatively, you can use the arrange function in the dplyr package for this task (optional).\n\n\n\n3.2 Next, calculate the means of “Assignment”,“Exam” and “FinalMarks”.\n3.3 Then, randomly pick 10 of the students who have also chosen course 2, and add a column to indicate their choice (0 for yes,1 for no).\n3.4 Finally, find the students with marks above 85 and haven’t chosen course 2 by extracting values from “names” column. You can also use apply() function for this purpose. Verify if these two methods give the same results."
-  },
-  {
-    "objectID": "lab_2_markdown.html#define-a-function",
-    "href": "lab_2_markdown.html#define-a-function",
-    "title": "ST117 Lab 2",
-    "section": "3.2 Define a function",
-    "text": "3.2 Define a function\nRecall that the Fibonacci sequence is defined by recurrent relations:\n\\(F_0=0,\\ F_1=1,\\ F_n=F_{n-1}+F_{n-2}\\).\nDefine a function to produce the nth Fibonacci number with or without a loop."
-  },
-  {
-    "objectID": "lab_2_markdown.html#uniform-distrbution",
-    "href": "lab_2_markdown.html#uniform-distrbution",
-    "title": "ST 117 Lab 2",
-    "section": "",
-    "text": "Simulate 10000 samples from a uniform distribution \\(X\\sim U[0,1]\\) and create a histogram of the generated sequence. Use the dnorm() function to generate the probability density function of this distribution and plot it on the histogram to compare the shapes. If we increase the number of simulations, will it improve?"
-  },
-  {
-    "objectID": "lab_2_markdown.html#uniform-distribution",
-    "href": "lab_2_markdown.html#uniform-distribution",
-    "title": "ST 117 Lab 2",
-    "section": "",
-    "text": "Simulate 10000 samples from a uniform distribution \\(X\\sim U[0,1]\\) and create a histogram of the generated sequence. Overlay the histogram on the probability density function - does the histogram reflect the density well?\n\n\n\n\n\n\nHint\n\n\n\n\nYou can look up dunif(), which defines the probability density function of a uniform distribution.\nTo plot the histogram, you can simply use the hist function - alternatively, you can try the ggplot2 package.\n\n\n\n\n\n\n\n\n\nDiscussion\n\n\n\nIf we increase the number of simulations, does the fit improve?"
-  },
-  {
-    "objectID": "lab_2_markdown.html#dataframe-header",
-    "href": "lab_2_markdown.html#dataframe-header",
+    "objectID": "lab_2_markdown.html#data-frame-header",
+    "href": "lab_2_markdown.html#data-frame-header",
     "title": "ST117 Lab 2",
     "section": "",
-    "text": "When we read a CSV file with read.csv, there is an argument header deciding whether it reads the first row as the column names of the variables.\nRecall that last time we generated a random dataframe of columns named “id” and “score” first.\n\ndata &lt;- data.frame(\n  id = 1:3,\n  score = sample(5:10, 3, replace = TRUE) # sample(list, n) allows you to sample number n values from list\n)\ndata\n\n  id score\n1  1     9\n2  2     6\n3  3    10\n\n\nNow, we write data into a CSV file\n\n# Write the data frame to a CSV file\nwrite.csv(data, \"sample_data.csv\", row.names = FALSE)\n\nIf we read with header=TRUE (default in this case), “id” and “score” are parsed as column names instead of variable values\n\ndata_read_header &lt;- read.csv(\"sample_data.csv\", header = TRUE)\ndata_read_header\n\n  id score\n1  1     9\n2  2     6\n3  3    10\n\n\nHowever, if we read with header=FALSE, then “id” and “score” are regarded as values\n\ndata_read_noheader &lt;- read.csv(\"sample_data.csv\", header = FALSE)\ndata_read_noheader\n\n  V1    V2\n1 id score\n2  1     9\n3  2     6\n4  3    10\n\n\nIn this case, you would run into problems if you simply taking the first column of data_read:\n\ndata_read_noheader[,1]\n\n[1] \"id\" \"1\"  \"2\"  \"3\" \n\n\nYou also run into problems if you are getting a column by its name:\n\ndata_read_header$id\n\n[1] 1 2 3\n\n\n\ndata_read_noheader$id\n\nNULL\n\n\n\n\n\n\n\n\nNote\n\n\n\nheader is defaulted to TRUE if and only if the first row contains one fewer field than the number of columns. For further details, use ?read.csv to check the full documentation."
+    "text": "When we read a CSV file with read.csv, there is an argument header deciding whether it reads the first row as the column names of the variables.\nRecall that last time, we generated a random data frame of columns named “id” and “score” first.\n\ndata &lt;- data.frame(\n  id = 1:3,\n  score = sample(5:10, 3, replace = TRUE) # sample(list, n) allows you to sample number n values from list\n)\ndata\n\n  id score\n1  1     6\n2  2    10\n3  3     8\n\n\nNow, we write data into a CSV file\n\n# Write the data frame to a CSV file\nwrite.csv(data, \"sample_data.csv\", row.names = FALSE)\n\nIf we read with header=TRUE (default in this case), “id” and “score” are parsed as column names instead of variable values\n\ndata_read_header &lt;- read.csv(\"sample_data.csv\", header = TRUE)\ndata_read_header\n\n  id score\n1  1     6\n2  2    10\n3  3     8\n\n\nHowever, if we read with header=FALSE, then “id” and “score” are regarded as values\n\ndata_read_noheader &lt;- read.csv(\"sample_data.csv\", header = FALSE)\ndata_read_noheader\n\n  V1    V2\n1 id score\n2  1     6\n3  2    10\n4  3     8\n\n\nIn this case, you would run into problems if you simply take the first column of data_read:\n\ndata_read_noheader[,1]\n\n[1] \"id\" \"1\"  \"2\"  \"3\" \n\n\nYou also run into problems if you are getting a column by its name:\n\ndata_read_header$id\n\n[1] 1 2 3\n\n\n\ndata_read_noheader$id\n\nNULL\n\n\n\n\n\n\n\n\nNote\n\n\n\nheader is defaulted to TRUE if and only if the first row contains one fewer field than the number of columns. For further details, use ?read.csv to check the full documentation."
   },
   {
-    "objectID": "lab_2_markdown.html#random-numbers-and-dataframe",
-    "href": "lab_2_markdown.html#random-numbers-and-dataframe",
+    "objectID": "lab_2_markdown.html#random-numbers-and-data-frame",
+    "href": "lab_2_markdown.html#random-numbers-and-data-frame",
     "title": "ST117 Lab 2",
-    "section": "3.1 Random numbers and dataframe",
-    "text": "3.1 Random numbers and dataframe\n\n3.1.1 Generating Random Numbers and Names\n(i) Generate two vectors \\((v_1,v_2)\\) of 30 random integers each, where the elements in \\(v_1\\) are uniformly drawn from \\(\\{80,81,\\dots,100\\}\\), and the elements in \\(v_2\\) are uniformly drawn from \\(\\{60,61,\\dots, 90 \\}\\), with replacement.\n(ii) Generate a vector of 30 random names using the randomNames() function. Remember to install the randomNames package and load it!\n\n\n\n\n\n\nHint\n\n\n\nset.seed() allows the code to be reproducible by setting a specific seed value. When a seed is set, the sequence generated remains deterministic.\n\n\n\n\n3.1.2 Create a Dataframe\nWe aim to record names, assignment marks, exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: “Names”, “Assignment”, and “Exam”.\n\n\n3.1.3 Deal with Dataframe\n(i) First, calculate the final marks for this course using the formula \\[\\text{Final mark} = 0.2\\times \\text{Assignment} + 0.8\\times \\text{Exam}\\] and add this information to a new column named “FinalMark”.\n(ii) Can you find the student with highest “FinalMark”?\n\n\n\n\n\n\nHint\n\n\n\n\nYou may consider sorting your data frame in descending order by the values of “FinalMarks” - look up the different between sort and order!\nAlternatively, you can use the arrange function in the dplyr package for this task (optional).\n\n\n\n(iii) Next, calculate the means of “Assignment”,“Exam” and “FinalMarks”.\n(iv) Then, randomly pick 10 of the students who have also chosen course 2, and add a column to indicate their choice (0 for yes,1 for no).\n(v) Finally, find the students with marks above 85 and haven’t chosen course 2 by extracting values from “names” column. You can also use apply() function for this purpose. Verify if these two methods give the same results."
-  },
-  {
-    "objectID": "lab_2_markdown.html#uniform-distribution-and-histogram",
-    "href": "lab_2_markdown.html#uniform-distribution-and-histogram",
-    "title": "ST117 Lab 2",
-    "section": "3.3 Uniform distribution and histogram",
-    "text": "3.3 Uniform distribution and histogram\nSimulate 10000 samples from a uniform distribution \\(X\\sim U[0,1]\\) and create a histogram of the generated sequence. Overlay the histogram on the probability density function - does the histogram reflect the density well?\n\n\n\n\n\n\nHint\n\n\n\n\nYou can look up dunif(), which defines the probability density function of a uniform distribution.\nTo plot the histogram, you can simply use the hist function - alternatively, you can try the ggplot2 package.\n\n\n\n\n\n\n\n\n\nDiscussion\n\n\n\nIf we increase the number of simulations, does the fit improve?"
-  },
-  {
-    "objectID": "lab_2_markdown.html#r-script-vs-console",
-    "href": "lab_2_markdown.html#r-script-vs-console",
-    "title": "ST117 Lab 2",
-    "section": "",
-    "text": "The R Console is an interactive platform for immediate execution of individual commands, ideal for exploratory data analysis and quick tests.\nIn contrast, R Scripts are non-interactive files where code can be written, saved, and executed in a structured and reproducible manner, suitable for complex and longer projects."
-  },
-  {
-    "objectID": "lab_2_markdown.html#conclusion",
-    "href": "lab_2_markdown.html#conclusion",
-    "title": "ST 117 Lab 2",
-    "section": "Conclusion",
-    "text": "Conclusion\nFunctions in R are powerful tools for encapsulating code into reusable blocks. They are essential for writing clear, concise, and effective R code. The apply family of functions further extends this power by allowing easy application of functions to data structures like dataframes.\n\n```\nThis Quarto document is a basic guide to understanding and using functions in R, with examples that include defining a function, using it with arguments, and applying it to a dataframe."
+    "section": "3.1 Random numbers and data frame",
+    "text": "3.1 Random numbers and data frame\n\n3.1.1 Generating Random Numbers and Names\n(i) Generate two vectors \\((v_1,v_2)\\) of 30 random integers each, where the elements in \\(v_1\\) are uniformly drawn from \\(\\{80,81,\\dots,100\\}\\), and the elements in \\(v_2\\) are uniformly drawn from \\(\\{60,61,\\dots, 90 \\}\\), with replacement.\n(ii) Generate a vector of 30 random names using the randomNames() function. Remember to install the randomNames package and load it!\n\n\n\n\n\n\nHint\n\n\n\nset.seed() allows the code to be reproducible by setting a specific seed value. When a seed is set, the sequence generated remains deterministic.\n\n\n\n\n3.1.2 Create a data frame\nWe aim to record the names, assignment marks, and exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: “names”, “assignment”, and “exam”.\n\n\n3.1.3 Deal with data frame\n(i) First, calculate the final marks for this course using the formula \\[\\text{Final mark} = 0.2\\times \\text{Assignment} + 0.8\\times \\text{Exam}\\] and add this information to a new column named finalMark.\n(ii) Can you find the student with the highest finalMark?\n\n\n\n\n\n\nHint\n\n\n\n\nYou may consider sorting your data frame in descending order by the values of finalMarks - look up the different between sort and order!\nAlternatively, you can use the arrange function in the dplyr package for this task (optional).\n\n\n\n(iii) Next, calculate the means of assignment, exam, and finalMarks, respectively.\n(iv) Then, randomly pick 10 students and set then to have chosen course 2. The other students have not chosen this course. Please add a column course2 to indicate their choice (0 for yes,1 for no).\n(v) Finally, find the students with marks above 85 and who haven’t chosen course 2 by extracting values from the names column. You can also use the apply() function for this purpose. Verify if these two methods give the same results."
   }
 ]

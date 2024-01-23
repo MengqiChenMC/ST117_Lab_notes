@@ -1,6 +1,6 @@
 ---
 title: "ST117 Lab 2"
-subtitle: "dataframe, random numbers, and functions"
+subtitle: "Data frame, random numbers, and functions"
 author: "Mengqi Chen"
 date: last-modified
 format: html
@@ -17,11 +17,11 @@ options(repos = c(CRAN = "https://cran.rstudio.com/"))
 
 # 1 Q&A from the previous session
 
-## 1.1 Dataframe header
+## 1.1 Data frame header
 
 When we read a CSV file with `read.csv`, there is an argument `header` deciding whether it reads the first row as the column names of the variables.
 
-Recall that last time we generated a random dataframe of columns named "id" and "score" first.
+Recall that last time, we generated a random data frame of columns named "id" and "score" first.
 
 ```{r}
 data <- data.frame(
@@ -52,7 +52,7 @@ data_read_noheader <- read.csv("sample_data.csv", header = FALSE)
 data_read_noheader
 ```
 
-In this case, you would run into problems if you simply taking the first column of `data_read`:
+In this case, you would run into problems if you simply take the first column of `data_read`:
 
 ```{r}
 data_read_noheader[,1]
@@ -102,10 +102,10 @@ result <- myFunction(5, 3)
 print(result) # Outputs 5+3
 ```
 
-The `apply` family of functions in R is used to apply a function over the margins of an array or matrix, and it's particularly useful for dataframes. For example, `apply` can be used to apply a function to each column or row of a dataframe.
+The `apply` family of functions in R is used to apply a function over the margins of an array or matrix, and it's particularly useful for data frames. For example, `apply` can be used to apply a function to each column or row of a data frame.
 
 ```{r}
-# Example dataframe
+# Example data frame
 df <- data.frame(a = 1:3, b = 4:6)
 df
 ```
@@ -120,21 +120,21 @@ meanFunction <- function(x) {
 apply(df, MARGIN = 2, FUN = meanFunction) # MARGIN = 1 indicates rows (try it!)
 ```
 
-This will calculate the mean of each column in the dataframe `df`.
+This will calculate the mean of each column in the data frame `df`.
 
 # 3 Assignments
 
 ::: callout-important
 ## Your turn!
 
-The following is the Lab 2 work sheet designed by **Yujing Lu**, the module tutor.
+The following is the Lab 2 worksheet kindly designed by [**Yujing Lu**](mailto:Yujing.Lu.2@warwick.ac.uk), the module tutor.
 
 1.  Please attempt these questions with your deskmate - raise your hand if you need any help.
 2.  If you and your deskmate have chosen different methods, check if you get the same results!
 3.  The solutions will be posted after the session.
 :::
 
-## 3.1 Random numbers and dataframe
+## 3.1 Random numbers and data frame
 
 ### 3.1.1 Generating Random Numbers and Names
 
@@ -163,36 +163,36 @@ set.seed(21012024)
 names<-randomNames(30)
 ```
 
-### 3.1.2 Create a Dataframe
+### 3.1.2 Create a data frame
 
-We aim to record names, assignment marks, exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: "Names", "Assignment", and "Exam".
+We aim to record the names, assignment marks, and exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: "names", "assignment", and "exam".
 
 ```{r include=FALSE}
 course1<- data.frame(
   names=randomNames(30),
-  Assignment=sample(80:100,30,replace = TRUE), 
-  Exam=sample(60:90,30,replace = TRUE))
+  assignment=sample(80:100,30,replace = TRUE), 
+  exam=sample(60:90,30,replace = TRUE))
 ```
 
-### 3.1.3 Deal with Dataframe
+### 3.1.3 Deal with data frame
 
-\(i\) First, calculate the final marks for this course using the formula $$\text{Final mark} = 0.2\times \text{Assignment} + 0.8\times \text{Exam}$$ and add this information to a new column named "FinalMark".
+\(i\) First, calculate the final marks for this course using the formula $$\text{Final mark} = 0.2\times \text{Assignment} + 0.8\times \text{Exam}$$ and add this information to a new column named `finalMark`.
 
 ```{r include=FALSE}
-course1$FinalMark<-(0.2*course1$Assignment+0.8*course1$Exam)
+course1$finalMark<-(0.2*course1$assignment+0.8*course1$exam)
 ```
 
-\(ii\) Can you find the student with highest "FinalMark"?
+\(ii\) Can you find the student with the highest `finalMark`?
 
 ::: callout-tip
 ## Hint
 
-1.  You may consider sorting your data frame in descending order by the values of "FinalMarks" - look up the different between `sort` and `order`!
+1.  You may consider sorting your data frame in descending order by the values of `finalMarks` - look up the different between `sort` and `order`!
 2.  Alternatively, you can use the `arrange` function in the [**`dplyr`**](https://dplyr.tidyverse.org/) package for this task (optional).
 :::
 
 ```{r include=FALSE}
-course1[order(course1$FinalMark,decreasing = TRUE),][1,]
+course1[order(course1$finalMark,decreasing = TRUE),][1,]
 ```
 
 ```{r include=FALSE}
@@ -201,10 +201,10 @@ library("dplyr")
 ```
 
 ```{r include=FALSE}
-course1 %>% arrange(desc(FinalMark)) %>% head()
+course1 %>% arrange(desc(finalMark)) %>% head()
 ```
 
-\(iii\) Next, calculate the means of "Assignment","Exam" and "FinalMarks".
+\(iii\) Next, calculate the means of `assignment`, `exam`, and `finalMarks`, respectively.
 
 ```{r include=FALSE}
 round(mean(course1$Assignment))
@@ -221,7 +221,7 @@ course1 %>%
   summarize(across(c(2,3,4),mean)) %>% round()
 ```
 
-\(iv\) Then, randomly pick 10 of the students who have also chosen course 2, and add a column to indicate their choice (0 for yes,1 for no).
+\(iv\) Then, randomly pick 10 students and set then to have chosen course 2. The other students have not chosen this course. Please add a column `course2` to indicate their choice (0 for yes,1 for no).
 
 ```{r include=FALSE}
 random_numbers<-sample(1:30,10,replace = FALSE)
@@ -229,10 +229,10 @@ course1$course2<- 0
 course1[c(random_numbers),]$course2<-1
 ```
 
-\(v\) Finally, find the students with marks above 85 and haven't chosen course 2 by extracting values from "names" column. You can also use `apply()` function for this purpose. Verify if these two methods give the same results.
+\(v\) Finally, find the students with marks above 85 and who haven't chosen course 2 by extracting values from the `names` column. You can also use the `apply()` function for this purpose. Verify if these two methods give the same results.
 
 ```{r include=FALSE}
-course1[course1$FinalMark>85 & course1$course2==0,]$names
+course1[course1$finalMark>85 & course1$course2==0,]$names
 ```
 
 ```{r include=FALSE}
@@ -308,7 +308,7 @@ If we increase the number of simulations, does the fit improve?
 ::: callout-note
 ## Note
 
-This is a more complicated simulation game and is by no means compulsory - try it if you are interested!
+This is a more complicated simulation game and is not compulsory - try it if you are interested!
 :::
 
 ## Problem Statement

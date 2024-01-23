@@ -193,13 +193,13 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#qa-from-the-previous-session" id="toc-qa-from-the-previous-session" class="nav-link active" data-scroll-target="#qa-from-the-previous-session">1 Q&amp;A from the previous session</a>
   <ul class="collapse">
-  <li><a href="#dataframe-header" id="toc-dataframe-header" class="nav-link" data-scroll-target="#dataframe-header">1.1 Dataframe header</a></li>
+  <li><a href="#data-frame-header" id="toc-data-frame-header" class="nav-link" data-scroll-target="#data-frame-header">1.1 Data frame header</a></li>
   <li><a href="#r-script-vs-console" id="toc-r-script-vs-console" class="nav-link" data-scroll-target="#r-script-vs-console">1.2 R script vs Console</a></li>
   </ul></li>
   <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link" data-scroll-target="#functions-in-r">2 Functions in R</a></li>
   <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">3 Assignments</a>
   <ul class="collapse">
-  <li><a href="#random-numbers-and-dataframe" id="toc-random-numbers-and-dataframe" class="nav-link" data-scroll-target="#random-numbers-and-dataframe">3.1 Random numbers and dataframe</a></li>
+  <li><a href="#random-numbers-and-data-frame" id="toc-random-numbers-and-data-frame" class="nav-link" data-scroll-target="#random-numbers-and-data-frame">3.1 Random numbers and data frame</a></li>
   <li><a href="#define-a-function" id="toc-define-a-function" class="nav-link" data-scroll-target="#define-a-function">3.2 Define a function</a></li>
   <li><a href="#uniform-distribution-and-histogram" id="toc-uniform-distribution-and-histogram" class="nav-link" data-scroll-target="#uniform-distribution-and-histogram">3.3 Uniform distribution and histogram</a></li>
   </ul></li>
@@ -217,7 +217,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">ST117 Lab 2</h1>
-<p class="subtitle lead">dataframe, random numbers, and functions</p>
+<p class="subtitle lead">Data frame, random numbers, and functions</p>
 </div>
 
 
@@ -248,10 +248,10 @@ window.Quarto = {
 
 <section id="qa-from-the-previous-session" class="level1">
 <h1>1 Q&amp;A from the previous session</h1>
-<section id="dataframe-header" class="level2">
-<h2 class="anchored" data-anchor-id="dataframe-header">1.1 Dataframe header</h2>
+<section id="data-frame-header" class="level2">
+<h2 class="anchored" data-anchor-id="data-frame-header">1.1 Data frame header</h2>
 <p>When we read a CSV file with <code>read.csv</code>, there is an argument <code>header</code> deciding whether it reads the first row as the column names of the variables.</p>
-<p>Recall that last time we generated a random dataframe of columns named “id” and “score” first.</p>
+<p>Recall that last time, we generated a random data frame of columns named “id” and “score” first.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
@@ -260,9 +260,9 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     9
-2  2     6
-3  3    10</code></pre>
+1  1     6
+2  2    10
+3  3     8</code></pre>
 </div>
 </div>
 <p>Now, we write <code>data</code> into a CSV file</p>
@@ -276,9 +276,9 @@ window.Quarto = {
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_read_header</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     9
-2  2     6
-3  3    10</code></pre>
+1  1     6
+2  2    10
+3  3     8</code></pre>
 </div>
 </div>
 <p>However, if we read with <code>header=FALSE</code>, then “id” and “score” are regarded as values</p>
@@ -288,12 +288,12 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>  V1    V2
 1 id score
-2  1     9
-3  2     6
-4  3    10</code></pre>
+2  1     6
+3  2    10
+4  3     8</code></pre>
 </div>
 </div>
-<p>In this case, you would run into problems if you simply taking the first column of <code>data_read</code>:</p>
+<p>In this case, you would run into problems if you simply take the first column of <code>data_read</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_read_noheader[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -353,9 +353,9 @@ Note
 <pre><code>[1] 8</code></pre>
 </div>
 </div>
-<p>The <code>apply</code> family of functions in R is used to apply a function over the margins of an array or matrix, and it’s particularly useful for dataframes. For example, <code>apply</code> can be used to apply a function to each column or row of a dataframe.</p>
+<p>The <code>apply</code> family of functions in R is used to apply a function over the margins of an array or matrix, and it’s particularly useful for data frames. For example, <code>apply</code> can be used to apply a function to each column or row of a data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example dataframe</span></span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data frame</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -378,7 +378,7 @@ Note
 2 5 </code></pre>
 </div>
 </div>
-<p>This will calculate the mean of each column in the dataframe <code>df</code>.</p>
+<p>This will calculate the mean of each column in the data frame <code>df</code>.</p>
 </section>
 <section id="assignments" class="level1">
 <h1>3 Assignments</h1>
@@ -392,7 +392,7 @@ Your turn!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The following is the Lab 2 work sheet designed by <strong>Yujing Lu</strong>, the module tutor.</p>
+<p>The following is the Lab 2 worksheet kindly designed by <a href="mailto:Yujing.Lu.2@warwick.ac.uk"><strong>Yujing Lu</strong></a>, the module tutor.</p>
 <ol type="1">
 <li>Please attempt these questions with your deskmate - raise your hand if you need any help.</li>
 <li>If you and your deskmate have chosen different methods, check if you get the same results!</li>
@@ -400,8 +400,8 @@ Your turn!
 </ol>
 </div>
 </div>
-<section id="random-numbers-and-dataframe" class="level2">
-<h2 class="anchored" data-anchor-id="random-numbers-and-dataframe">3.1 Random numbers and dataframe</h2>
+<section id="random-numbers-and-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="random-numbers-and-data-frame">3.1 Random numbers and data frame</h2>
 <section id="generating-random-numbers-and-names" class="level3">
 <h3 class="anchored" data-anchor-id="generating-random-numbers-and-names">3.1.1 Generating Random Numbers and Names</h3>
 <p>(i) Generate two vectors <span class="math inline">\((v_1,v_2)\)</span> of 30 random integers each, where the elements in <span class="math inline">\(v_1\)</span> are uniformly drawn from <span class="math inline">\(\{80,81,\dots,100\}\)</span>, and the elements in <span class="math inline">\(v_2\)</span> are uniformly drawn from <span class="math inline">\(\{60,61,\dots, 90 \}\)</span>, with replacement.</p>
@@ -420,14 +420,14 @@ Hint
 </div>
 </div>
 </section>
-<section id="create-a-dataframe" class="level3">
-<h3 class="anchored" data-anchor-id="create-a-dataframe">3.1.2 Create a Dataframe</h3>
-<p>We aim to record names, assignment marks, exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: “Names”, “Assignment”, and “Exam”.</p>
+<section id="create-a-data-frame" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-data-frame">3.1.2 Create a data frame</h3>
+<p>We aim to record the names, assignment marks, and exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: “names”, “assignment”, and “exam”.</p>
 </section>
-<section id="deal-with-dataframe" class="level3">
-<h3 class="anchored" data-anchor-id="deal-with-dataframe">3.1.3 Deal with Dataframe</h3>
-<p>(i) First, calculate the final marks for this course using the formula <span class="math display">\[\text{Final mark} = 0.2\times \text{Assignment} + 0.8\times \text{Exam}\]</span> and add this information to a new column named “FinalMark”.</p>
-<p>(ii) Can you find the student with highest “FinalMark”?</p>
+<section id="deal-with-data-frame" class="level3">
+<h3 class="anchored" data-anchor-id="deal-with-data-frame">3.1.3 Deal with data frame</h3>
+<p>(i) First, calculate the final marks for this course using the formula <span class="math display">\[\text{Final mark} = 0.2\times \text{Assignment} + 0.8\times \text{Exam}\]</span> and add this information to a new column named <code>finalMark</code>.</p>
+<p>(ii) Can you find the student with the highest <code>finalMark</code>?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -439,14 +439,14 @@ Hint
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>You may consider sorting your data frame in descending order by the values of “FinalMarks” - look up the different between <code>sort</code> and <code>order</code>!</li>
+<li>You may consider sorting your data frame in descending order by the values of <code>finalMarks</code> - look up the different between <code>sort</code> and <code>order</code>!</li>
 <li>Alternatively, you can use the <code>arrange</code> function in the <a href="https://dplyr.tidyverse.org/"><strong><code>dplyr</code></strong></a> package for this task (optional).</li>
 </ol>
 </div>
 </div>
-<p>(iii) Next, calculate the means of “Assignment”,“Exam” and “FinalMarks”.</p>
-<p>(iv) Then, randomly pick 10 of the students who have also chosen course 2, and add a column to indicate their choice (0 for yes,1 for no).</p>
-<p>(v) Finally, find the students with marks above 85 and haven’t chosen course 2 by extracting values from “names” column. You can also use <code>apply()</code> function for this purpose. Verify if these two methods give the same results.</p>
+<p>(iii) Next, calculate the means of <code>assignment</code>, <code>exam</code>, and <code>finalMarks</code>, respectively.</p>
+<p>(iv) Then, randomly pick 10 students and set then to have chosen course 2. The other students have not chosen this course. Please add a column <code>course2</code> to indicate their choice (0 for yes,1 for no).</p>
+<p>(v) Finally, find the students with marks above 85 and who haven’t chosen course 2 by extracting values from the <code>names</code> column. You can also use the <code>apply()</code> function for this purpose. Verify if these two methods give the same results.</p>
 </section>
 </section>
 <section id="define-a-function" class="level2">
@@ -501,7 +501,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is a more complicated simulation game and is by no means compulsory - try it if you are interested!</p>
+<p>This is a more complicated simulation game and is not compulsory - try it if you are interested!</p>
 </div>
 </div>
 <section id="problem-statement" class="level2">
