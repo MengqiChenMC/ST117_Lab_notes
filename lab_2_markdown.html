@@ -262,9 +262,9 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     5
-2  2     8
-3  3     5</code></pre>
+1  1     7
+2  2     9
+3  3     9</code></pre>
 </div>
 </div>
 <p>Now, we write <code>data</code> into a CSV file</p>
@@ -278,9 +278,9 @@ window.Quarto = {
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_read_header</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     5
-2  2     8
-3  3     5</code></pre>
+1  1     7
+2  2     9
+3  3     9</code></pre>
 </div>
 </div>
 <p>However, if we read with <code>header=FALSE</code>, then “id” and “score” are regarded as values</p>
@@ -290,9 +290,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>  V1    V2
 1 id score
-2  1     5
-3  2     8
-4  3     5</code></pre>
+2  1     7
+3  2     9
+4  3     9</code></pre>
 </div>
 </div>
 <p>In this case, you would run into problems if you simply take the first column of <code>data_read</code>:</p>
@@ -539,7 +539,7 @@ Note
 <h2 class="anchored" data-anchor-id="simulation-code">Simulation Code</h2>
 <p>We can write some codes to simulate the game</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>simulate_coin_toss <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence_a, sequence_b, <span class="at">num_simulations =</span> <span class="dv">10000</span>) {</span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>simulate_coin_toss <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence_a, sequence_b, <span class="at">num_simulations =</span> <span class="dv">1000</span>) {</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  wins_a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  wins_b <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -570,7 +570,7 @@ Note
 <span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Call the function</span></span>
 <span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="fu">simulate_coin_toss</span>(<span class="st">"HHH"</span>, <span class="st">"HTH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.406 0.594</code></pre>
+<pre><code>[1] 0.39 0.61</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -591,7 +591,7 @@ Your turn
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate expected number of tosses</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>expected_tosses <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence, <span class="at">num_simulations =</span> <span class="dv">10000</span>) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>expected_tosses <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence, <span class="at">num_simulations =</span> <span class="dv">1000</span>) {</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  toss_counts <span class="ot">&lt;-</span> <span class="fu">numeric</span>(num_simulations)</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
@@ -609,14 +609,14 @@ Your turn
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(toss_counts)</span>
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate for sequences "HHH" and "HHT"</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate for sequences "HHH" and "HTH"</span></span>
 <span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="fu">expected_tosses</span>(<span class="st">"HHH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 14.0364</code></pre>
+<pre><code>[1] 13.994</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">expected_tosses</span>(<span class="st">"HTT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">expected_tosses</span>(<span class="st">"HTH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 7.9293</code></pre>
+<pre><code>[1] 9.572</code></pre>
 </div>
 </div>
 
