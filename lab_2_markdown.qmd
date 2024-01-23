@@ -382,7 +382,7 @@ A and B are tossing a fair coin. A wins if HHH appears first; B wins if HTH appe
 We can write some codes to simulate the game
 
 ```{r}
-simulate_coin_toss <- function(sequence_a, sequence_b, num_simulations = 10000) {
+simulate_coin_toss <- function(sequence_a, sequence_b, num_simulations = 1000) {
   wins_a <- 0
   wins_b <- 0
 
@@ -423,7 +423,7 @@ simulate_coin_toss("HHH", "HTH")
 
 ```{r}
 # Function to calculate expected number of tosses
-expected_tosses <- function(sequence, num_simulations = 10000) {
+expected_tosses <- function(sequence, num_simulations = 1000) {
   toss_counts <- numeric(num_simulations)
 
   for (i in 1:num_simulations) {
@@ -441,7 +441,7 @@ expected_tosses <- function(sequence, num_simulations = 10000) {
   mean(toss_counts)
 }
 
-# Calculate for sequences "HHH" and "HHT"
+# Calculate for sequences "HHH" and "HTH"
 expected_tosses("HHH")
-expected_tosses("HTT")
+expected_tosses("HTH")
 ```
