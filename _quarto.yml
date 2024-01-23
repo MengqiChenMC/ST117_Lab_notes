@@ -11,8 +11,8 @@ website:
         menu:
           - text: "Lab 1"
             href: lab_1_markdown.qmd
-          #- text: "Lab 2"
-          #  href: lab_2_markdown.qmd
+          - text: "Lab 2"
+            href: lab_2_markdown.qmd
       - text: "About"
         href: about.qmd
 
@@ -26,5 +26,5 @@ format:
         - header: Lab Sessions
         - text: "Lab 1"
           href: lab_1_markdown.qmd
-        #- text: "Lab 2"
-        #  href: lab_2_markdown.qmd
+        - text: "Lab 2"
+          href: lab_2_markdown.qmd

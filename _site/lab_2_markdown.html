@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mengqi Chen">
-<meta name="dcterms.date" content="2024-01-19">
+<meta name="dcterms.date" content="2024-01-23">
 
-<title>ST117 Introduction to Statistical Modelling - ST 117 Lab 2</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -162,18 +191,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#project-management-in-r" id="toc-project-management-in-r" class="nav-link active" data-scroll-target="#project-management-in-r">1. Project Management in R</a>
+  <li><a href="#qa-from-the-previous-session" id="toc-qa-from-the-previous-session" class="nav-link active" data-scroll-target="#qa-from-the-previous-session">1 Q&amp;A from the previous session</a>
   <ul class="collapse">
-  <li><a href="#what-is-an-r-project" id="toc-what-is-an-r-project" class="nav-link" data-scroll-target="#what-is-an-r-project">What is an R Project?</a></li>
-  <li><a href="#creating-and-managing-projects" id="toc-creating-and-managing-projects" class="nav-link" data-scroll-target="#creating-and-managing-projects">Creating and Managing Projects</a></li>
-  <li><a href="#introduction-to-git-and-version-control" id="toc-introduction-to-git-and-version-control" class="nav-link" data-scroll-target="#introduction-to-git-and-version-control">Introduction to Git and Version Control</a></li>
+  <li><a href="#dataframe-header" id="toc-dataframe-header" class="nav-link" data-scroll-target="#dataframe-header">1.1 Dataframe header</a></li>
+  <li><a href="#r-script-vs-console" id="toc-r-script-vs-console" class="nav-link" data-scroll-target="#r-script-vs-console">1.2 R script vs Console</a></li>
   </ul></li>
-  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown">2. R Markdown</a></li>
-  <li><a href="#simulation-coin-tossing-problem" id="toc-simulation-coin-tossing-problem" class="nav-link" data-scroll-target="#simulation-coin-tossing-problem">3. Simulation: Coin Tossing Problem</a>
+  <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link" data-scroll-target="#functions-in-r">2 Functions in R</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">3 Assignments</a>
+  <ul class="collapse">
+  <li><a href="#random-numbers-and-dataframe" id="toc-random-numbers-and-dataframe" class="nav-link" data-scroll-target="#random-numbers-and-dataframe">3.1 Random numbers and dataframe</a></li>
+  <li><a href="#define-a-function" id="toc-define-a-function" class="nav-link" data-scroll-target="#define-a-function">3.2 Define a function</a></li>
+  <li><a href="#uniform-distribution-and-histogram" id="toc-uniform-distribution-and-histogram" class="nav-link" data-scroll-target="#uniform-distribution-and-histogram">3.3 Uniform distribution and histogram</a></li>
+  </ul></li>
+  <li><a href="#simulation-game-coin-tossing-problem" id="toc-simulation-game-coin-tossing-problem" class="nav-link" data-scroll-target="#simulation-game-coin-tossing-problem">4* Simulation Game: Coin Tossing Problem</a>
   <ul class="collapse">
   <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement">Problem Statement</a></li>
   <li><a href="#simulation-code" id="toc-simulation-code" class="nav-link" data-scroll-target="#simulation-code">Simulation Code</a></li>
-  <li><a href="#expected-number-of-tosses" id="toc-expected-number-of-tosses" class="nav-link" data-scroll-target="#expected-number-of-tosses">Expected Number of Tosses</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -183,8 +216,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ST 117 Lab 2</h1>
-<p class="subtitle lead">Project management, R markdown, Simulations with R</p>
+<h1 class="title">ST117 Lab 2</h1>
+<p class="subtitle lead">dataframe, random numbers, and functions</p>
 </div>
 
 
@@ -201,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 19, 2024</p>
+      <p class="date">January 23, 2024</p>
     </div>
   </div>
   
@@ -213,102 +246,320 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="project-management-in-r" class="level1">
-<h1>1. Project Management in R</h1>
-<section id="what-is-an-r-project" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-an-r-project">What is an R Project?</h2>
-<p>An R Project is a self-contained directory that includes all files relevant to a particular set of analyses. Using projects helps in organising your work and ensuring reproducibility.</p>
+<section id="qa-from-the-previous-session" class="level1">
+<h1>1 Q&amp;A from the previous session</h1>
+<section id="dataframe-header" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-header">1.1 Dataframe header</h2>
+<p>When we read a CSV file with <code>read.csv</code>, there is an argument <code>header</code> deciding whether it reads the first row as the column names of the variables.</p>
+<p>Recall that last time we generated a random dataframe of columns named “id” and “score” first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">3</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co"># sample(list, n) allows you to sample number n values from list</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id score
+1  1     9
+2  2     6
+3  3    10</code></pre>
+</div>
+</div>
+<p>Now, we write <code>data</code> into a CSV file</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the data frame to a CSV file</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(data, <span class="st">"sample_data.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we read with <code>header=TRUE</code> (default in this case), “id” and “score” are parsed as column names instead of variable values</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_read_header <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"sample_data.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_read_header</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id score
+1  1     9
+2  2     6
+3  3    10</code></pre>
+</div>
+</div>
+<p>However, if we read with <code>header=FALSE</code>, then “id” and “score” are regarded as values</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_read_noheader <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"sample_data.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_read_noheader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  V1    V2
+1 id score
+2  1     9
+3  2     6
+4  3    10</code></pre>
+</div>
+</div>
+<p>In this case, you would run into problems if you simply taking the first column of <code>data_read</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_read_noheader[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "id" "1"  "2"  "3" </code></pre>
+</div>
+</div>
+<p>You also run into problems if you are getting a column by its name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_read_header<span class="sc">$</span>id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_read_noheader<span class="sc">$</span>id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>header</code> is defaulted to <code>TRUE</code> if and only if the first row contains one fewer field than the number of columns. For further details, use <code>?read.csv</code> to check the full documentation.</p>
+</div>
+</div>
 </section>
-<section id="creating-and-managing-projects" class="level2">
-<h2 class="anchored" data-anchor-id="creating-and-managing-projects">Creating and Managing Projects</h2>
-<ul>
-<li><strong>Creating a Project</strong>: In RStudio, go to <code>File &gt; New Project</code> to create a new project.</li>
-<li><strong>Switching Directories</strong>: Use <code>setwd("path/to/directory")</code> to change your working directory in R.</li>
-</ul>
-</section>
-<section id="introduction-to-git-and-version-control" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-git-and-version-control">Introduction to Git and Version Control</h2>
-<p>Git is a version control system used to track changes in files. It’s essential for collaboration and maintaining a history of your work.</p>
-<ul>
-<li><strong>Basic Git Commands</strong>: Use <code>git commit</code>, <code>git push</code>, and <code>git pull</code> to manage your R scripts.</li>
-<li><strong>Integration with RStudio</strong>: RStudio provides tools to integrate Git into your project management workflow.</li>
-</ul>
+<section id="r-script-vs-console" class="level2">
+<h2 class="anchored" data-anchor-id="r-script-vs-console">1.2 R script vs Console</h2>
+<p>The R Console is an interactive platform for immediate execution of individual commands, ideal for exploratory data analysis and quick tests.</p>
+<p>In contrast, R Scripts are non-interactive files where code can be written, saved, and executed in a structured and reproducible manner, suitable for complex and longer projects.</p>
 </section>
 </section>
-<section id="r-markdown" class="level1">
-<h1>2. R Markdown</h1>
-<p>R Markdown allows you to weave together narrative text and R code in a single document, which can be rendered in various formats like HTML, PDF, or Word.</p>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.</p>
+<section id="functions-in-r" class="level1">
+<h1>2 Functions in R</h1>
+<p>In R, a function is defined using the <code>function</code> keyword. The basic syntax is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>myFunction <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Function body</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> arg1 <span class="sc">+</span> arg2</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This creates a function <code>myFunction</code> that takes two arguments <code>arg1</code> and <code>arg2</code>, adds them together, and returns the result.</p>
+<p>Once a function is defined, it can be called with specific values for its arguments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling the function</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">myFunction</span>(<span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result) <span class="co"># Outputs 5+3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>The <code>apply</code> family of functions in R is used to apply a function over the margins of an array or matrix, and it’s particularly useful for dataframes. For example, <code>apply</code> can be used to apply a function to each column or row of a dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example dataframe</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  a b
+1 1 4
+2 2 5
+3 3 6</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a simple function to calculate the mean</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>meanFunction <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(x))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply meanFunction to each column of df to get the mean of each column</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(df, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> meanFunction) <span class="co"># MARGIN = 1 indicates rows (try it!)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>a b 
+2 5 </code></pre>
+</div>
+</div>
+<p>This will calculate the mean of each column in the dataframe <code>df</code>.</p>
 </section>
-<section id="simulation-coin-tossing-problem" class="level1">
-<h1>3. Simulation: Coin Tossing Problem</h1>
+<section id="assignments" class="level1">
+<h1>3 Assignments</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Your turn!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The following is the Lab 2 work sheet designed by <strong>Yujing Lu</strong>, the module tutor.</p>
+<ol type="1">
+<li>Please attempt these questions with your deskmate - raise your hand if you need any help.</li>
+<li>If you and your deskmate have chosen different methods, check if you get the same results!</li>
+<li>The solutions will be posted after the session.</li>
+</ol>
+</div>
+</div>
+<section id="random-numbers-and-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="random-numbers-and-dataframe">3.1 Random numbers and dataframe</h2>
+<section id="generating-random-numbers-and-names" class="level3">
+<h3 class="anchored" data-anchor-id="generating-random-numbers-and-names">3.1.1 Generating Random Numbers and Names</h3>
+<p>(i) Generate two vectors <span class="math inline">\((v_1,v_2)\)</span> of 30 random integers each, where the elements in <span class="math inline">\(v_1\)</span> are uniformly drawn from <span class="math inline">\(\{80,81,\dots,100\}\)</span>, and the elements in <span class="math inline">\(v_2\)</span> are uniformly drawn from <span class="math inline">\(\{60,61,\dots, 90 \}\)</span>, with replacement.</p>
+<p>(ii) Generate a vector of 30 random names using the <code>randomNames()</code> function. Remember to install the <code>randomNames</code> package and load it!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>set.seed()</code> allows the code to be reproducible by setting a specific seed value. When a seed is set, the sequence generated remains deterministic.</p>
+</div>
+</div>
+</section>
+<section id="create-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-dataframe">3.1.2 Create a Dataframe</h3>
+<p>We aim to record names, assignment marks, exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: “Names”, “Assignment”, and “Exam”.</p>
+</section>
+<section id="deal-with-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="deal-with-dataframe">3.1.3 Deal with Dataframe</h3>
+<p>(i) First, calculate the final marks for this course using the formula <span class="math display">\[\text{Final mark} = 0.2\times \text{Assignment} + 0.8\times \text{Exam}\]</span> and add this information to a new column named “FinalMark”.</p>
+<p>(ii) Can you find the student with highest “FinalMark”?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>You may consider sorting your data frame in descending order by the values of “FinalMarks” - look up the different between <code>sort</code> and <code>order</code>!</li>
+<li>Alternatively, you can use the <code>arrange</code> function in the <a href="https://dplyr.tidyverse.org/"><strong><code>dplyr</code></strong></a> package for this task (optional).</li>
+</ol>
+</div>
+</div>
+<p>(iii) Next, calculate the means of “Assignment”,“Exam” and “FinalMarks”.</p>
+<p>(iv) Then, randomly pick 10 of the students who have also chosen course 2, and add a column to indicate their choice (0 for yes,1 for no).</p>
+<p>(v) Finally, find the students with marks above 85 and haven’t chosen course 2 by extracting values from “names” column. You can also use <code>apply()</code> function for this purpose. Verify if these two methods give the same results.</p>
+</section>
+</section>
+<section id="define-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="define-a-function">3.2 Define a function</h2>
+<p>Recall that the Fibonacci sequence is defined by recurrent relations:</p>
+<p><span class="math inline">\(F_0=0,\ F_1=1,\ F_n=F_{n-1}+F_{n-2}\)</span>.</p>
+<p>Define a function to produce the nth Fibonacci number with or without a loop.</p>
+</section>
+<section id="uniform-distribution-and-histogram" class="level2">
+<h2 class="anchored" data-anchor-id="uniform-distribution-and-histogram">3.3 Uniform distribution and histogram</h2>
+<p>Simulate 10000 samples from a uniform distribution <span class="math inline">\(X\sim U[0,1]\)</span> and create a histogram of the generated sequence. Overlay the histogram on the probability density function - does the histogram reflect the density well?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>You can look up <code>dunif()</code>, which defines the probability density function of a uniform distribution.</li>
+<li>To plot the histogram, you can simply use the <code>hist</code> function - alternatively, you can try the <code>ggplot2</code> package.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Discussion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we increase the number of simulations, does the fit improve?</p>
+</div>
+</div>
+</section>
+</section>
+<section id="simulation-game-coin-tossing-problem" class="level1">
+<h1>4* Simulation Game: Coin Tossing Problem</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a more complicated simulation game and is by no means compulsory - try it if you are interested!</p>
+</div>
+</div>
 <section id="problem-statement" class="level2">
 <h2 class="anchored" data-anchor-id="problem-statement">Problem Statement</h2>
-<p>A and B are tossing a fair coin. A wins if HHH appears first; B wins if HHT appears first. Who is more likely to win?</p>
+<p>A and B are tossing a fair coin. A wins if HHH appears first; B wins if HTH appears first. Who is more likely to win?</p>
 </section>
 <section id="simulation-code" class="level2">
 <h2 class="anchored" data-anchor-id="simulation-code">Simulation Code</h2>
+<p>We can write some codes to simulate the game</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>simulate_coin_toss <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence_a, sequence_b, <span class="at">num_simulations =</span> <span class="dv">10000</span>) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  wins_a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  wins_b <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    coin_sequence <span class="ot">&lt;-</span> <span class="st">""</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="sc">!</span><span class="fu">grepl</span>(sequence_a, coin_sequence) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(sequence_b, coin_sequence)) {</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      coin_sequence <span class="ot">&lt;-</span> <span class="fu">paste0</span>(coin_sequence, <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">grepl</span>(sequence_a, coin_sequence)) {</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      wins_a <span class="ot">&lt;-</span> wins_a <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      wins_b <span class="ot">&lt;-</span> wins_b <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  prob_a_wins <span class="ot">&lt;-</span> wins_a <span class="sc">/</span> num_simulations</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  prob_b_wins <span class="ot">&lt;-</span> wins_b <span class="sc">/</span> num_simulations</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(prob_a_wins, prob_b_wins))</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">simulate_coin_toss</span>(<span class="st">"HHH"</span>, <span class="st">"HTH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>simulate_coin_toss <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence_a, sequence_b, <span class="at">num_simulations =</span> <span class="dv">10000</span>) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  wins_a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  wins_b <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># play the game num_simulations times</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># keep tossing until there is a winner</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    coin_sequence <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="sc">!</span><span class="fu">grepl</span>(sequence_a, coin_sequence) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(sequence_b, coin_sequence)) {</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      coin_sequence <span class="ot">&lt;-</span> <span class="fu">paste0</span>(coin_sequence, <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># record the winner</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">grepl</span>(sequence_a, coin_sequence)) {</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>      wins_a <span class="ot">&lt;-</span> wins_a <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>      wins_b <span class="ot">&lt;-</span> wins_b <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># use the number of wins to estimate the winning probability</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  prob_a_wins <span class="ot">&lt;-</span> wins_a <span class="sc">/</span> num_simulations</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  prob_b_wins <span class="ot">&lt;-</span> wins_b <span class="sc">/</span> num_simulations</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(prob_a_wins, prob_b_wins))</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Call the function</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="fu">simulate_coin_toss</span>(<span class="st">"HHH"</span>, <span class="st">"HTH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3995 0.6005</code></pre>
+<pre><code>[1] 0.406 0.594</code></pre>
 </div>
 </div>
-</section>
-<section id="expected-number-of-tosses" class="level2">
-<h2 class="anchored" data-anchor-id="expected-number-of-tosses">Expected Number of Tosses</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate expected number of tosses</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>expected_tosses <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence, <span class="at">num_simulations =</span> <span class="dv">10000</span>) {</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  toss_counts <span class="ot">&lt;-</span> <span class="fu">numeric</span>(num_simulations)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    coin_sequence <span class="ot">&lt;-</span> <span class="st">""</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    toss_count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="sc">!</span><span class="fu">grepl</span>(sequence, coin_sequence)) {</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      coin_sequence <span class="ot">&lt;-</span> <span class="fu">paste0</span>(coin_sequence, <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      toss_count <span class="ot">&lt;-</span> toss_count <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    toss_counts[i] <span class="ot">&lt;-</span> toss_count</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(toss_counts)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate for sequences "HHH" and "HHT"</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">expected_tosses</span>(<span class="st">"HHH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 14.3723</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">expected_tosses</span>(<span class="st">"HHT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 7.9871</code></pre>
+<div class="callout-title-container flex-fill">
+Your turn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Can you write some codes to estimate the expected number of tosses needed until a certain player gets a win?</li>
+<li>Can you prove your winning probabilities algebraically?</li>
+</ol>
 </div>
 </div>
 
