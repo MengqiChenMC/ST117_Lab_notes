@@ -421,7 +421,7 @@ simulate_coin_toss("HHH", "HTH")
 2.  Can you prove your winning probabilities algebraically?
 :::
 
-```{r include=FALSE}
+```{r}
 # Function to calculate expected number of tosses
 expected_tosses <- function(sequence, num_simulations = 10000) {
   toss_counts <- numeric(num_simulations)
