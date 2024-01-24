@@ -4,6 +4,6 @@ format: html
 editor: visual
 ---
 
-This website is created by [Mengqi Chen](https://warwick.ac.uk/fac/sci/statistics/staff/research_students/mchen/) at Department of Statistics, University of Warwick in term 2, 2024. It is put together with [Quarto](https://quarto.org/), which is an open-source scientific and technical publishing system designed to create dynamic and reproducible documents.
+This website is created by [Mengqi Chen](https://warwick.ac.uk/fac/sci/statistics/staff/research_students/mchen/) at Department of Statistics, University of Warwick in term 2, 2024. It is put together with [Quarto](https://quarto.org/), which is an open-source scientific and technical publishing system designed to create dynamic and reproducible documents. The markdown files for the webpages can be found on my [GitHub Repository](https://github.com/MengqiChenMC/ST117_Lab_notes) for this courese.
 
 For feedback on the lab sessions please fill out the [**anonymous feedback form**](https://forms.gle/AGjRMmWt4eaecu1R7). For corrections and comments on this site, please [email me](mailto:mengqi.chen.2@warwick.ac.uk).
