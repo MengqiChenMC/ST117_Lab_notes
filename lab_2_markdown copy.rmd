@@ -178,23 +178,14 @@ The following is the Lab 2 worksheet kindly designed by [**Yujing Lu**](mailto:Y
 
 \(i\) Generate two vectors $(v_1,v_2)$ of 30 random integers each, where the elements in $v_1$ are uniformly drawn from $\{80,81,\dots,100\}$, and the elements in $v_2$ are uniformly drawn from $\{60,61,\dots, 90 \}$, with replacement.
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
-v1 <- sample(80:100, 30, replace = TRUE)
-v2 <- sample(60:90, 30, replace = TRUE)
+```{r include=FALSE}
+v1<-sample(80:100, 30, replace = TRUE)
+v2<-sample(60:90, 30, replace = TRUE)
 ```
-:::
 
 \(ii\) Generate a vector of 30 random names using the `randomNames()` function. Remember to install the `randomNames` package and load it!
 
 ```{r include=FALSE}
-install.packages("randomNames")
-library("randomNames")
-```
-
-```{r eval=FALSE}
 install.packages("randomNames")
 library("randomNames")
 ```
@@ -205,41 +196,29 @@ library("randomNames")
 `set.seed()` allows the code to be reproducible by setting a specific seed value. When a seed is set, the sequence generated remains deterministic.
 :::
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
+```{r include=FALSE}
 set.seed(21012024)
-names <- randomNames(30)
+names<-randomNames(30)
 ```
-:::
 
 ### 3.1.2 Create a data frame
 
 We aim to record the names, assignment marks, and exam marks of 30 students from course 1 in a table. Using the functions above, first generate these items randomly, then combine them into a data frame with three columns: "names", "assignment", and "exam".
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
-course1 <- data.frame(
-  names = randomNames(30),
-  assignment = sample(80:100, 30, replace = TRUE), 
-  exam = sample(60:90, 30, replace = TRUE))
+```{r include=FALSE}
+course1<- data.frame(
+  names=randomNames(30),
+  assignment=sample(80:100,30,replace = TRUE), 
+  exam=sample(60:90,30,replace = TRUE))
 ```
-:::
 
 ### 3.1.3 Deal with data frame
 
 \(i\) First, calculate the final marks for this course using the formula $$\text{Final mark} = 0.2\times \text{Assignment} + 0.8\times \text{Exam}$$ and add this information to a new column named `finalMark`.
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
-course1$finalMark <- (0.2*course1$assignment + 0.8*course1$exam)
+```{r include=FALSE}
+course1$finalMark<-(0.2*course1$assignment+0.8*course1$exam)
 ```
-:::
 
 \(ii\) Can you find the student with the highest `finalMark`?
 
@@ -250,77 +229,51 @@ course1$finalMark <- (0.2*course1$assignment + 0.8*course1$exam)
 2.  Alternatively, you can use the `arrange` function in the [**`dplyr`**](https://dplyr.tidyverse.org/) package for this task (optional).
 :::
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
-course1[order(course1$finalMark, decreasing = TRUE),][1,]
-
-# alternatively
-course1[order(course1$finalMark, decreasing = TRUE)[1],]
-
+```{r include=FALSE}
+course1[order(course1$finalMark,decreasing = TRUE),][1,]
 ```
-
-Using dplyr:
 
 ```{r include=FALSE}
 install.packages("dplyr")
 library("dplyr")
 ```
 
-```{r eval=FALSE}
-install.packages("dplyr")
-library("dplyr")
+```{r include=FALSE}
+course1 %>% arrange(desc(finalMark)) %>% head()
 ```
-
-```{r}
-course1 %>% arrange(desc(finalMark)) %>% head(1) # %>% is a pipe, which takes the output of the expression on its left and passes it as the first argument to the function on its right
-```
-:::
 
 \(iii\) Next, calculate the means of `assignment`, `exam`, and `finalMarks`, respectively.
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
-round(mean(course1$assignment))
-round(mean(course1$exam))
-round(mean(course1$finalMark))
+```{r include=FALSE}
+round(mean(course1$Assignment))
+round(mean(course1$Exam))
+round(mean(course1$FinalMark))
 ```
 
-```{r}
+```{r include=FALSE}
 round(apply(X = course1[,2:4], MARGIN = 2, FUN = mean))
 ```
 
-```{r}
+```{r include=FALSE}
 course1 %>%
   summarize(across(c(2,3,4),mean)) %>% round()
 ```
-:::
 
 \(iv\) Then, randomly pick 10 students and set then to have chosen course 2. The other students have not chosen this course. Please add a column `course2` to indicate their choice (0 for yes,1 for no).
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
+```{r include=FALSE}
 random_numbers<-sample(1:30,10,replace = FALSE)
 course1$course2<- 0
 course1[c(random_numbers),]$course2<-1
 ```
-:::
 
 \(v\) Finally, find the students with marks above 85 and who haven't chosen course 2 by extracting values from the `names` column. You can also use the `apply()` function for this purpose. Verify if these two methods give the same results.
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
+```{r include=FALSE}
 course1[course1$finalMark>85 & course1$course2==0,]$names
 ```
 
-```{r}
+```{r include=FALSE}
 check<-function(x){
   value <- x[1]>85 & x[2]==0
   return(value)
@@ -329,7 +282,6 @@ check<-function(x){
 filter<-apply(X = course1[,c(4,5)], 1, FUN = check)
 course1[filter,]$names
 ```
-:::
 
 ## 3.2 Define a function
 
@@ -339,12 +291,7 @@ $F_0=0,\ F_1=1,\ F_n=F_{n-1}+F_{n-2}$.
 
 Define a function to produce the nth Fibonacci number with or without a loop.
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-for loop
-
-```{r}
+```{r include=FALSE}
 fb<-function(n){
   f<-c(0,1)
   if (n>1){
@@ -356,9 +303,7 @@ fb<-function(n){
 
 ```
 
-without for loop
-
-```{r}
+```{r include=FALSE}
 fb<-function(n){
   if(n==0){
     return(0)
@@ -366,11 +311,10 @@ fb<-function(n){
   if(n==1){
     return(1)
   }
-  fb(n-1)+fb(n-2) #iterate until we meet the boundary conditions
+  fb(n-1)+fb(n-2)
 }
 
 ```
-:::
 
 ## 3.3 Uniform distribution and histogram
 
@@ -383,16 +327,13 @@ Simulate 1000 samples from a uniform distribution $X\sim U[0,1]$ and create a hi
 2.  To plot the histogram, you can simply use the `hist` function - alternatively, you can try the `ggplot2` package.
 :::
 
-::: {.callout-note appearance="minimal"}
-## solution
-
-```{r}
+```{r include=FALSE}
 # generate the samples
 num_sample <- 1000 # you can try different values of num_sample
 sample <- runif(n=num_sample,min=0,max=1)
 ```
 
-```{r}
+```{r include=FALSE}
 
 # get 100 evenly spaced values between -0.25 and 1.25 to plot the probability density function of the uniform distribution
 x <- seq(-0.25, 1.25, length.out=100)
@@ -403,9 +344,7 @@ hist(sample, main = title, xlim = c(-0.5, 1.5), xlab = "x", prob = TRUE,col="lig
 lines(x, dunif(x,min=0,max=1), col = "red", lwd = 2)
 ```
 
-With `ggplot2`:
-
-```{r}
+```{r include=FALSE}
 # Load ggplot2 library
 library(ggplot2)
 
@@ -414,12 +353,11 @@ df <- data.frame(sample)
 
 # Create the histogram and overlay the probability density function
 ggplot(df, aes(x = sample)) +
-  geom_histogram(aes(y = after_stat(density)), binwidth = 0.08, fill = "lightblue", colour = "black") + 
-  # here (y = after_stat(density)) means that we map the y-axis aesthetic to the density of the data, rather than the count, which is the default.
+  geom_histogram(aes(y = ..density..), binwidth = 0.08, fill = "lightblue", colour = "black") + 
+  # here (y = ..density..) means that we map the y-axis aesthetic to the density of the data,   rather than the count, which is the default.
   stat_function(fun = dunif, xlim = c(-0.25, 1.25), args = list(min = 0, max = 1), colour = "red", linewidth = 1) +
   labs(title = sprintf("Histogram of %d simulations from X~U(%d,%d)", num_sample, 0, 1))
 ```
-:::
 
 ::: callout-note
 ## Discussion
@@ -483,9 +421,6 @@ simulate_coin_toss("HHH", "HTH")
 2.  Can you prove your winning probabilities algebraically?
 :::
 
-::: {.callout-note appearance="minimal"}
-## solution
-
 ```{r}
 # Function to calculate expected number of tosses
 expected_tosses <- function(sequence, num_simulations = 1000) {
@@ -510,4 +445,3 @@ expected_tosses <- function(sequence, num_simulations = 1000) {
 expected_tosses("HHH")
 expected_tosses("HTH")
 ```
-:::
