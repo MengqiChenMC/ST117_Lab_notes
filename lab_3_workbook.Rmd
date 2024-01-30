@@ -1,0 +1,122 @@
+---
+title: "ST117 Lab 3 Workbook"
+author: ''
+date: '2024-01-28'
+output:
+  html_document:
+    theme: cosmo
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Simulating and Visualizing Binomial Distribution
+
+(a) Generate a random sample of 1000 observations from a binomial distribution with parameters $n=20$ and $p=0.5$, then create a histogram to visualize the distribution.
+
+```{r}
+# TODO: generate binomial samples
+```
+
+```{r}
+# TODO: write down your codes to plot the histogram
+```
+
+(b) Calculate the mean and standard deviation of the generated data. Compare these values with the theoretical mean and variance.
+
+```{r}
+# TODO: calculate mean and variance
+```
+
+(c) Flipping a coin 20 times, where it has 50% chance of getting a head. The total number of head $X$ follows a Binomial distribution with $n=20$ and $p=0.5$. Find the probability of getting between 5 and 12 heads when tossing 20 coins, which is sum of the orange bars.
+
+```{r echo=FALSE, warning=FALSE}
+# this chunk of code generates the plot demonstration, can ignore
+# use ggplot to show the pdf of a binomial distribution  with shaded areas.
+library("ggplot2")
+n<-20
+p<-0.5
+# Generate values for the binomial distribution
+x <- seq(0, n, by = 1)
+binomial_pmf <- dbinom(x, size = n, prob = p)
+
+
+# Create a data frame for ggplot
+
+df <- data.frame(x = x, binomial_pmf = binomial_pmf)
+df$block_color <- "grey70"
+df[6:13,]$block_color <- "orange"
+
+# Plot the binomial distribution
+ggplot(df, aes(x = x, y = binomial_pmf,fill=block_color)) +
+  geom_histogram(stat = "identity",binwidth=1,col = "black") +
+  labs(title = "Binomial(20,0.5)",
+       x = "Number of Successes",
+       y = "Probability") +
+  theme_minimal()+
+  
+  scale_fill_manual(values=c("grey70", "orange"))
+
+```
+
+```{r}
+# TODO: calculate the probability
+```
+
+## 2. Calculating Probabilities from the Normal Distribution
+
+(a) Suppose $X \sim \mathcal{N}(0,1)$, find the value $m$ (green point) such that $P(X\leq m)=0.95$.
+
+```{r echo=FALSE, warning=FALSE}
+# this chunk of code generates the plot demonstration, can ignore
+# use ggplot2 to plot a pdf of a normal distribution
+library(ggplot2)
+
+# Set parameters for the normal distribution
+mean_value <- 0
+sd_value <- 1
+
+# Generate data for the normal distribution
+x <- seq(-3, 3, 0.01)
+pdf_normal <- dnorm(x, mean = mean_value, sd = sd_value)
+
+# Create a data frame for ggplot
+df <- data.frame(x = x, pdf_normal = pdf_normal)
+
+# Plot the normal distribution with shaded area from -3 to 0.5
+ggplot(df, aes(x = x, y = pdf_normal))+
+  geom_line(color = "blue", size = 1.5) +
+  geom_ribbon(data = subset(df, x >= -3 & x <= 1.96),
+              aes(ymax = pdf_normal, ymin = 0, fill = "Shaded Area"),
+              alpha = 0.3, color = NA) +
+  labs(title = "Normal(0,1)",
+       x = "X",
+       y = "Probability Density") +
+  scale_fill_manual(values = c("Shaded Area" = "grey10"), guide = "none") +
+  annotate("point", x = 1.96, y = 0, color = "green", size = 4) +
+  annotate("text", x = 0, y = 0.15, label = "95%", size = 10, color = "red") +
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+# TODO: find m with qnorm
+```
+
+(b) Given $X \sim \mathcal{N}(2,0.7^2)$, find the probability of $X$ being between 1 and 4.
+
+```{r}
+# TODO: calculate the probability
+```
+
+(c) Find the probability $P(5\leq X\leq 12)$ for $X \sim \mathcal{N}(10,5)$.
+
+```{r}
+# TODO: calculate the probability
+```
+
+## 3. Approximating the Binomial with the Normal distribution
+
+Please write down the questions and answers yourself, following the format above.

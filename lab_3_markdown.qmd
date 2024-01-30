@@ -1,0 +1,371 @@
+---
+title: "ST117 Lab 3"
+subtitle: "sampling, distributions and probability"
+author: "Mengqi Chen"
+date: last-modified
+format: html
+editor: visual
+theme: darkly
+---
+
+# 1. Statistical distributions with R
+
+This lab session aims to familiarize you with the use of R for basic statistical analysis. We will cover various distributions, their properties, and how to use R to work with these distributions.
+
+| Distribution | Parameters     | Sample Command             | Density Function           | Distribution Function      | Quantile Function          |
+|------------|------------|------------|------------|------------|------------|
+| Uniform      | min, max       | `runif(n, min, max)`       | `dunif(x, min, max)`       | `punif(q, min, max)`       | `qunif(p, min, max)`       |
+| Binomial     | size, prob     | `rbinom(n, size, prob)`    | `dbinom(x, size, prob)`    | `pbinom(q, size, prob)`    | `qbinom(p, size, prob)`    |
+| Poisson      | lambda         | `rpois(n, lambda)`         | `dpois(x, lambda)`         | `ppois(q, lambda)`         | `qpois(p, lambda)`         |
+| Normal       | mean, sd       | `rnorm(n, mean, sd)`       | `dnorm(x, mean, sd)`       | `pnorm(q, mean, sd)`       | `qnorm(p, mean, sd)`       |
+| Gamma        | shape, rate    | `rgamma(n, shape, rate)`   | `dgamma(x, shape, rate)`   | `pgamma(q, shape, rate)`   | `qgamma(p, shape, rate)`   |
+| Beta         | shape1, shape2 | `rbeta(n, shape1, shape2)` | `dbeta(x, shape1, shape2)` | `pbeta(q, shape1, shape2)` | `qbeta(p, shape1, shape2)` |
+
+## 1.1 Drawing Samples from a Given Distribution
+
+```{r}
+# Drawing 200 samples from a binomial distribution
+sample_size <- 200
+size <- 10
+prob <- 0.7
+binom_samples <- rbinom(sample_size, size, prob)
+```
+
+## 1.2 Histogram
+
+Next, let us plot the histogram of the samples.
+
+```{r}
+# Plotting histogram with density overlay
+hist(binom_samples, probability = TRUE, main = "Samples from Bin(10,0.7)", xlab = "Values", ylab = "Density")
+```
+
+## 1.3 Calculating Mean and Variance
+
+The following code calculates the mean, variance, and standard deviation of the samples.
+
+```{r}
+# Calculating mean, variance, and standard deviation
+mean_value <- mean(binom_samples)
+sprintf("mean = %s", mean_value)
+variance_value <- var(binom_samples)
+sprintf("variance = %s", variance_value)
+sd_value <- sqrt(var(binom_samples))
+sprintf("standard deviation = %s", sd_value)
+```
+
+## 1.4 Calculating probability and quantiles
+
+Recall that we have $X \sim \operatorname{Bin}(10,0.7)$.
+
+(a) What is the probability $P(X = 6)$?
+
+```{r}
+# use "d+dist" to calculate the density at a point
+p_6 <- dbinom(6,10,0.7)
+sprintf("P(X=6) = %s", p_6)
+```
+
+(b) What is the probability $P(2\leq X \leq 5)$?
+
+```{r}
+# use "p+dist" to calculate P(X<=a)
+p_less_than_5 <- pbinom(5,10,0.7)
+p_less_than_1 <- pbinom(1,10,0.7)
+p_2to5 <- p_less_than_5 - p_less_than_1
+sprintf("P(2<=X<=5) = %s", p_2to5)
+```
+
+(c) What is the smallest value of $a$ such that $P(X\leq a) \geq 0.5$?
+
+```{r}
+# let's take a look at the distribution function first:
+dist_df = data.frame(
+  a = 0:10,
+  p_x_lessthan_a = pbinom(0:10,10,0.7)
+)
+dist_df
+```
+
+```{r}
+# can use "q+dist" to find such a
+quantile <- qbinom(0.5,10,0.7)
+sprintf("a = %s", quantile)
+```
+
+## 1.5 Linear transformations of normal random variables
+
+We have that if $X\sim \mathcal{N}(\mu,\sigma^2)$, then $aX+b\sim \mathcal{N}(a\mu+b,a^2\sigma^2)$. This property is useful when we want to transform a standard $\mathcal{N}(0,1)$ to match a given set of mean and variance.
+
+
+# 2. Assignments
+
+::: callout-important
+## Your turn!
+
+The following is the Lab 3 worksheet designed by [**Yujing Lu**](mailto:Yujing.Lu.2@warwick.ac.uk).
+
+1.  Please attempt these questions and write down your answers in the R Mardown workbook.
+2.  Run your codes in your workbook and compare your results with your deskmate.
+3.  Knit your workbook to publish a report in PDF or html.
+:::
+
+## 2.1 Simulating and Visualizing Binomial Distribution
+
+(a) Generate a random sample of 1000 observations from a binomial distribution with parameters $n=20$ and $p=0.5$, then create a histogram to visualize the distribution.
+
+```{r eval=FALSE, include=FALSE}
+sample1 <- rbinom(n=1000, size=20, prob=0.5) 
+#random n generations for binomial distribution with parameter size and prob
+```
+
+```{r eval=FALSE, include=FALSE}
+hist(sample1, col = "lightblue", freq = FALSE, xlim = c(0,20),
+     main = "Samples from Binomial(20,0.5)", xlab = "Number of Success", ylab = "Frequency")
+```
+
+(b) Calculate the mean and standard deviation of the generated data. Compare these values with the theoretical mean and variance.
+
+```{r eval=FALSE, include=FALSE}
+mean(sample1)
+sqrt(var(sample1))
+```
+
+(c) Flipping a coin 20 times, where it has 50% chance of getting a head. The total number of head $X$ follows a Binomial distribution with $n=20$ and $p=0.5$. Find the probability of getting between 5 and 12 heads when tossing 20 coins, which is sum of the orange bars.
+
+```{r echo=FALSE, warning=FALSE}
+#use ggplot to show the pdf of a binomial distribution  with shaded areas.
+library("ggplot2")
+n<-20
+p<-0.5
+# Generate values for the binomial distribution
+x <- seq(0, n, by = 1)
+binomial_pmf <- dbinom(x, size = n, prob = p)
+
+# Create a data frame for ggplot
+
+df <- data.frame(x = x, binomial_pmf = binomial_pmf)
+df$block_color <- "grey70"
+df[6:13,]$block_color <- "orange"
+
+# Plot the binomial distribution
+ggplot(df, aes(x = x, y = binomial_pmf,fill=block_color)) +
+  geom_histogram(stat = "identity",binwidth=1,col = "black") +
+  labs(title = "Binomial(20,0.5)",
+       x = "Number of Successes",
+       y = "Probability") +
+  theme_minimal()+
+  
+  scale_fill_manual(values=c("grey70", "orange"))
+
+```
+
+```{r eval=FALSE, include=FALSE}
+pbinom(12,20,0.5)-pbinom(4,20,0.5)
+```
+
+```{r eval=FALSE, include=FALSE}
+sum(dbinom(5:12,20,0.5))
+```
+
+## 2.2 Calculating Probabilities from the Normal Distribution
+
+(a) Suppose $X \sim \mathcal{N}(0,1)$, find the value $m$ (green point) such that $P(X\leq m)=0.95$.
+
+```{r echo=FALSE, warning=FALSE}
+#use ggplot2 to plot a pdf of a normal distribution
+library(ggplot2)
+
+# Set parameters for the normal distribution
+mean_value <- 0
+sd_value <- 1
+
+# Generate data for the normal distribution
+x <- seq(-3, 3, 0.01)
+pdf_normal <- dnorm(x, mean = mean_value, sd = sd_value)
+
+# Create a data frame for ggplot
+df <- data.frame(x = x, pdf_normal = pdf_normal)
+
+# Plot the normal distribution with shaded area from -3 to 0.5
+ggplot(df, aes(x = x, y = pdf_normal))+
+  geom_line(color = "blue", size = 1.5) +
+  geom_ribbon(data = subset(df, x >= -3 & x <= 1.96),
+              aes(ymax = pdf_normal, ymin = 0, fill = "Shaded Area"),
+              alpha = 0.3, color = NA) +
+  labs(title = "Normal(0,1)",
+       x = "X",
+       y = "Probability Density") +
+  scale_fill_manual(values = c("Shaded Area" = "grey10"), guide = "none") +
+  annotate("point", x = 1.96, y = 0, color = "green", size = 4) +
+  annotate("text", x = 0, y = 0.15, label = "95%", size = 10, color = "red") +
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r eval=FALSE, include=FALSE}
+qnorm(0.95,mean=0,sd=1)
+```
+
+(b) Given $X \sim \mathcal{N}(2,0.7^2)$, find the probability of $X$ being between 1 and 4.
+
+```{r eval=FALSE, include=FALSE}
+pnorm(4,2,0.7)-pnorm(1,2,0.7)
+```
+
+(c) Find the probability $P(5\leq X\leq 12)$ for $X \sim \mathcal{N}(10,5)$.
+
+```{r eval=FALSE, include=FALSE}
+pnorm(12,10,sqrt(5))-pnorm(5,10,sqrt(5))
+```
+
+## 2.3 Approximating the Binomial with the Normal distribution
+
+(a) Approximate a Binomial distribution $Bin(20,0.5)$ using a standard normally distributed $Z$. Find the $z_1$ and $z_2$ such that $P(z_1\leq Z\leq z_2)$ is the probability of getting between 5 and 10 heads.
+
+    ::: callout-tip
+    ## hint
+
+    We know that $Z\sim\mathcal{N}(0,1)$, how do we linearly transform $Z$ to match the mean and variance of a random variable from $Bin(20,0.5)$?
+    :::
+
+(b) Use R to calculate this probability using the standard normal distribution and check if it matches with Section 1(c).
+
+```{r eval=FALSE, include=FALSE}
+pnorm((12.5-10)/sqrt(5),0,1)-pnorm((4.5-10)/sqrt(5),0,1)
+```
+
+# 3. Convergence
+
+## 3.1 Experiments
+
+(a) Plot $X$ following a $\text{Bin}(n,0.5)$ for different values of $n=(3,10,25,100)$. Also, plot the approximated normal distribution $Y \sim \mathcal{N}(np,npq)$. We can observe how the normal distribution becomes a good approximation as n increases.
+
+```{r warning=FALSE}
+sampleBin<-function(n,p){
+  A<-seq(-0.5,0.5+n)
+  x<-0:n
+  binomial.pdf<-dbinom(x,n,p)
+  tit<-paste0("Histogram of X~Bin(",n,",",p,")")
+  ymax<-1.2*max(binomial.pdf)
+  mu<-n*p
+  sigma<-sqrt(n*p*(1-p))
+  y<-seq(0,n,.1)
+  normal.pdf<-dnorm(y,mu,sigma)
+  
+  plot(x,binomial.pdf,col="lightblue",xlab = "X", ylab = "P(X=x)",main=tit, type="h", 
+       ylim = c(0,ymax),lwd=5)
+
+  lines(y,normal.pdf,type="l",col="red",lwd=2,lty=2)
+ 
+}
+
+par(mfrow=c(2,2))
+sampleBin(3,0.5)
+sampleBin(10,0.5)
+sampleBin(25,0.5)
+sampleBin(100,0.5)
+```
+
+## 3.2 Some theory
+
+### Binomial as a Sum of Bernoulli Trials
+
+The Binomial distribution can be understood as the sum of independent and identically distributed Bernoulli trials. A Bernoulli trial is an experiment with exactly two possible outcomes: success (with probability $p$) and failure (with probability $1-p$). When we perform $n$ such independent trials, the sum of successes follows a Binomial distribution, $\text{Bin}(n, p)$.
+
+Mathematically, we have $$
+ X_\text{Bin} = \sum_{i =1}^n X_{\text{Ber},i},
+$$
+
+where $X_{\text{Ber},i}\sim^{i.i.d} \operatorname{Bernoulli}(p)$, and $X_\text{Bin}\sim \text{Bin}(n, p)$
+
+### Central Limit Theorem
+
+The Central Limit Theorem (CLT) states that, under certain conditions, the (normalised) sum of a large number of independent and identically distributed random variables will be approximately normally distributed, regardless of the original distribution of the variables. In the context of the Binomial distribution, as the number of trials $n$ becomes large, the distribution of the sum of the Bernoulli trials will tend towards a normal distribution.
+
+::: callout-important
+## Central Limit Theorem
+
+Suppose $X_1$, $X_2$, $\dots$ is a sequence of i.i.d. random variables with $\mathbb{E}[X_1] = \mu$ and $\operatorname{Var}[X_1] = \sigma^2<\infty$. Then, as $n$ approaches infinity, the random variables $\sqrt{n}(\bar{X_n}-\mu)$ converges in distribution to a normal $\mathcal{N(0,\sigma^2)}$:
+
+$$
+\sqrt{n}(\bar{X_n}-\mu) \to \mathcal{N(0,\sigma^2)},
+$$ where $\bar{X_n}=\frac{1}{n}\sum_{i=1}^n X_i$
+:::
+
+### Boundary Conditions
+
+For the convergence of a Binomial to a Normal distribution to be a good approximation, certain boundary conditions should be met:
+
+-   The number of trials $n$ should be large.
+-   Neither $p$ nor $1-p$ should be too small; a common rule of thumb is that both $np$ and $n(1-p)$ should be greater than 5.
+
+When these conditions are met, we can use the Normal distribution as an approximation for the Binomial distribution, greatly simplifying calculations in many cases.
+
+$$
+ \text{Bin}(n, p) \approx \mathcal{N}(np, np(1-p)) 
+$$
+
+This approximation is particularly useful for calculating probabilities for large $n$, where direct computation using the Binomial formula becomes impractical.
+
+## 3.3 Explorations
+
+Plot $X$ following a $\text{Bin}(n,0.1)$ for different values of $n=(3,10,25,100)$. Check if the normal distribution is a good approximation.
+
+```{r warning=FALSE}
+sampleBin<-function(n,p){
+  A<-seq(-0.5,0.5+n)
+  x<-0:n
+  binomial.pdf<-dbinom(x,n,p)
+  tit<-paste0("Histogram of X~Bin(",n,",",p,")")
+  ymax<-1.2*max(binomial.pdf)
+  mu<-n*p
+  sigma<-sqrt(n*p*(1-p))
+  y<-seq(0,n,.1)
+  normal.pdf<-dnorm(y,mu,sigma)
+  
+  plot(x,binomial.pdf,col="lightblue",xlab = "X", ylab = "P(X=x)",main=tit, type="h", 
+       ylim = c(0,ymax),lwd=5)
+
+  lines(y,normal.pdf,type="l",col="red",lwd=2,lty=2)
+ 
+
+}
+
+par(mfrow=c(2,2))
+sampleBin(3,0.1)
+sampleBin(10,0.1)
+sampleBin(25,0.1)
+sampleBin(100,0.1)
+```
+
+::: callout-important
+## Your turn!
+
+Explore the influence of $p$ on convergence speed. Consider distribution like $Bin(100,0.1),\ Bin(100,0.01),\ Bin(10000,0.01)$.
+:::
+
+```{r warning=FALSE, include=FALSE}
+#This part is use ggplot2 to create the plot of Binomial Distribution with Approximated Normal Curve, extra effort
+library(ggplot2)# Load libraries
+
+n<-100
+p<-0.01
+# Generate values for the binomial distribution
+x <- seq(0, n, by = 1)
+binomial_pmf <- dbinom(x, size = n, prob = p)
+
+
+# Create a data frame for ggplot
+df <- data.frame(x = x, binomial_pmf = binomial_pmf)
+
+# Plot the binomial distribution
+ggplot(df, aes(x, binomial_pmf)) +
+  geom_histogram(stat = "identity",binwidth=1, fill = "lightblue",col = "black") +
+  labs(title = "Binomial(100,0.01)",
+       x = "Number of Successes",
+       y = "Probability") +
+  theme_minimal()+
+  xlim(-1,11)+
+  theme(plot.title = element_text(hjust = 0.5))
+```
