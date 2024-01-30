@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mengqi Chen">
-<meta name="dcterms.date" content="2024-01-26">
+<meta name="dcterms.date" content="2024-01-30">
 
 <title>ST117 Introduction to Statistical Modelling - ST117 Lab 2</title>
 <style>
@@ -169,6 +169,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./lab_2_markdown.html">
  <span class="dropdown-text">Lab 2</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_3_markdown.html">
+ <span class="dropdown-text">Lab 3</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -236,7 +240,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 26, 2024</p>
+      <p class="date">January 30, 2024</p>
     </div>
   </div>
   
@@ -262,9 +266,9 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1    10
-2  2    10
-3  3     9</code></pre>
+1  1     8
+2  2     9
+3  3     6</code></pre>
 </div>
 </div>
 <p>Now, we write <code>data</code> into a CSV file</p>
@@ -278,9 +282,9 @@ window.Quarto = {
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_read_header</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1    10
-2  2    10
-3  3     9</code></pre>
+1  1     8
+2  2     9
+3  3     6</code></pre>
 </div>
 </div>
 <p>However, if we read with <code>header=FALSE</code>, then “id” and “score” are regarded as values</p>
@@ -290,9 +294,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>  V1    V2
 1 id score
-2  1    10
-3  2    10
-4  3     9</code></pre>
+2  1     8
+3  2     9
+4  3     6</code></pre>
 </div>
 </div>
 <p>In this case, you would run into problems if you simply take the first column of <code>data_read</code>:</p>

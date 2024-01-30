@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mengqi Chen">
+<meta name="dcterms.date" content="2024-01-30">
 
-<title>ST117 Introduction to Statistical Modelling - About</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -104,14 +135,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./lab_2_markdown.html">
  <span class="dropdown-text">Lab 2</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./lab_3_markdown.html">
- <span class="dropdown-text">Lab 3</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -126,21 +153,43 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#simulating-and-visualizing-binomial-distribution" id="toc-simulating-and-visualizing-binomial-distribution" class="nav-link active" data-scroll-target="#simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</a></li>
+  <li><a href="#calculating-probabilities-from-the-normal-distribution" id="toc-calculating-probabilities-from-the-normal-distribution" class="nav-link" data-scroll-target="#calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</a></li>
+  <li><a href="#approximating-the-binomial-with-the-normal-distribution" id="toc-approximating-the-binomial-with-the-normal-distribution" class="nav-link" data-scroll-target="#approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</a></li>
+  <li><a href="#convergence-speed-and-the-influence-of-p" id="toc-convergence-speed-and-the-influence-of-p" class="nav-link" data-scroll-target="#convergence-speed-and-the-influence-of-p">4. Convergence Speed and the Influence of p</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">ST117 Lab 3</h1>
+<p class="subtitle lead">Data frame, random numbers, and functions</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mengqi Chen </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 30, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -150,10 +199,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This website is created by <a href="https://warwick.ac.uk/fac/sci/statistics/staff/research_students/mchen/">Mengqi Chen</a> at Department of Statistics, University of Warwick in term 2, 2024. It is put together with <a href="https://quarto.org/">Quarto</a>, which is an open-source scientific and technical publishing system designed to create dynamic and reproducible documents. The markdown files for the webpages can be found on my <a href="https://github.com/MengqiChenMC/ST117_Lab_notes">GitHub Repository</a> for this courese.</p>
-<p>For feedback on the lab sessions please fill out the <a href="https://forms.gle/AGjRMmWt4eaecu1R7"><strong>anonymous feedback form</strong></a>. For corrections and comments on this site, please <a href="mailto:mengqi.chen.2@warwick.ac.uk">email me</a>.</p>
+<section id="simulating-and-visualizing-binomial-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</h2>
+<ol type="a">
+<li><p>Generate a random sample of 1000 observations from a binomial distribution with parameters <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>, then create a histogram to visualize the distribution.</p></li>
+<li><p>Calculate the mean and standard deviation of the generated data. Compare these values with the theoretical mean and variance.</p></li>
+<li><p>Flipping a coin 20 times, where it has 50% chance of getting a head. The total number of head <span class="math inline">\(X\)</span> follows a Binomial distribution with <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>. Find the probability of getting between 5 and 12 heads when tossing 20 coins(which is sum of the orange bars).</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ST117_Week04_Lab3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-probabilities-from-the-normal-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</h2>
+<ol type="a">
+<li>Suppose <span class="math inline">\(X \sim \text{N}(0,1)\)</span>, find the value <span class="math inline">\(m\)</span>(green point) such that <span class="math inline">\(P(X\leq m)=0.95\)</span></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ST117_Week04_Lab3_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="a">
+<li><p>Given <span class="math inline">\(X \sim \text{N}(2,0.7^2)\)</span>, find the probability of <span class="math inline">\(X\)</span> being between 1 and 4.</p></li>
+<li><p>Find the probability of getting a number between 5 and 12 heads for a normal distribution with mean 10 and standard deviation <span class="math inline">\(\sqrt{5}\)</span>.</p></li>
+</ol>
+</section>
+<section id="approximating-the-binomial-with-the-normal-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</h2>
+<ol type="a">
+<li><p>Approximate a Binomial distribution <span class="math inline">\(Bin(20,0.5)\)</span> using a standard normal distribution <span class="math inline">\(Z\)</span>. Find the <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span> values for the probability of getting between 5 and 12 heads.</p></li>
+<li><p>Use R to calculate this probability using the standard normal distribution and check if it matches with Section 1(c).</p></li>
+</ol>
+</section>
+<section id="convergence-speed-and-the-influence-of-p" class="level2">
+<h2 class="anchored" data-anchor-id="convergence-speed-and-the-influence-of-p">4. Convergence Speed and the Influence of p</h2>
+<ol type="a">
+<li><p>Plot <span class="math inline">\(X\)</span> following a <span class="math inline">\(\text{Bin}(n,0.5)\)</span> for different values of <span class="math inline">\(n=(3,10,25,100)\)</span>. Also, plot the approximated normal distribution <span class="math inline">\(Y \sim \text{N}(np,npq)\)</span>. Observe how the normal distribution becomes a good approximation as n increases.</p></li>
+<li><p>Plot <span class="math inline">\(X\)</span> following a <span class="math inline">\(\text{Bin}(n,0.1)\)</span> for different values of <span class="math inline">\(n=(3,10,25,100)\)</span>. Check if the normal distribution is a good approximation.</p></li>
+<li><p>Explore the influence of <span class="math inline">\(p\)</span> on convergence speed. Consider distribution like <span class="math inline">\(\text{Bin}(100,0.1),\text{Bin}(100,0.01),\text{Bin}(10000,0.01)\)</span>.</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ST117_Week04_Lab3_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
