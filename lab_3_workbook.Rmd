@@ -67,7 +67,7 @@ ggplot(df, aes(x = x, y = binomial_pmf,fill=block_color)) +
 
 ## 2. Calculating Probabilities from the Normal Distribution
 
-(a) Suppose $X \sim \mathcal{N}(0,1)$, find the value $m$ (green point) such that $P(X\leq m)=0.95$.
+(a) Suppose $X \sim \text{N}(0,1)$, find the value $m$ (green point) such that $P(X\leq m)=0.95$.
 
 ```{r echo=FALSE, warning=FALSE}
 # this chunk of code generates the plot demonstration, can ignore
@@ -105,13 +105,13 @@ ggplot(df, aes(x = x, y = pdf_normal))+
 # TODO: find m with qnorm
 ```
 
-(b) Given $X \sim \mathcal{N}(2,0.7^2)$, find the probability of $X$ being between 1 and 4.
+(b) Given $X \sim \text{N}(2,0.7^2)$, find the probability of $X$ being between 1 and 4.
 
 ```{r}
 # TODO: calculate the probability
 ```
 
-(c) Find the probability $P(5\leq X\leq 12)$ for $X \sim \mathcal{N}(10,5)$.
+(c) Find the probability $P(5\leq X\leq 12)$ for $X \sim \text{N}(10,5)$.
 
 ```{r}
 # TODO: calculate the probability
