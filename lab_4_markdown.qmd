@@ -19,7 +19,7 @@ library("randomNames")
 
 -   1 minute per student
 
--   R markdown template for this presentation
+-   [R markdown template](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/activity1_template.Rmd) for this presentation
 
 ## 1.2 Exercise sheet feedback and advice
 
@@ -51,7 +51,7 @@ library("randomNames")
 ::: callout-important
 ## Your turn!
 
-1.  Please attempt these questions and write down your answers in the [R Mardown workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_3_workbook.Rmd).
+1.  Please attempt these questions and write down your answers in the [R Mardown workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_4_workbook.Rmd).
 2.  Run your codes in your workbook and compare your results with your deskmate.
 3.  Knit your workbook to publish a report in PDF or html.
 :::
@@ -66,7 +66,7 @@ Include the pictures in R markdown with the following code, `![Name](path to the
 
 ## 2.2 Mathematics inside RMarkdown
 
-The mathematical typesetting is based on LaTeX. Here are some common LaTex syntax examples
+The mathematical typesetting is based on LaTeX. Below are some common LaTex syntax examples. A more comprehensive summary can be found on [this page](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html).
 
 -   Subscript $X_{i}$: `$X_{i}$`
 
