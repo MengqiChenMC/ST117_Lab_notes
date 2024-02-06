@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Your Name">
+<meta name="dcterms.date" content="2024-02-06">
 
-<title>ST117 Introduction to Statistical Modelling - Home</title>
+<title>ST117 Introduction to Statistical Modelling - Activity 1: Data visualisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -88,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -134,8 +170,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link active" data-scroll-target="#useful-resources">Useful Resources</a></li>
-  <li><a href="#feedback" id="toc-feedback" class="nav-link" data-scroll-target="#feedback">Feedback</a></li>
+  <li><a href="#task-1-visualising-a-small-dataset" id="toc-task-1-visualising-a-small-dataset" class="nav-link active" data-scroll-target="#task-1-visualising-a-small-dataset"><strong>Task 1: Visualising a Small Dataset</strong></a>
+  <ul class="collapse">
+  <li><a href="#find-a-small-dataset" id="toc-find-a-small-dataset" class="nav-link" data-scroll-target="#find-a-small-dataset">1.1 Find a Small Dataset</a></li>
+  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset">1.2 Load the Dataset</a></li>
+  <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">1.3 Visualisation</a></li>
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">1.4 Explanation</a></li>
+  </ul></li>
+  <li><a href="#task-2-visualising-a-large-dataset" id="toc-task-2-visualising-a-large-dataset" class="nav-link" data-scroll-target="#task-2-visualising-a-large-dataset"><strong>Task 2: Visualising a Large Dataset</strong></a>
+  <ul class="collapse">
+  <li><a href="#find-a-large-dataset" id="toc-find-a-large-dataset" class="nav-link" data-scroll-target="#find-a-large-dataset">2.1 Find a Large Dataset</a></li>
+  <li><a href="#load-the-dataset-1" id="toc-load-the-dataset-1" class="nav-link" data-scroll-target="#load-the-dataset-1">2.2 Load the Dataset</a></li>
+  <li><a href="#visualisation-1" id="toc-visualisation-1" class="nav-link" data-scroll-target="#visualisation-1">2.3 Visualisation</a></li>
+  <li><a href="#explanation-1" id="toc-explanation-1" class="nav-link" data-scroll-target="#explanation-1">2.4 Explanation</a></li>
+  </ul></li>
+  <li><a href="#conclusion-optional" id="toc-conclusion-optional" class="nav-link" data-scroll-target="#conclusion-optional"><strong>Conclusion (optional)</strong></a></li>
+  <li><a href="#references-optional" id="toc-references-optional" class="nav-link" data-scroll-target="#references-optional"><strong>References (optional)</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -144,14 +194,26 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Home</h1>
+<h1 class="title">Activity 1: Data visualisation</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 6, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -161,23 +223,66 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. It also contains a variety of resources to assist you in learning R and statistical modelling.</p>
-<section id="useful-resources" class="level2">
-<h2 class="anchored" data-anchor-id="useful-resources">Useful Resources</h2>
-<p>The following cheatsheets can be helpful for quick references:</p>
-<ol type="1">
-<li><p><a href="https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf"><strong>R Cheatsheet</strong></a>: A comprehensive guide to the basics of R programming.</p></li>
-<li><p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf"><strong>Data-Wrangling Cheatsheet</strong></a>: A summary of various data-wrangling commands with packages <code>dplyr</code> and <code>tidyr</code>.</p></li>
-<li><p><a href="https://images.datacamp.com/image/upload/v1666806657/Marketing/Blog/ggplot2_cheat_sheet.pdf"><strong>ggplot2 Cheatsheet</strong></a><strong>:</strong> <code>ggplot2</code> is a powerful tool for making custom plots in R. This cheatsheet provides a concise guide.</p></li>
-<li><p><a href="https://images.datacamp.com/image/upload/v1676302697/Marketing/Blog/Tidyverse_Cheat_Sheet.pdf"><strong>tidyverse Cheatsheet</strong></a>: <code>tdyverse</code> is a collection of R packages designed for data science. This cheatsheet covers some of the most commonly used packages.</p></li>
-<li><p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf"><strong>R Markdown Cheatsheet</strong></a>: This cheatsheet provides a quick reference to the R Markdown syntax.</p></li>
-<li><p><a href="https://www.statslab.cam.ac.uk/~rjs57/Distribtns.pdf"><strong>Statistical Distributions Cheatsheet</strong></a>: A sheet summarising the properties of some basic discrete and continuous distributions.</p></li>
-<li><p><a href="https://rpruim.github.io/s341/S19/from-class/MathinRmd.html"><strong>Mathematics in R Markdown</strong></a>: This pages summarises common LaTex syntax for R markdown.</p></li>
-</ol>
+<section id="task-1-visualising-a-small-dataset" class="level1">
+<h1><strong>Task 1: Visualising a Small Dataset</strong></h1>
+<section id="find-a-small-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="find-a-small-dataset">1.1 Find a Small Dataset</h2>
+<p>&lt;This can be from an online source or a dataset you create manually. Describe the dataset briefly.&gt;</p>
 </section>
-<section id="feedback" class="level2">
-<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
-<p>Please fill out the <a href="https://forms.gle/AGjRMmWt4eaecu1R7"><strong>anonymous feedback form</strong></a> to help make the lab sessions better for everyone!</p>
+<section id="load-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-dataset">1.2 Load the Dataset</h2>
+<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualisation" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation">1.3 Visualisation</h2>
+<p>&lt;Create a visualisation of the dataset. Consider the type of data and what you wish to convey.&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="explanation" class="level2">
+<h2 class="anchored" data-anchor-id="explanation">1.4 Explanation</h2>
+<p>&lt;Explain why you chose the type of plot, what it aims to show, and what insights it provides about the dataset’s context.&gt;</p>
+</section>
+</section>
+<section id="task-2-visualising-a-large-dataset" class="level1">
+<h1><strong>Task 2: Visualising a Large Dataset</strong></h1>
+<section id="find-a-large-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="find-a-large-dataset">2.1 Find a Large Dataset</h2>
+<p>&lt;Look for a large dataset available online. Describe the dataset and its source.&gt;</p>
+</section>
+<section id="load-the-dataset-1" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-dataset-1">2.2 Load the Dataset</h2>
+<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualisation-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation-1">2.3 Visualisation</h2>
+<p>&lt;Create a visualisation that highlights key aspects of the dataset.&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="explanation-1" class="level2">
+<h2 class="anchored" data-anchor-id="explanation-1">2.4 Explanation</h2>
+<p>&lt;Discuss your choice of visualisation, its relevance, and the insights it offers about the dataset.&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your written explanation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion-optional" class="level1">
+<h1><strong>Conclusion (optional)</strong></h1>
+<p>&lt;Reflect on the process of visualising these two datasets. Discuss any challenges you faced and how you overcame them. Consider how the size of a dataset can influence the approach to data visualisation.&gt;</p>
+</section>
+<section id="references-optional" class="level1">
+<h1><strong>References (optional)</strong></h1>
+<p>&lt;Include any references to data sources or other materials you used in this activity.&gt;</p>
 
 
 </section>
