@@ -3,9 +3,9 @@ title: "ST117 Lab 4 Workbook"
 author: ''
 date: 06-02-2024
 output:
+  pdf_document: default
   html_document:
     theme: cosmo
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -46,22 +46,22 @@ The mathematical typesetting is based on LaTeX. Below are some common LaTex synt
 -   Aligning equations: use `align`
 
     $$
-    \begin{align}
+    \begin{aligned}
     \mathbb{E}[X] &= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
     &= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
     &= \lambda e^{-\lambda} e^{\lambda} \\
     &= \lambda
-    \end{align}
+    \end{aligned}
     $$
 
     ```         
     $$
-    \begin{align}
+    \begin{aligned}
       \mathbb{E}[X] &= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
       &= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
       &= \lambda e^{-\lambda} e^{\lambda} \\
       &= \lambda
-    \end{align}
+    \end{aligned}
     $$
     ```
 
