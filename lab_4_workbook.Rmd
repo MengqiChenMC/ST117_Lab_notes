@@ -43,7 +43,7 @@ The mathematical typesetting is based on LaTeX. Below are some common LaTex synt
 
 -   Greek letters $\alpha$: `$\alpha$`
 
--   Aligning equations: use `align`
+-   Aligning equations: use `aligned`
 
     $$
     \begin{aligned}
