@@ -1,0 +1,72 @@
+---
+title: "Activity 1: Data visualisation"
+author: "Your Name"
+date: "`r format(Sys.Date(), '%d %B, %Y')`"
+output:
+  html_document:
+    theme: cosmo
+  pdf_document: default
+---
+
+# **Task 1: Visualising a Small Dataset**
+
+## 1.1 Find a Small Dataset 
+
+<This can be from an online source or a dataset you create manually. Describe the dataset briefly.>
+
+## 1.2  Load the Dataset
+
+<Use R to load your dataset into a data frame. Show the code you used. You may use functions such as `head()` or `glimpse`(from `dplyr`) to display the data frame>
+
+```{r load-small-dataset}
+# Your R code to load (and display) the dataset 
+```
+
+## 1.3  Visualisation 
+
+<Create a visualisation of the dataset. Consider the type of data and what you wish to convey.>
+
+```{r visualise-small-dataset}
+# Your R code for the visualisation
+```
+
+## 1.4  Explanation
+
+<Explain why you chose the type of plot, what it aims to show, and what insights it provides about the dataset's context.>
+
+# **Task 2: Visualising a Large Dataset**
+
+## 2.1 Find a Large Dataset
+
+<Look for a large dataset available online. Describe the dataset and its source.>
+
+## 2.2  Load the Dataset
+
+<Use R to load your dataset into a data frame. Show the code you used. You may use functions such as `head()` or `glimpse`(from `dplyr`) to display the data frame>
+```{r load-large-dataset}
+# Your R code to load (and display) the dataset 
+```
+
+## 2.3  Visualisation
+
+<Create a visualisation that highlights key aspects of the dataset.>
+
+```{r visualise-large-dataset}
+# Your R code for the visualisation
+```
+
+## 2.4  Explanation
+
+<Discuss your choice of visualisation, its relevance, and the insights it offers about the dataset.>
+
+```{r explanation-large-dataset}
+# Your written explanation
+```
+
+# **Conclusion (optional)**
+
+<Reflect on the process of visualising these two datasets. Discuss any challenges you faced and how you overcame them. Consider how the size of a dataset can influence the approach to data visualisation.>
+
+# **References (optional)**
+
+<Include any references to data sources or other materials you used in this activity.>

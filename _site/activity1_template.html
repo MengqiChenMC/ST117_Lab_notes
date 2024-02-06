@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
-<meta name="dcterms.date" content="2024-01-28">
+<meta name="author" content="Your Name">
+<meta name="dcterms.date" content="2024-02-05">
 
-<title>ST117 Introduction to Statistical Modelling - ST117 Lab 3 Workbook</title>
+<title>ST117 Introduction to Statistical Modelling - Activity 1: Data visualisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,35 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -199,9 +170,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#simulating-and-visualizing-binomial-distribution" id="toc-simulating-and-visualizing-binomial-distribution" class="nav-link active" data-scroll-target="#simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</a></li>
-  <li><a href="#calculating-probabilities-from-the-normal-distribution" id="toc-calculating-probabilities-from-the-normal-distribution" class="nav-link" data-scroll-target="#calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</a></li>
-  <li><a href="#approximating-the-binomial-with-the-normal-distribution" id="toc-approximating-the-binomial-with-the-normal-distribution" class="nav-link" data-scroll-target="#approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</a></li>
+  <li><a href="#task-1-visualising-a-small-dataset" id="toc-task-1-visualising-a-small-dataset" class="nav-link active" data-scroll-target="#task-1-visualising-a-small-dataset"><strong>Task 1: Visualising a Small Dataset</strong></a>
+  <ul class="collapse">
+  <li><a href="#find-a-small-dataset" id="toc-find-a-small-dataset" class="nav-link" data-scroll-target="#find-a-small-dataset">1.1 Find a Small Dataset</a></li>
+  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset">1.2 Load the Dataset</a></li>
+  <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">1.3 Visualisation</a></li>
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">1.4 Explanation</a></li>
+  </ul></li>
+  <li><a href="#task-2-visualising-a-large-dataset" id="toc-task-2-visualising-a-large-dataset" class="nav-link" data-scroll-target="#task-2-visualising-a-large-dataset"><strong>Task 2: Visualising a Large Dataset</strong></a>
+  <ul class="collapse">
+  <li><a href="#find-a-large-dataset" id="toc-find-a-large-dataset" class="nav-link" data-scroll-target="#find-a-large-dataset">2.1 Find a Large Dataset</a></li>
+  <li><a href="#load-the-dataset-1" id="toc-load-the-dataset-1" class="nav-link" data-scroll-target="#load-the-dataset-1">2.2 Load the Dataset</a></li>
+  <li><a href="#visualisation-1" id="toc-visualisation-1" class="nav-link" data-scroll-target="#visualisation-1">2.3 Visualisation</a></li>
+  <li><a href="#explanation-1" id="toc-explanation-1" class="nav-link" data-scroll-target="#explanation-1">2.4 Explanation</a></li>
+  </ul></li>
+  <li><a href="#conclusion-optional" id="toc-conclusion-optional" class="nav-link" data-scroll-target="#conclusion-optional"><strong>Conclusion (optional)</strong></a></li>
+  <li><a href="#references-optional" id="toc-references-optional" class="nav-link" data-scroll-target="#references-optional"><strong>References (optional)</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -210,18 +194,24 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ST117 Lab 3 Workbook</h1>
+<h1 class="title">Activity 1: Data visualisation</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 28, 2024</p>
+      <p class="date">February 5, 2024</p>
     </div>
   </div>
   
@@ -233,72 +223,66 @@ window.Quarto = {
 </header>
 
 
-<section id="simulating-and-visualizing-binomial-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</h2>
-<ol type="a">
-<li>Generate a random sample of 1000 observations from a binomial distribution with parameters <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>, then create a histogram to visualize the distribution.</li>
-</ol>
+<section id="task-1-visualising-a-small-dataset" class="level1">
+<h1><strong>Task 1: Visualising a Small Dataset</strong></h1>
+<section id="find-a-small-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="find-a-small-dataset">1.1 Find a Small Dataset</h2>
+<p>&lt;This can be from an online source or a dataset you create manually. Describe the dataset briefly.&gt;</p>
+</section>
+<section id="load-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-dataset">1.2 Load the Dataset</h2>
+<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: generate binomial samples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write down your codes to plot the histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li>Calculate the mean and standard deviation of the generated data. Compare these values with the theoretical mean and variance.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate mean and variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li>Flipping a coin 20 times, where it has 50% chance of getting a head. The total number of head <span class="math inline">\(X\)</span> follows a Binomial distribution with <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>. Find the probability of getting between 5 and 12 heads when tossing 20 coins, which is sum of the orange bars.</li>
-</ol>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lab_3_workbook_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="calculating-probabilities-from-the-normal-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</h2>
-<ol type="a">
-<li>Suppose <span class="math inline">\(X \sim \text{N}(0,1)\)</span>, find the value <span class="math inline">\(m\)</span> (green point) such that <span class="math inline">\(P(X\leq m)=0.95\)</span>.</li>
-</ol>
+<section id="visualisation" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation">1.3 Visualisation</h2>
+<p>&lt;Create a visualisation of the dataset. Consider the type of data and what you wish to convey.&gt;</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lab_3_workbook_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: find m with qnorm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li>Given <span class="math inline">\(X \sim \text{N}(2,0.7^2)\)</span>, find the probability of <span class="math inline">\(X\)</span> being between 1 and 4.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li>Find the probability <span class="math inline">\(P(5\leq X\leq 12)\)</span> for <span class="math inline">\(X \sim \text{N}(10,5)\)</span>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="approximating-the-binomial-with-the-normal-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</h2>
-<p>Please write down the questions and answers yourself, following the format above.</p>
+<section id="explanation" class="level2">
+<h2 class="anchored" data-anchor-id="explanation">1.4 Explanation</h2>
+<p>&lt;Explain why you chose the type of plot, what it aims to show, and what insights it provides about the dataset’s context.&gt;</p>
+</section>
+</section>
+<section id="task-2-visualising-a-large-dataset" class="level1">
+<h1><strong>Task 2: Visualising a Large Dataset</strong></h1>
+<section id="find-a-large-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="find-a-large-dataset">2.1 Find a Large Dataset</h2>
+<p>&lt;Look for a large dataset available online. Describe the dataset and its source.&gt;</p>
+</section>
+<section id="load-the-dataset-1" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-dataset-1">2.2 Load the Dataset</h2>
+<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualisation-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation-1">2.3 Visualisation</h2>
+<p>&lt;Create a visualisation that highlights key aspects of the dataset.&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="explanation-1" class="level2">
+<h2 class="anchored" data-anchor-id="explanation-1">2.4 Explanation</h2>
+<p>&lt;Discuss your choice of visualisation, its relevance, and the insights it offers about the dataset.&gt;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your written explanation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion-optional" class="level1">
+<h1><strong>Conclusion (optional)</strong></h1>
+<p>&lt;Reflect on the process of visualising these two datasets. Discuss any challenges you faced and how you overcame them. Consider how the size of a dataset can influence the approach to data visualisation.&gt;</p>
+</section>
+<section id="references-optional" class="level1">
+<h1><strong>References (optional)</strong></h1>
+<p>&lt;Include any references to data sources or other materials you used in this activity.&gt;</p>
 
 
 </section>

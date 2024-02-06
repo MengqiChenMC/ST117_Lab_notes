@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
-<meta name="dcterms.date" content="2024-01-28">
+<meta name="author" content="Mengqi Chen, Yujing Lu">
+<meta name="dcterms.date" content="2024-02-06">
 
-<title>ST117 Introduction to Statistical Modelling - ST117 Lab 3 Workbook</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -199,9 +199,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#simulating-and-visualizing-binomial-distribution" id="toc-simulating-and-visualizing-binomial-distribution" class="nav-link active" data-scroll-target="#simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</a></li>
-  <li><a href="#calculating-probabilities-from-the-normal-distribution" id="toc-calculating-probabilities-from-the-normal-distribution" class="nav-link" data-scroll-target="#calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</a></li>
-  <li><a href="#approximating-the-binomial-with-the-normal-distribution" id="toc-approximating-the-binomial-with-the-normal-distribution" class="nav-link" data-scroll-target="#approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</a></li>
+  <li><a href="#a-few-points-of-logistics" id="toc-a-few-points-of-logistics" class="nav-link active" data-scroll-target="#a-few-points-of-logistics">1. A few points of logistics</a>
+  <ul class="collapse">
+  <li><a href="#a1-activity-presentation-next-week" id="toc-a1-activity-presentation-next-week" class="nav-link" data-scroll-target="#a1-activity-presentation-next-week">1.1 A1 activity presentation next week</a></li>
+  <li><a href="#exercise-sheet-feedback-and-advice" id="toc-exercise-sheet-feedback-and-advice" class="nav-link" data-scroll-target="#exercise-sheet-feedback-and-advice">1.2 Exercise sheet feedback and advice</a></li>
+  </ul></li>
+  <li><a href="#exercises-in-r-markdown" id="toc-exercises-in-r-markdown" class="nav-link" data-scroll-target="#exercises-in-r-markdown">2. Exercises in R Markdown</a>
+  <ul class="collapse">
+  <li><a href="#inserting-images" id="toc-inserting-images" class="nav-link" data-scroll-target="#inserting-images">2.1 Inserting images</a></li>
+  <li><a href="#mathematics-inside-rmarkdown" id="toc-mathematics-inside-rmarkdown" class="nav-link" data-scroll-target="#mathematics-inside-rmarkdown">2.2 Mathematics inside RMarkdown</a></li>
+  </ul></li>
+  <li><a href="#survey-sampling" id="toc-survey-sampling" class="nav-link" data-scroll-target="#survey-sampling">3. Survey Sampling</a>
+  <ul class="collapse">
+  <li><a href="#data-generation" id="toc-data-generation" class="nav-link" data-scroll-target="#data-generation">3.1 Data Generation</a></li>
+  <li><a href="#mean-calculation" id="toc-mean-calculation" class="nav-link" data-scroll-target="#mean-calculation">3.2 Mean Calculation:</a></li>
+  <li><a href="#simulation-analysis-with-replacement-vs-without-replacement" id="toc-simulation-analysis-with-replacement-vs-without-replacement" class="nav-link" data-scroll-target="#simulation-analysis-with-replacement-vs-without-replacement">3.3 Simulation Analysis: with replacement vs without replacement</a></li>
+  <li><a href="#assigning-groups" id="toc-assigning-groups" class="nav-link" data-scroll-target="#assigning-groups">3.4 Assigning groups</a></li>
+  <li><a href="#trimmed-mean-optional" id="toc-trimmed-mean-optional" class="nav-link" data-scroll-target="#trimmed-mean-optional">3.5 Trimmed mean (optional)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -210,18 +225,25 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ST117 Lab 3 Workbook</h1>
+<h1 class="title">ST117 Lab 4</h1>
+<p class="subtitle lead">Surveying, R markdown, Latex</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mengqi Chen, Yujing Lu </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 28, 2024</p>
+      <p class="date">February 6, 2024</p>
     </div>
   </div>
   
@@ -233,74 +255,189 @@ window.Quarto = {
 </header>
 
 
-<section id="simulating-and-visualizing-binomial-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</h2>
-<ol type="a">
-<li>Generate a random sample of 1000 observations from a binomial distribution with parameters <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>, then create a histogram to visualize the distribution.</li>
-</ol>
+<section id="a-few-points-of-logistics" class="level1">
+<h1>1. A few points of logistics</h1>
+<section id="a1-activity-presentation-next-week" class="level2">
+<h2 class="anchored" data-anchor-id="a1-activity-presentation-next-week">1.1 A1 activity presentation next week</h2>
+<ul>
+<li><p>1 minute per student</p></li>
+<li><p>R markdown template for this presentation</p></li>
+</ul>
+</section>
+<section id="exercise-sheet-feedback-and-advice" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-sheet-feedback-and-advice">1.2 Exercise sheet feedback and advice</h2>
+<ul>
+<li><p>sanity check</p>
+<ul>
+<li>does this make sense?</li>
+<li>is this what this question is asking?</li>
+<li>cross-check with your pod members!</li>
+</ul></li>
+<li><p>work presentation style</p>
+<ul>
+<li>structure: put the answers and codes for the same question together</li>
+<li>comment your codes</li>
+</ul></li>
+<li><p>create tables for your data frame when it has many columns - use <code>kable</code> from <code>knitr</code>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: generate binomial samples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write down your codes to plot the histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li>Calculate the mean and standard deviation of the generated data. Compare these values with the theoretical mean and variance.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate mean and variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li>Flipping a coin 20 times, where it has 50% chance of getting a head. The total number of head <span class="math inline">\(X\)</span> follows a Binomial distribution with <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>. Find the probability of getting between 5 and 12 heads when tossing 20 coins, which is sum of the orange bars.</li>
-</ol>
-<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>grade_book <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_names=</span><span class="fu">randomNames</span>(<span class="dv">288</span>,<span class="at">which.names =</span> <span class="st">"first"</span>), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_names=</span><span class="fu">randomNames</span>(<span class="dv">288</span>,<span class="at">which.names =</span> <span class="st">"last"</span>), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lab_groups=</span><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>,<span class="at">times=</span><span class="dv">18</span>) <span class="co"># 16 groups of 18 students each</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(grade_book))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">first_names</th>
+<th style="text-align: left;">last_names</th>
+<th style="text-align: right;">lab_groups</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jensen</td>
+<td style="text-align: left;">Martinez</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Akaisha</td>
+<td style="text-align: left;">Rhoads</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Muhaajir</td>
+<td style="text-align: left;">Delgado</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Denzel</td>
+<td style="text-align: left;">Cunningham</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adrienne</td>
+<td style="text-align: left;">Watson</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aidenn</td>
+<td style="text-align: left;">Castaneda</td>
+<td style="text-align: right;">6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></li>
+</ul>
+</section>
+</section>
+<section id="exercises-in-r-markdown" class="level1">
+<h1>2. Exercises in R Markdown</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Your turn!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Please attempt these questions and write down your answers in the <a href="https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_3_workbook.Rmd">R Mardown workbook</a>.</li>
+<li>Run your codes in your workbook and compare your results with your deskmate.</li>
+<li>Knit your workbook to publish a report in PDF or html.</li>
+</ol>
+</div>
+</div>
+<section id="inserting-images" class="level2">
+<h2 class="anchored" data-anchor-id="inserting-images">2.1 Inserting images</h2>
+<p>Include the pictures in R markdown with the following code, <code>![Name](path to the picture){width=50%}</code>.</p>
+<p><strong>Exercise:</strong> Insert a image of your choice to the workbook.</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lab_3_workbook_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="squirrel.jpg" class="img-fluid figure-img" width="756"></p>
+<figcaption>A picture of Squirrel</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="calculating-probabilities-from-the-normal-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</h2>
-<ol type="a">
-<li>Suppose <span class="math inline">\(X \sim \text{N}(0,1)\)</span>, find the value <span class="math inline">\(m\)</span> (green point) such that <span class="math inline">\(P(X\leq m)=0.95\)</span>.</li>
-</ol>
-<div class="cell">
-<div class="cell-output-display">
-<div>
+<section id="mathematics-inside-rmarkdown" class="level2">
+<h2 class="anchored" data-anchor-id="mathematics-inside-rmarkdown">2.2 Mathematics inside RMarkdown</h2>
+<p>The mathematical typesetting is based on LaTeX. Here are some common LaTex syntax examples</p>
+<ul>
+<li><p>Subscript <span class="math inline">\(X_{i}\)</span>: <code>$X_{i}$</code></p></li>
+<li><p>Superscript <span class="math inline">\(X^{i}\)</span>: <code>$X^{i}$</code></p></li>
+<li><p>Sum <span class="math inline">\(\sum_{i=1}^{n} X_{i}\)</span>: <code>$\sum_{i=1}^{n} X_{i}$</code></p></li>
+<li><p>Fraction <span class="math inline">\(\frac{a}{b}\)</span>: <code>$\frac{a}{b}$</code></p></li>
+<li><p>Expectation <span class="math inline">\(\mathbb{E}[X]\)</span>: <code>$\mathbb{E}[X]$</code></p></li>
+<li><p>Variance <span class="math inline">\(\operatorname{Var}\)</span>: <code>$\operatorname{Var}$</code></p></li>
+<li><p>Infinity <span class="math inline">\(\infty\)</span>: <code>$\infty$</code></p></li>
+<li><p>Greek letters <span class="math inline">\(\alpha\)</span>: <code>$\alpha$</code></p></li>
+<li><p>Aligning equations: use <code>align</code></p>
+<p><span class="math display">\[
+\begin{align}
+\mathbb{E}[X] &amp;= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
+&amp;= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
+&amp;= \lambda e^{-\lambda} e^{\lambda} \\
+&amp;= \lambda
+\end{align}
+\]</span></p>
+<pre><code>$$
+\begin{align}
+  \mathbb{E}[X] &amp;= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
+  &amp;= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
+  &amp;= \lambda e^{-\lambda} e^{\lambda} \\
+  &amp;= \lambda
+\end{align}
+$$</code></pre></li>
+</ul>
+<p>Exercise: Type out the following equation in LaTex:</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lab_3_workbook_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="images/Poisson.png" class="img-fluid figure-img"></p>
+<figcaption>Second moment of Poisson</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: find m with qnorm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="a">
-<li>Given <span class="math inline">\(X \sim \text{N}(2,0.7^2)\)</span>, find the probability of <span class="math inline">\(X\)</span> being between 1 and 4.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li>Find the probability <span class="math inline">\(P(5\leq X\leq 12)\)</span> for <span class="math inline">\(X \sim \text{N}(10,5)\)</span>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="approximating-the-binomial-with-the-normal-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</h2>
-<p>Please write down the questions and answers yourself, following the format above.</p>
+</section>
+<section id="survey-sampling" class="level1">
+<h1>3. Survey Sampling</h1>
+<section id="data-generation" class="level2">
+<h2 class="anchored" data-anchor-id="data-generation">3.1 Data Generation</h2>
+<p>Suppose we have test scores for a population of 1000 students, expressed as percentages, generated from a <span class="math inline">\(\text{Beta}(2,5)\)</span> distribution. Create a data frame to store the names and scores of these students. Calculate the population mean and variance, and plot a histogram to visualize the distribution of the test scores.</p>
+</section>
+<section id="mean-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="mean-calculation">3.2 Mean Calculation:</h2>
+<p>Suppose that we only have access to a sample of 100 scores (with replacement). Please generate this sample and calculate its mean to estimate the population mean. Compute the bias of this estimator.</p>
+</section>
+<section id="simulation-analysis-with-replacement-vs-without-replacement" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-analysis-with-replacement-vs-without-replacement">3.3 Simulation Analysis: with replacement vs without replacement</h2>
+<ol type="i">
+<li><p>Suppose that we can repeat the survey process through 100,000 simulations, each sampling 100 students <strong>with replacement</strong>. Calculate the sample mean for each of the 100,000 simulations.</p></li>
+<li><p>Check the mean, bias, and variance of the sample means.</p></li>
+<li><p>Plot a histogram of sample means. Compare the sample mean to a normal distribution using a Q-Q plot.</p></li>
+<li><p>Suppose we sample <strong>without replacement</strong> from the 100,000 simulations. Estimate the expectation, bias, and variance of the estimators. What did you learn about these quantities in your lectures? Type up the theoretical expressions of them with LaTex.</p></li>
+</ol>
+</section>
+<section id="assigning-groups" class="level2">
+<h2 class="anchored" data-anchor-id="assigning-groups">3.4 Assigning groups</h2>
+<p>The survey is conducted by two volunteer groups, 1 and 2, after we have randomly assigned students to these groups. A student is assigned to group 1 with probability <span class="math inline">\(\frac{2}{3}\)</span>. Students attending the survey from group 1 receive a notebook, while those attending by group 2 receive a bottle. Create two columns to show which volunteer group conducted the survey and what gift the students received by <code>sample()</code> and <code>ifelse()</code>.</p>
+</section>
+<section id="trimmed-mean-optional" class="level2">
+<h2 class="anchored" data-anchor-id="trimmed-mean-optional">3.5 Trimmed mean (optional)</h2>
+<p>The trimmed mean is a method to estimate a dataset’s central tendency by removing a specified percentage of the smallest and largest values before calculating the average of the remaining data. This technique helps reduce the impact of outliers, providing a more reliable measure of the dataset’s typical value, especially useful when data is skewed or contains extreme values. It combines the mean’s sensitivity to data changes with the median’s resistance to outliers, offering a robust tool for data analysis.</p>
+<p>In R, we can calculate the trimmed mean via</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> pop[<span class="fu">sample</span>(<span class="fu">nrow</span>(pop), <span class="at">size=</span><span class="dv">100</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>trim_means <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample<span class="sc">$</span>scores, <span class="at">trim=</span><span class="fl">0.2</span>) <span class="co"># trim the smallest 10% and largest 10% before calculating the mean.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Assume that our sampled data is contaminated with outliers: some students did not report their true score - a random selection of 5 student reported that their score is 1 regardless of their true score. Please include this contamination, and compare the mean and trimmed mean of your sample.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

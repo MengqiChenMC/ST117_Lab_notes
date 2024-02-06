@@ -1,7 +1,7 @@
 ---
 title: "ST117 Lab 3"
 subtitle: "sampling, distributions and probability"
-author: "Mengqi Chen"
+author: "Mengqi Chen, Yujing Lu"
 date: last-modified
 format: html
 editor: visual

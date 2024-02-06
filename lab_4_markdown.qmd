@@ -1,0 +1,214 @@
+---
+title: "ST117 Lab 4"
+subtitle: "Surveying, R markdown, Latex"
+author: "Mengqi Chen, Yujing Lu"
+date: last-modified
+format: html
+editor: visual
+theme: darkly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("randomNames")
+```
+
+# 1. A few points of logistics
+
+## 1.1 A1 activity presentation next week
+
+-   1 minute per student
+
+-   R markdown template for this presentation
+
+## 1.2 Exercise sheet feedback and advice
+
+-   sanity check
+
+    -   does this make sense?
+    -   is this what this question is asking?
+    -   cross-check with your pod members!
+
+-   work presentation style
+
+    -   structure: put the answers and codes for the same question together
+    -   comment your codes
+
+-   create tables for your data frame when it has many columns - use `kable` from `knitr`!
+
+    ```{r}
+    library(knitr)
+    grade_book <- data.frame(
+      first_names=randomNames(288,which.names = "first"), 
+      last_names=randomNames(288,which.names = "last"), 
+      lab_groups=rep(1:16,times=18) # 16 groups of 18 students each
+    ) 
+    kable(head(grade_book))
+    ```
+
+# 2. Exercises in R Markdown
+
+::: callout-important
+## Your turn!
+
+1.  Please attempt these questions and write down your answers in the [R Mardown workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_3_workbook.Rmd).
+2.  Run your codes in your workbook and compare your results with your deskmate.
+3.  Knit your workbook to publish a report in PDF or html.
+:::
+
+## 2.1 Inserting images
+
+Include the pictures in R markdown with the following code, `![Name](path to the picture){width=50%}`.
+
+**Exercise:** Insert a image of your choice to the workbook.
+
+![A picture of Squirrel](squirrel.jpg){width="756"}
+
+## 2.2 Mathematics inside RMarkdown
+
+The mathematical typesetting is based on LaTeX. Here are some common LaTex syntax examples
+
+-   Subscript $X_{i}$: `$X_{i}$`
+
+-   Superscript $X^{i}$: `$X^{i}$`
+
+-   Sum $\sum_{i=1}^{n} X_{i}$: `$\sum_{i=1}^{n} X_{i}$`
+
+-   Fraction $\frac{a}{b}$: `$\frac{a}{b}$`
+
+-   Expectation $\mathbb{E}[X]$: `$\mathbb{E}[X]$`
+
+-   Variance $\operatorname{Var}$: `$\operatorname{Var}$`
+
+-   Infinity $\infty$: `$\infty$`
+
+-   Greek letters $\alpha$: `$\alpha$`
+
+-   Aligning equations: use `align`
+
+    $$
+    \begin{align}
+    \mathbb{E}[X] &= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
+    &= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
+    &= \lambda e^{-\lambda} e^{\lambda} \\
+    &= \lambda
+    \end{align}
+    $$
+
+    ```         
+    $$
+    \begin{align}
+      \mathbb{E}[X] &= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
+      &= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
+      &= \lambda e^{-\lambda} e^{\lambda} \\
+      &= \lambda
+    \end{align}
+    $$
+    ```
+
+Exercise: Type out the following equation in LaTex:
+
+![Second moment of Poisson](images/Poisson.png)
+
+# 3. Survey Sampling
+
+## 3.1 Data Generation
+
+Suppose we have test scores for a population of 1000 students, expressed as percentages, generated from a $\text{Beta}(2,5)$ distribution. Create a data frame to store the names and scores of these students. Calculate the population mean and variance, and plot a histogram to visualize the distribution of the test scores.
+
+```{r include=FALSE}
+set.seed(1)
+pop<-data.frame(
+  names=randomNames(1000),
+  scores=rbeta(1000,2,5)
+)
+pop_mean<-mean(pop$scores)
+pop_var<-var(pop$scores)
+hist(pop$scores,breaks=100)
+```
+
+## 3.2 Mean Calculation:
+
+Suppose that we only have access to a sample of 100 scores (with replacement). Please generate this sample and calculate its mean to estimate the population mean. Compute the bias of this estimator.
+
+```{r include=FALSE}
+sample <- pop[sample(nrow(pop), size=100,replace=TRUE),]
+mean(sample$scores)
+```
+
+## 3.3 Simulation Analysis: with replacement vs without replacement
+
+(i) Suppose that we can repeat the survey process through 100,000 simulations, each sampling 100 students **with replacement**. Calculate the sample mean for each of the 100,000 simulations.
+
+```{r include=FALSE}
+means <- c()
+trim_means <- c()
+for(i in 1:100000){
+  sample <- pop[sample(nrow(pop), size=100,replace=TRUE),]
+  means[i] <- mean(sample$scores)
+}
+```
+
+(ii) Check the mean, bias, and variance of the sample means.
+
+```{r include=FALSE}
+mean(means)
+
+mean(means)-pop_mean
+
+var(means)
+```
+
+(iii) Plot a histogram of sample means. Compare the sample mean to a normal distribution using a Q-Q plot.
+
+```{r include=FALSE}
+hist(means,breaks=100)
+qqnorm(means)
+```
+
+(iv) Suppose we sample **without replacement** from the 100,000 simulations. Estimate the expectation, bias, and variance of the estimators. What did you learn about these quantities in your lectures? Type up the theoretical expressions of them with LaTex.
+
+```{r include=FALSE}
+means2<-c()
+for (i in 1:100000) {
+  sample2 <- sample(pop$scores, size=100,replace=FALSE)
+  means2[i] <- mean(sample2)
+}
+mean(means2)
+var(means2)
+```
+
+```{r include=FALSE}
+corr_factor <- (1000 - 100) / (1000 - 1)
+print(corr_factor * pop_var / 100)
+```
+
+## 3.4 Assigning groups
+
+The survey is conducted by two volunteer groups, 1 and 2, after we have randomly assigned students to these groups. A student is assigned to group 1 with probability $\frac{2}{3}$. Students attending the survey from group 1 receive a notebook, while those attending by group 2 receive a bottle. Create two columns to show which volunteer group conducted the survey and what gift the students received by `sample()` and `ifelse()`.
+
+```{r include=FALSE}
+pop$groups<-sample(c(1,2),100,replace=TRUE,prob=c(2,1))
+pop$present<-ifelse(pop$groups==1,"notebook","bottle")
+```
+
+## 3.5 Trimmed mean (optional)
+
+The trimmed mean is a method to estimate a dataset's central tendency by removing a specified percentage of the smallest and largest values before calculating the average of the remaining data. This technique helps reduce the impact of outliers, providing a more reliable measure of the dataset's typical value, especially useful when data is skewed or contains extreme values. It combines the mean's sensitivity to data changes with the median's resistance to outliers, offering a robust tool for data analysis.
+
+In R, we can calculate the trimmed mean via
+
+```{r}
+sample <- pop[sample(nrow(pop), size=100,replace=TRUE),]
+trim_means <- mean(sample$scores, trim=0.2) # trim the smallest 10% and largest 10% before calculating the mean.
+```
+
+Assume that our sampled data is contaminated with outliers: some students did not report their true score - a random selection of 5 student reported that their score is 1 regardless of their true score. Please include this contamination, and compare the mean and trimmed mean of your sample.
+
+```{r include = FALSE}
+sample <- pop[sample(nrow(pop), size=100,replace=TRUE),]
+contaminated_pos <- sample(nrow(sample),size = 5, replace = FALSE)
+sample$scores[contaminated_pos] <- 1
+sample_mean <- mean(sample$scores)
+trim_means <- mean(sample$scores, trim=0.2)
+```

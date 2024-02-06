@@ -1,7 +1,7 @@
 ---
 title: "ST117 Lab 2"
 subtitle: "Data frame, random numbers, and functions"
-author: "Mengqi Chen"
+author: "Mengqi Chen, Yujing Lu"
 date: last-modified
 format: html
 editor: visual
