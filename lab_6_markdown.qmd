@@ -37,7 +37,7 @@ $\hat{\mu} = \bar{x}$ and $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar
 -   **Bias**: $\operatorname{Bias}(\hat{\theta}) = \mathbb{E}(\hat{\theta})-\theta$
 -   **Variance**: $\operatorname{Var}(\hat{\theta})$ Measures the dispersion of the estimator's distribution.
 -   **Mean Squared Error (MSE)**: $\operatorname{MSE}(\hat{\theta}) = \mathbb{E}(\hat{\theta}-\theta)^2 = \operatorname{Bias}(\hat{\theta})^2 + \operatorname{Var}(\hat{\theta})$ The average squared difference between the estimated values and the actual value. MSE = Bias\^2 + Variance.
--   **Consistency**: An estimator is consistent if it converges in probability to the true parameter value as the sample size increases. For this course, you can check consistency by checking if $\operatorname{MSE}(\theta)\to^ 0$ as $n\to\infty$.
+-   **Consistency**: An estimator is consistent if it converges in probability to the true parameter value as the sample size increases. For this course, you can check consistency by checking if $\operatorname{MSE}(\theta)\to 0$ as $n\to\infty$.
 
 ## Example: MLE for a Poisson Distribution
 
