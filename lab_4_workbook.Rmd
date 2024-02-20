@@ -1,11 +1,11 @@
 ---
 title: "ST117 Lab 4 Workbook"
 author: ''
-date: 06-02-2024
+date: '2024-02-06'
 output:
-  pdf_document: default
   html_document:
     theme: cosmo
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}

@@ -1,0 +1,76 @@
+---
+title: "ST117 Lab 6 Workbook"
+author: ""
+date: "2024-02-16"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Bernoulli Distribution
+
+Suppose we observe data $\vec{x}=(1,0,0,1,0,1,0,0,1,1)$ where each element $X_i$ follows a Bernoulli distribution with an unknown success probability $p$.
+
+(a) Find the likelihood function $L(p;\vec{x})$ which represents the joint pdf function of $p$ given the observed data $\vec{x}$ and define it as a function in R. Calculate the value of this function at $p=0.1$.
+
+```{r}
+#TODO: write your codes here
+```
+
+
+
+(b) Plot the likelihood function for $p\in[0,1]$ and use the `optimize()` function to find the point that maximizes $L(p;\vec{x})$. Add a vertical line to the plot to indicate this maximum point.
+
+```{r}
+#TODO: write your codes here
+```
+
+(c) Calculate the log-likelihood function $l(p;\vec{x})$ and define this function in R. Plot the log-likelihood function. Verify that $p=0.5$ maximizes the log-likelihood function by setting its first derivative equal to zero and ensuring that the second derivative is negative.
+
+```{r}
+#TODO: write your codes here
+```
+
+## 2. Binomial Distribution
+Given that $X \sim \text{Bin}(n,p)$ and observed that $n=10$ and $x=3$.
+
+(a) Define the likelihood function in R and calculate it at $p=0.1$.
+```{r}
+#TODO: write your codes here
+```
+
+(b) Plot the likelihood function for $p\in[0,1]$ and calculate the maximum likelihood estimate. Add a vertical line to the plot to indicate this maximum point.
+```{r}
+#TODO: write your codes here
+```
+
+```{r}
+#TODO: write your codes here
+```
+
+
+## 3. Normal Distribution
+Given the heights(in cm) of a random sample of 20 students:
+
+182, 154, 147, 150, 164, 177, 169, 173, 160, 173, 170, 160, 178, 175, 154, 179, 168, 188, 172, 162
+
+We assume that the heights of students follow a normal distribution with unknown mean $\mu$ and standard deviation $\sigma$. 
+
+(a) Determine the maximum likelihood estimates of $\mu$ and $\sigma$ based on the given sample.
+
+```{r}
+#TODO: write your codes here
+```
+
+
+(b) Calculate the log-likelihood of these height estimates.
+
+```{r}
+#TODO: write your codes here
+```
+
+

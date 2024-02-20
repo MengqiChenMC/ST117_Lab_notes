@@ -191,56 +191,56 @@
   {
     "objectID": "lab_4_workbook.html",
     "href": "lab_4_workbook.html",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "",
-    "text": "Include the pictures in R markdown with the following code, ![Name](path to the picture){width=50%}.\nExercise: Insert a image of your choice to the workbook.\nTODO: Please insert your image here\n\n\n\nThe mathematical typesetting is based on LaTeX. Below are some common LaTex syntax examples.\n\nSubscript \\(X_{i}\\): $X_{i}$\nSuperscript \\(X^{i}\\): $X^{i}$\nSum \\(\\sum_{i=1}^{n} X_{i}\\): $\\sum_{i=1}^{n} X_{i}$\nFraction \\(\\frac{a}{b}\\): $\\frac{a}{b}$\nExpectation \\(\\mathbb{E}[X]\\): $\\mathbb{E}[X]$\nVariance \\(\\operatorname{Var}\\): $\\operatorname{Var}$\nInfinity \\(\\infty\\): $\\infty$\nGreek letters \\(\\alpha\\): $\\alpha$\nAligning equations: use align\n\\[\n\\begin{align}\n\\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n&= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n&= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n&= \\lambda\n\\end{align}\n\\]\n$$\n\\begin{align}\n  \\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n  &= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n  &= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n  &= \\lambda\n\\end{align}\n$$\n\nExercise: Type out the following equation in LaTex:\n\n\n\nSecond moment of Poisson\n\n\nTODO: LaTex codes \\[\n% type out your equation here\n\\]"
+    "text": "Include the pictures in R markdown with the following code, ![Name](path to the picture){width=50%}.\nExercise: Insert a image of your choice to the workbook.\nTODO: Please insert your image here\n\n\n\nThe mathematical typesetting is based on LaTeX. Below are some common LaTex syntax examples.\n\nSubscript \\(X_{i}\\): $X_{i}$\nSuperscript \\(X^{i}\\): $X^{i}$\nSum \\(\\sum_{i=1}^{n} X_{i}\\): $\\sum_{i=1}^{n} X_{i}$\nFraction \\(\\frac{a}{b}\\): $\\frac{a}{b}$\nExpectation \\(\\mathbb{E}[X]\\): $\\mathbb{E}[X]$\nVariance \\(\\operatorname{Var}\\): $\\operatorname{Var}$\nInfinity \\(\\infty\\): $\\infty$\nGreek letters \\(\\alpha\\): $\\alpha$\nAligning equations: use aligned\n\\[\n\\begin{aligned}\n\\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n&= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n&= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n&= \\lambda\n\\end{aligned}\n\\]\n$$\n\\begin{aligned}\n  \\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n  &= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n  &= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n  &= \\lambda\n\\end{aligned}\n$$\n\nExercise: Type out the following equation in LaTex:\n\n\n\nSecond moment of Poisson\n\n\nTODO: LaTex codes \\[\n% type out your equation here\n\\]"
   },
   {
     "objectID": "lab_4_workbook.html#inserting-images",
     "href": "lab_4_workbook.html#inserting-images",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "",
     "text": "Include the pictures in R markdown with the following code, ![Name](path to the picture){width=50%}.\nExercise: Insert a image of your choice to the workbook.\nTODO: Please insert your image here"
   },
   {
     "objectID": "lab_4_workbook.html#mathematics-inside-rmarkdown",
     "href": "lab_4_workbook.html#mathematics-inside-rmarkdown",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "",
-    "text": "The mathematical typesetting is based on LaTeX. Below are some common LaTex syntax examples.\n\nSubscript \\(X_{i}\\): $X_{i}$\nSuperscript \\(X^{i}\\): $X^{i}$\nSum \\(\\sum_{i=1}^{n} X_{i}\\): $\\sum_{i=1}^{n} X_{i}$\nFraction \\(\\frac{a}{b}\\): $\\frac{a}{b}$\nExpectation \\(\\mathbb{E}[X]\\): $\\mathbb{E}[X]$\nVariance \\(\\operatorname{Var}\\): $\\operatorname{Var}$\nInfinity \\(\\infty\\): $\\infty$\nGreek letters \\(\\alpha\\): $\\alpha$\nAligning equations: use align\n\\[\n\\begin{align}\n\\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n&= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n&= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n&= \\lambda\n\\end{align}\n\\]\n$$\n\\begin{align}\n  \\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n  &= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n  &= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n  &= \\lambda\n\\end{align}\n$$\n\nExercise: Type out the following equation in LaTex:\n\n\n\nSecond moment of Poisson\n\n\nTODO: LaTex codes \\[\n% type out your equation here\n\\]"
+    "text": "The mathematical typesetting is based on LaTeX. Below are some common LaTex syntax examples.\n\nSubscript \\(X_{i}\\): $X_{i}$\nSuperscript \\(X^{i}\\): $X^{i}$\nSum \\(\\sum_{i=1}^{n} X_{i}\\): $\\sum_{i=1}^{n} X_{i}$\nFraction \\(\\frac{a}{b}\\): $\\frac{a}{b}$\nExpectation \\(\\mathbb{E}[X]\\): $\\mathbb{E}[X]$\nVariance \\(\\operatorname{Var}\\): $\\operatorname{Var}$\nInfinity \\(\\infty\\): $\\infty$\nGreek letters \\(\\alpha\\): $\\alpha$\nAligning equations: use aligned\n\\[\n\\begin{aligned}\n\\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n&= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n&= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n&= \\lambda\n\\end{aligned}\n\\]\n$$\n\\begin{aligned}\n  \\mathbb{E}[X] &= \\sum_{x=0}^\\infty x\\frac{\\lambda^x e^{-\\lambda}}{x!} \\\\\n  &= \\lambda \\sum_{x=1}^\\infty \\frac{e^{-\\lambda}\\lambda^{x-1}}{(x-1)!} \\\\\n  &= \\lambda e^{-\\lambda} e^{\\lambda} \\\\\n  &= \\lambda\n\\end{aligned}\n$$\n\nExercise: Type out the following equation in LaTex:\n\n\n\nSecond moment of Poisson\n\n\nTODO: LaTex codes \\[\n% type out your equation here\n\\]"
   },
   {
     "objectID": "lab_4_workbook.html#data-generation",
     "href": "lab_4_workbook.html#data-generation",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "Data Generation",
     "text": "Data Generation\nSuppose we have test scores for a population of 1000 students, expressed as percentages, generated from a \\(\\text{Beta}(2,5)\\) distribution. Create a data frame to store the names and scores of these students. Calculate the population mean and variance, and plot a histogram to visualize the distribution of the test scores.\n\n# TODO: write your codes here"
   },
   {
     "objectID": "lab_4_workbook.html#mean-calculation",
     "href": "lab_4_workbook.html#mean-calculation",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "Mean Calculation:",
     "text": "Mean Calculation:\nSuppose that we only have access to a sample of 100 scores (with replacement). Please generate this sample and calculate its mean to estimate the population mean. Compute the bias of this estimator.\n\n# TODO: write your codes here"
   },
   {
     "objectID": "lab_4_workbook.html#simulation-analysis-with-replacement-vs-without-replacement",
     "href": "lab_4_workbook.html#simulation-analysis-with-replacement-vs-without-replacement",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "Simulation Analysis: with replacement vs without replacement",
     "text": "Simulation Analysis: with replacement vs without replacement\n\nSuppose that we can repeat the survey process through 100,000 simulations, each sampling 100 students with replacement. Calculate the sample mean for each of the 100,000 simulations.\n\n\n# TODO: write your codes here\n\n\nCheck the mean, bias, and variance of the sample means.\n\n\n# TODO: write your codes here\n\n\nPlot a histogram of sample means. Compare the sample mean to a normal distribution using a Q-Q plot.\n\n\n# TODO: write your codes here\n\n\nSuppose we sample without replacement from the 100,000 simulations. Estimate the expectation, bias, and variance of the estimators. What did you learn about these quantities in your lectures? Type up the theoretical expressions of them with LaTex.\n\n\n# TODO: write your codes here\n\nTODO: Latex codes \\[\n% write your LaTex expressions here\n\\]"
   },
   {
     "objectID": "lab_4_workbook.html#assigning-groups",
     "href": "lab_4_workbook.html#assigning-groups",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "Assigning groups",
     "text": "Assigning groups\nThe survey is conducted by two volunteer groups, 1 and 2, after we have randomly assigned students to these groups. A student is assigned to group 1 with probability \\(\\frac{2}{3}\\). Students attending the survey from group 1 receive a notebook, while those attending by group 2 receive a bottle. Create two columns to show which volunteer group conducted the survey and what gift the students received by sample() and ifelse().\n\n# TODO: write your codes here"
   },
   {
     "objectID": "lab_4_workbook.html#trimmed-mean-optional",
     "href": "lab_4_workbook.html#trimmed-mean-optional",
-    "title": "ST117 Lab 3 Workbook",
+    "title": "ST117 Lab 4 Workbook",
     "section": "Trimmed mean (optional)",
     "text": "Trimmed mean (optional)\nThe trimmed mean is a method to estimate a dataset’s central tendency by removing a specified percentage of the smallest and largest values before calculating the average of the remaining data. This technique helps reduce the impact of outliers, providing a more reliable measure of the dataset’s typical value, especially useful when data is skewed or contains extreme values. It combines the mean’s sensitivity to data changes with the median’s resistance to outliers, offering a robust tool for data analysis.\nIn R, we can calculate the trimmed mean via\n\nsample &lt;- pop[sample(nrow(pop), size=100,replace=TRUE),]\ntrim_means &lt;- mean(sample$scores, trim=0.2) # trim the smallest 10% and largest 10% before calculating the mean.\n\nAssume that our sampled data is contaminated with outliers: some students did not report their true score - a random selection of 5 student reported that their score is 1 regardless of their true score. Please include this contamination, and compare the mean and trimmed mean of your sample.\n\n# TODO: write your codes here"
   },
@@ -432,5 +432,110 @@
     "title": "About",
     "section": "",
     "text": "This website is created by Mengqi Chen at Department of Statistics, University of Warwick in term 2, 2024. It is put together with Quarto, which is an open-source scientific and technical publishing system designed to create dynamic and reproducible documents. The markdown files for the webpages can be found on my GitHub Repository for this courese.\nFor feedback on the lab sessions please fill out the anonymous feedback form. For corrections and comments on this site, please email me."
+  },
+  {
+    "objectID": "lab_6_markdown.html",
+    "href": "lab_6_markdown.html",
+    "title": "ST117 Lab 6",
+    "section": "",
+    "text": "\\(\\hat{p} = \\frac{1}{n}\\sum_{i=1}^{n}x_i\\), where \\(x_i\\) are the observed values.\n\n\n\n\\(\\hat{p} = \\frac{\\bar{x}}{n}\\), where \\(\\bar{x}\\) is the sample mean.\n\n\n\n\\(\\hat{\\theta} = \\bar{x}\\), where \\(\\bar{x}\\) is the sample mean.\n\n\n\n\\(\\hat{\\mu} = \\bar{x}\\) and \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum_{i=1}^{n}(x_i - \\bar{x})^2\\).\n\n\n\n\n\nBias: \\(\\operatorname{Bias}(\\hat{\\theta}) = \\mathbb{E}(\\hat{\\theta})-\\theta\\)\nVariance: \\(\\operatorname{Var}(\\hat{\\theta})\\) Measures the dispersion of the estimator’s distribution.\nMean Squared Error (MSE): \\(\\operatorname{MSE}(\\hat{\\theta}) = \\mathbb{E}(\\hat{\\theta}-\\theta)^2 = \\operatorname{Bias}(\\hat{\\theta})^2 + \\operatorname{Var}(\\hat{\\theta})\\) The average squared difference between the estimated values and the actual value. MSE = Bias^2 + Variance.\nConsistency: An estimator is consistent if it converges in probability to the true parameter value as the sample size increases. For this course, you can check consistency by checking if \\(\\operatorname{MSE}(\\theta)\\to^ 0\\) as \\(n\\to\\infty\\).\n\n\n\n\nWe will find the MLE of a Poisson sample, plot the log-likelihood function, find its maximum, and compare with the theoretical value. Recall that the Possion distribution:\n\\[\nP(X=x)=\\exp^{-\\theta}\\frac{\\theta^x}{x!}\n\\]\n\n\n\n# Simulating a Poisson-distributed sample\nset.seed(123)\ntheta_true &lt;- 4\nn_samples &lt;- 10\nsample_data &lt;- rpois(n_samples, theta_true)\n\nsample_data\n\n [1] 3 6 3 6 7 1 4 7 4 4\n\n\n\n\n\nThe log-likelihood function for Possion distribution:\n\\[\n\\begin{align}\nl(\\theta;\\vec{x}) &= -n\\theta + \\ln{\\theta}\\cdot \\left(\\sum_{i=1}^n x_i\\right) - \\underbrace{\\ln \\left(\\prod_{i=1}^n x_i!\\right)}_{\\text{constant in }\\theta} \\\\\n\\end{align}\n\\]\n\nlog_likelihood &lt;- function(theta, data) {\n  sum(data)*log(theta)-length(data)*theta\n}\n\ntheta_seq &lt;- seq(1, 8, by = 0.1)\nll_values &lt;- sapply(theta_seq, log_likelihood, data = sample_data)\n\nplot(theta_seq, ll_values, type = \"l\", main = \"Log-Likelihood Function\", xlab = \"theta\", ylab = \"Log-Likelihood\")\n\nMLE &lt;- mean(sample_data)\nabline(v = MLE)\n\n\n\n\n\n\n\n\n\n\n\n\nopt1 &lt;-optimize(f=log_likelihood, data = sample_data, interval=c(0,7),maximum=TRUE) \n\noptimiser &lt;- opt1$maximum\n\ncat(\"The MLE for theta is:\", MLE, \"\\n\")\n\nThe MLE for theta is: 4.5 \n\ncat(\"The optimiser for the log-likelihood is\", optimiser, \"\\n\")\n\nThe optimiser for the log-likelihood is 4.499999"
+  },
+  {
+    "objectID": "lab_6_markdown.html#bernoulli-distribution",
+    "href": "lab_6_markdown.html#bernoulli-distribution",
+    "title": "ST117 Lab 6",
+    "section": "Bernoulli Distribution",
+    "text": "Bernoulli Distribution\nThe MLE for a Bernoulli distribution’s parameter \\(p\\) is given by \\(\\hat{p} = \\frac{1}{n}\\sum_{i=1}^{n}x_i\\), where \\(x_i\\) are the observed values."
+  },
+  {
+    "objectID": "lab_6_markdown.html#binomial-distribution",
+    "href": "lab_6_markdown.html#binomial-distribution",
+    "title": "ST117 Lab 6",
+    "section": "Binomial Distribution",
+    "text": "Binomial Distribution\nFor a Binomial distribution with parameters \\(n\\) and \\(p\\), the MLE for \\(p\\) is \\(\\hat{p} = \\frac{\\bar{x}}{n}\\), where \\(\\bar{x}\\) is the sample mean."
+  },
+  {
+    "objectID": "lab_6_markdown.html#normal-distribution",
+    "href": "lab_6_markdown.html#normal-distribution",
+    "title": "ST117 Lab 6",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\nFor a Normal distribution with parameters \\(\\mu\\) and \\(\\sigma^2\\), the MLEs are \\(\\hat{\\mu} = \\bar{x}\\) and \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum_{i=1}^{n}(x_i - \\bar{x})^2\\)."
+  },
+  {
+    "objectID": "lab_6_markdown.html#poisson-distribution",
+    "href": "lab_6_markdown.html#poisson-distribution",
+    "title": "ST117 Lab 6",
+    "section": "Poisson Distribution",
+    "text": "Poisson Distribution\nThe MLE for the Poisson distribution’s parameter \\(\\theta\\) is \\(\\hat{\\theta} = \\bar{x}\\), where \\(\\bar{x}\\) is the sample mean."
+  },
+  {
+    "objectID": "lab_6_markdown.html#data-simulation",
+    "href": "lab_6_markdown.html#data-simulation",
+    "title": "ST117 Lab 6",
+    "section": "Data Simulation",
+    "text": "Data Simulation\n\n# Simulating a Poisson-distributed sample\nset.seed(123)\ntheta_true &lt;- 4\nn_samples &lt;- 10\nsample_data &lt;- rpois(n_samples, theta_true)\n\nsample_data\n\n [1] 3 6 3 6 7 1 4 7 4 4"
+  },
+  {
+    "objectID": "lab_6_markdown.html#log-likelihood-function-and-plot",
+    "href": "lab_6_markdown.html#log-likelihood-function-and-plot",
+    "title": "ST117 Lab 6",
+    "section": "Log-Likelihood Function and Plot",
+    "text": "Log-Likelihood Function and Plot\nThe log-likelihood function for Possion distribution:\n\\[\n\\begin{align}\nl(\\theta;\\vec{x}) &= -n\\theta + \\ln{\\theta}\\cdot \\left(\\sum_{i=1}^n x_i\\right) - \\underbrace{\\ln \\left(\\prod_{i=1}^n x_i!\\right)}_{\\text{constant in }\\theta} \\\\\n\\end{align}\n\\]\n\nlog_likelihood &lt;- function(theta, data) {\n  sum(data)*log(theta)-length(data)*theta\n}\n\ntheta_seq &lt;- seq(1, 8, by = 0.1)\nll_values &lt;- sapply(theta_seq, log_likelihood, data = sample_data)\n\nplot(theta_seq, ll_values, type = \"l\", main = \"Log-Likelihood Function\", xlab = \"theta\", ylab = \"Log-Likelihood\")\n\nMLE &lt;- mean(sample_data)\nabline(v = MLE)"
+  },
+  {
+    "objectID": "lab_6_markdown.html#finding-the-maximum",
+    "href": "lab_6_markdown.html#finding-the-maximum",
+    "title": "ST117 Lab 6",
+    "section": "Finding the Maximum",
+    "text": "Finding the Maximum\n\nopt1 &lt;-optimize(f=log_likelihood, data = sample_data, interval=c(0,7),maximum=TRUE) \n\noptimiser &lt;- opt1$maximum\n\ncat(\"The MLE for theta is:\", MLE, \"\\n\")\n\nThe MLE for theta is: 4.5 \n\ncat(\"The optimiser for the log-likelihood is\", optimiser, \"\\n\")\n\nThe optimiser for the log-likelihood is 4.499999"
+  },
+  {
+    "objectID": "lab_6_markdown.html#bernoulli-distribution-1",
+    "href": "lab_6_markdown.html#bernoulli-distribution-1",
+    "title": "ST117 Lab 6",
+    "section": "1. Bernoulli Distribution",
+    "text": "1. Bernoulli Distribution\nSuppose we observe data \\(\\vec{x}=(1,0,0,1,0,1,0,0,1,1)\\) where each element \\(X_i\\) follows a Bernoulli distribution with an unknown success probability \\(p\\).\n\nFind the likelihood function \\(L(p;\\vec{x})\\) which represents the joint pdf function of \\(p\\) given the observed data \\(\\vec{x}\\) and define it as a function in R. Calculate the value of this function at \\(p=0.1\\).\nPlot the likelihood function for \\(p\\in[0,1]\\) and use the optimize() function to find the point that maximizes \\(L(p;\\vec{x})\\). Add a vertical line to the plot to indicate this maximum point.\nCalculate the log-likelihood function \\(l(p;\\vec{x})\\) and define this function in R. Plot the log-likelihood function. Verify that \\(p=0.5\\) maximizes the log-likelihood function by setting its first derivative equal to zero and ensuring that the second derivative is negative."
+  },
+  {
+    "objectID": "lab_6_markdown.html#binomial-distribution-1",
+    "href": "lab_6_markdown.html#binomial-distribution-1",
+    "title": "ST117 Lab 6",
+    "section": "2. Binomial Distribution",
+    "text": "2. Binomial Distribution\nGiven that \\(X \\sim \\text{Bin}(n,p)\\) and observed that \\(n=10\\) and \\(x=3\\).\n\nDefine the likelihood function in R and calculate it at \\(p=0.1\\).\nPlot the likelihood function for \\(p\\in[0,1]\\) and calculate the maximum likelihood estimate. Add a vertical line to the plot to indicate this maximum point."
+  },
+  {
+    "objectID": "lab_6_markdown.html#normal-distribution-1",
+    "href": "lab_6_markdown.html#normal-distribution-1",
+    "title": "ST117 Lab 6",
+    "section": "3. Normal Distribution",
+    "text": "3. Normal Distribution\nGiven the heights(in cm) of a random sample of 20 students:\n182, 154, 147, 150, 164, 177, 169, 173, 160, 173, 170, 160, 178, 175, 154, 179, 168, 188, 172, 162\nWe assume that the heights of students follow a normal distribution with unknown mean \\(\\mu\\) and standard deviation \\(\\sigma\\).\n\nDetermine the maximum likelihood estimates of \\(\\mu\\) and \\(\\sigma\\) based on the given sample.\nCalculate the log-likelihood of these height estimates."
+  },
+  {
+    "objectID": "lab_6_markdown.html#maximum-likelihood-estimations-for-common-distributions",
+    "href": "lab_6_markdown.html#maximum-likelihood-estimations-for-common-distributions",
+    "title": "ST117 Lab 6",
+    "section": "",
+    "text": "\\(\\hat{p} = \\frac{1}{n}\\sum_{i=1}^{n}x_i\\), where \\(x_i\\) are the observed values.\n\n\n\n\\(\\hat{p} = \\frac{\\bar{x}}{n}\\), where \\(\\bar{x}\\) is the sample mean.\n\n\n\n\\(\\hat{\\theta} = \\bar{x}\\), where \\(\\bar{x}\\) is the sample mean.\n\n\n\n\\(\\hat{\\mu} = \\bar{x}\\) and \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum_{i=1}^{n}(x_i - \\bar{x})^2\\)."
+  },
+  {
+    "objectID": "lab_6_markdown.html#criteria-for-comparing-estimators",
+    "href": "lab_6_markdown.html#criteria-for-comparing-estimators",
+    "title": "ST117 Lab 6",
+    "section": "",
+    "text": "Bias: \\(\\operatorname{Bias}(\\hat{\\theta}) = \\mathbb{E}(\\hat{\\theta})-\\theta\\)\nVariance: \\(\\operatorname{Var}(\\hat{\\theta})\\) Measures the dispersion of the estimator’s distribution.\nMean Squared Error (MSE): \\(\\operatorname{MSE}(\\hat{\\theta}) = \\mathbb{E}(\\hat{\\theta}-\\theta)^2 = \\operatorname{Bias}(\\hat{\\theta})^2 + \\operatorname{Var}(\\hat{\\theta})\\) The average squared difference between the estimated values and the actual value. MSE = Bias^2 + Variance.\nConsistency: An estimator is consistent if it converges in probability to the true parameter value as the sample size increases. For this course, you can check consistency by checking if \\(\\operatorname{MSE}(\\theta)\\to^ 0\\) as \\(n\\to\\infty\\)."
+  },
+  {
+    "objectID": "lab_6_markdown.html#example-mle-for-a-poisson-distribution",
+    "href": "lab_6_markdown.html#example-mle-for-a-poisson-distribution",
+    "title": "ST117 Lab 6",
+    "section": "",
+    "text": "We will find the MLE of a Poisson sample, plot the log-likelihood function, find its maximum, and compare with the theoretical value. Recall that the Possion distribution:\n\\[\nP(X=x)=\\exp^{-\\theta}\\frac{\\theta^x}{x!}\n\\]\n\n\n\n# Simulating a Poisson-distributed sample\nset.seed(123)\ntheta_true &lt;- 4\nn_samples &lt;- 10\nsample_data &lt;- rpois(n_samples, theta_true)\n\nsample_data\n\n [1] 3 6 3 6 7 1 4 7 4 4\n\n\n\n\n\nThe log-likelihood function for Possion distribution:\n\\[\n\\begin{align}\nl(\\theta;\\vec{x}) &= -n\\theta + \\ln{\\theta}\\cdot \\left(\\sum_{i=1}^n x_i\\right) - \\underbrace{\\ln \\left(\\prod_{i=1}^n x_i!\\right)}_{\\text{constant in }\\theta} \\\\\n\\end{align}\n\\]\n\nlog_likelihood &lt;- function(theta, data) {\n  sum(data)*log(theta)-length(data)*theta\n}\n\ntheta_seq &lt;- seq(1, 8, by = 0.1)\nll_values &lt;- sapply(theta_seq, log_likelihood, data = sample_data)\n\nplot(theta_seq, ll_values, type = \"l\", main = \"Log-Likelihood Function\", xlab = \"theta\", ylab = \"Log-Likelihood\")\n\nMLE &lt;- mean(sample_data)\nabline(v = MLE)\n\n\n\n\n\n\n\n\n\n\n\n\nopt1 &lt;-optimize(f=log_likelihood, data = sample_data, interval=c(0,7),maximum=TRUE) \n\noptimiser &lt;- opt1$maximum\n\ncat(\"The MLE for theta is:\", MLE, \"\\n\")\n\nThe MLE for theta is: 4.5 \n\ncat(\"The optimiser for the log-likelihood is\", optimiser, \"\\n\")\n\nThe optimiser for the log-likelihood is 4.499999"
+  },
+  {
+    "objectID": "lab_6_markdown.html#mle-for-common-distributions",
+    "href": "lab_6_markdown.html#mle-for-common-distributions",
+    "title": "ST117 Lab 6",
+    "section": "",
+    "text": "\\(\\hat{p} = \\frac{1}{n}\\sum_{i=1}^{n}x_i\\), where \\(x_i\\) are the observed values.\n\n\n\n\\(\\hat{p} = \\frac{\\bar{x}}{n}\\), where \\(\\bar{x}\\) is the sample mean.\n\n\n\n\\(\\hat{\\theta} = \\bar{x}\\), where \\(\\bar{x}\\) is the sample mean.\n\n\n\n\\(\\hat{\\mu} = \\bar{x}\\) and \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum_{i=1}^{n}(x_i - \\bar{x})^2\\)."
   }
 ]
