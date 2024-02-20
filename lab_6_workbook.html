@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="">
-<meta name="dcterms.date" content="2024-02-06">
+<meta name="dcterms.date" content="2024-02-16">
 
-<title>ST117 Introduction to Statistical Modelling - ST117 Lab 4 Workbook</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 6 Workbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -203,19 +203,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link active" data-scroll-target="#r-markdown">R markdown</a>
-  <ul class="collapse">
-  <li><a href="#inserting-images" id="toc-inserting-images" class="nav-link" data-scroll-target="#inserting-images">Inserting images</a></li>
-  <li><a href="#mathematics-inside-rmarkdown" id="toc-mathematics-inside-rmarkdown" class="nav-link" data-scroll-target="#mathematics-inside-rmarkdown">Mathematics inside RMarkdown</a></li>
-  </ul></li>
-  <li><a href="#survey-sampling" id="toc-survey-sampling" class="nav-link" data-scroll-target="#survey-sampling">Survey Sampling</a>
-  <ul class="collapse">
-  <li><a href="#data-generation" id="toc-data-generation" class="nav-link" data-scroll-target="#data-generation">Data Generation</a></li>
-  <li><a href="#mean-calculation" id="toc-mean-calculation" class="nav-link" data-scroll-target="#mean-calculation">Mean Calculation:</a></li>
-  <li><a href="#simulation-analysis-with-replacement-vs-without-replacement" id="toc-simulation-analysis-with-replacement-vs-without-replacement" class="nav-link" data-scroll-target="#simulation-analysis-with-replacement-vs-without-replacement">Simulation Analysis: with replacement vs without replacement</a></li>
-  <li><a href="#assigning-groups" id="toc-assigning-groups" class="nav-link" data-scroll-target="#assigning-groups">Assigning groups</a></li>
-  <li><a href="#trimmed-mean-optional" id="toc-trimmed-mean-optional" class="nav-link" data-scroll-target="#trimmed-mean-optional">Trimmed mean (optional)</a></li>
-  </ul></li>
+  <li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link active" data-scroll-target="#bernoulli-distribution">1. Bernoulli Distribution</a></li>
+  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution">2. Binomial Distribution</a></li>
+  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">3. Normal Distribution</a></li>
   </ul>
 </nav>
     </div>
@@ -224,7 +214,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ST117 Lab 4 Workbook</h1>
+<h1 class="title">ST117 Lab 6 Workbook</h1>
 </div>
 
 
@@ -235,7 +225,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 6, 2024</p>
+      <p class="date">February 16, 2024</p>
     </div>
   </div>
   
@@ -247,124 +237,66 @@ window.Quarto = {
 </header>
 
 
-<section id="r-markdown" class="level1">
-<h1>R markdown</h1>
-<section id="inserting-images" class="level2">
-<h2 class="anchored" data-anchor-id="inserting-images">Inserting images</h2>
-<p>Include the pictures in R markdown with the following code, <code>![Name](path to the picture){width=50%}</code>.</p>
-<p><strong>Exercise:</strong> Insert a image of your choice to the workbook.</p>
-<p>TODO: Please insert your image here</p>
-</section>
-<section id="mathematics-inside-rmarkdown" class="level2">
-<h2 class="anchored" data-anchor-id="mathematics-inside-rmarkdown">Mathematics inside RMarkdown</h2>
-<p>The mathematical typesetting is based on LaTeX. Below are some common LaTex syntax examples.</p>
-<ul>
-<li><p>Subscript <span class="math inline">\(X_{i}\)</span>: <code>$X_{i}$</code></p></li>
-<li><p>Superscript <span class="math inline">\(X^{i}\)</span>: <code>$X^{i}$</code></p></li>
-<li><p>Sum <span class="math inline">\(\sum_{i=1}^{n} X_{i}\)</span>: <code>$\sum_{i=1}^{n} X_{i}$</code></p></li>
-<li><p>Fraction <span class="math inline">\(\frac{a}{b}\)</span>: <code>$\frac{a}{b}$</code></p></li>
-<li><p>Expectation <span class="math inline">\(\mathbb{E}[X]\)</span>: <code>$\mathbb{E}[X]$</code></p></li>
-<li><p>Variance <span class="math inline">\(\operatorname{Var}\)</span>: <code>$\operatorname{Var}$</code></p></li>
-<li><p>Infinity <span class="math inline">\(\infty\)</span>: <code>$\infty$</code></p></li>
-<li><p>Greek letters <span class="math inline">\(\alpha\)</span>: <code>$\alpha$</code></p></li>
-<li><p>Aligning equations: use <code>aligned</code></p>
-<p><span class="math display">\[
-\begin{aligned}
-\mathbb{E}[X] &amp;= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
-&amp;= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
-&amp;= \lambda e^{-\lambda} e^{\lambda} \\
-&amp;= \lambda
-\end{aligned}
-\]</span></p>
-<pre><code>$$
-\begin{aligned}
-  \mathbb{E}[X] &amp;= \sum_{x=0}^\infty x\frac{\lambda^x e^{-\lambda}}{x!} \\
-  &amp;= \lambda \sum_{x=1}^\infty \frac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \\
-  &amp;= \lambda e^{-\lambda} e^{\lambda} \\
-  &amp;= \lambda
-\end{aligned}
-$$</code></pre></li>
-</ul>
-<p>Exercise: Type out the following equation in LaTex:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Poisson.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Second moment of Poisson</figcaption>
-</figure>
-</div>
-<p>TODO: LaTex codes <span class="math display">\[
-% type out your equation here
-\]</span></p>
-</section>
-</section>
-<section id="survey-sampling" class="level1">
-<h1>Survey Sampling</h1>
-<section id="data-generation" class="level2">
-<h2 class="anchored" data-anchor-id="data-generation">Data Generation</h2>
-<p>Suppose we have test scores for a population of 1000 students, expressed as percentages, generated from a <span class="math inline">\(\text{Beta}(2,5)\)</span> distribution. Create a data frame to store the names and scores of these students. Calculate the population mean and variance, and plot a histogram to visualize the distribution of the test scores.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="mean-calculation" class="level2">
-<h2 class="anchored" data-anchor-id="mean-calculation">Mean Calculation:</h2>
-<p>Suppose that we only have access to a sample of 100 scores (with replacement). Please generate this sample and calculate its mean to estimate the population mean. Compute the bias of this estimator.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="simulation-analysis-with-replacement-vs-without-replacement" class="level2">
-<h2 class="anchored" data-anchor-id="simulation-analysis-with-replacement-vs-without-replacement">Simulation Analysis: with replacement vs without replacement</h2>
-<ol type="i">
-<li>Suppose that we can repeat the survey process through 100,000 simulations, each sampling 100 students <strong>with replacement</strong>. Calculate the sample mean for each of the 100,000 simulations.</li>
+<section id="bernoulli-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="bernoulli-distribution">1. Bernoulli Distribution</h2>
+<p>Suppose we observe data <span class="math inline">\(\vec{x}=(1,0,0,1,0,1,0,0,1,1)\)</span> where each element <span class="math inline">\(X_i\)</span> follows a Bernoulli distribution with an unknown success probability <span class="math inline">\(p\)</span>.</p>
+<ol type="a">
+<li>Find the likelihood function <span class="math inline">\(L(p;\vec{x})\)</span> which represents the joint pdf function of <span class="math inline">\(p\)</span> given the observed data <span class="math inline">\(\vec{x}\)</span> and define it as a function in R. Calculate the value of this function at <span class="math inline">\(p=0.1\)</span>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="i">
-<li>Check the mean, bias, and variance of the sample means.</li>
+<ol start="2" type="a">
+<li>Plot the likelihood function for <span class="math inline">\(p\in[0,1]\)</span> and use the <code>optimize()</code> function to find the point that maximizes <span class="math inline">\(L(p;\vec{x})\)</span>. Add a vertical line to the plot to indicate this maximum point.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="i">
-<li>Plot a histogram of sample means. Compare the sample mean to a normal distribution using a Q-Q plot.</li>
+<ol start="3" type="a">
+<li>Calculate the log-likelihood function <span class="math inline">\(l(p;\vec{x})\)</span> and define this function in R. Plot the log-likelihood function. Verify that <span class="math inline">\(p=0.5\)</span> maximizes the log-likelihood function by setting its first derivative equal to zero and ensuring that the second derivative is negative.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="i">
-<li>Suppose we sample <strong>without replacement</strong> from the 100,000 simulations. Estimate the expectation, bias, and variance of the estimators. What did you learn about these quantities in your lectures? Type up the theoretical expressions of them with LaTex.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>TODO: Latex codes <span class="math display">\[
-% write your LaTex expressions here
-\]</span></p>
-</section>
-<section id="assigning-groups" class="level2">
-<h2 class="anchored" data-anchor-id="assigning-groups">Assigning groups</h2>
-<p>The survey is conducted by two volunteer groups, 1 and 2, after we have randomly assigned students to these groups. A student is assigned to group 1 with probability <span class="math inline">\(\frac{2}{3}\)</span>. Students attending the survey from group 1 receive a notebook, while those attending by group 2 receive a bottle. Create two columns to show which volunteer group conducted the survey and what gift the students received by <code>sample()</code> and <code>ifelse()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="trimmed-mean-optional" class="level2">
-<h2 class="anchored" data-anchor-id="trimmed-mean-optional">Trimmed mean (optional)</h2>
-<p>The trimmed mean is a method to estimate a dataset’s central tendency by removing a specified percentage of the smallest and largest values before calculating the average of the remaining data. This technique helps reduce the impact of outliers, providing a more reliable measure of the dataset’s typical value, especially useful when data is skewed or contains extreme values. It combines the mean’s sensitivity to data changes with the median’s resistance to outliers, offering a robust tool for data analysis.</p>
-<p>In R, we can calculate the trimmed mean via</p>
+<section id="binomial-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="binomial-distribution">2. Binomial Distribution</h2>
+<p>Given that <span class="math inline">\(X \sim \text{Bin}(n,p)\)</span> and observed that <span class="math inline">\(n=10\)</span> and <span class="math inline">\(x=3\)</span>.</p>
+<ol type="a">
+<li>Define the likelihood function in R and calculate it at <span class="math inline">\(p=0.1\)</span>.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> pop[<span class="fu">sample</span>(<span class="fu">nrow</span>(pop), <span class="at">size=</span><span class="dv">100</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>trim_means <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample<span class="sc">$</span>scores, <span class="at">trim=</span><span class="fl">0.2</span>) <span class="co"># trim the smallest 10% and largest 10% before calculating the mean.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Assume that our sampled data is contaminated with outliers: some students did not report their true score - a random selection of 5 student reported that their score is 1 regardless of their true score. Please include this contamination, and compare the mean and trimmed mean of your sample.</p>
+<ol start="2" type="a">
+<li>Plot the likelihood function for <span class="math inline">\(p\in[0,1]\)</span> and calculate the maximum likelihood estimate. Add a vertical line to the plot to indicate this maximum point.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="normal-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="normal-distribution">3. Normal Distribution</h2>
+<p>Given the heights(in cm) of a random sample of 20 students:</p>
+<p>182, 154, 147, 150, 164, 177, 169, 173, 160, 173, 170, 160, 178, 175, 154, 179, 168, 188, 172, 162</p>
+<p>We assume that the heights of students follow a normal distribution with unknown mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<ol type="a">
+<li>Determine the maximum likelihood estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> based on the given sample.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li>Calculate the log-likelihood of these height estimates.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

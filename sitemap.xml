@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_6_workbook.html</loc>
+    <lastmod>2024-02-20T13:15:36.780Z</lastmod>
+  </url>
+  <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_1_markdown.html</loc>
     <lastmod>2024-01-23T18:56:10.694Z</lastmod>
   </url>
@@ -14,15 +18,15 @@
   </url>
   <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_4_markdown.html</loc>
-    <lastmod>2024-02-06T13:04:33.246Z</lastmod>
+    <lastmod>2024-02-20T13:10:30.324Z</lastmod>
   </url>
   <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_4_workbook.html</loc>
-    <lastmod>2024-02-06T13:05:37.912Z</lastmod>
+    <lastmod>2024-02-19T20:23:08.471Z</lastmod>
   </url>
   <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_3_workbook.html</loc>
-    <lastmod>2024-01-30T16:25:45.492Z</lastmod>
+    <lastmod>2024-02-06T14:18:27.083Z</lastmod>
   </url>
   <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_3_markdown.html</loc>
@@ -35,5 +39,9 @@
   <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/about.html</loc>
     <lastmod>2024-01-24T13:57:59.983Z</lastmod>
+  </url>
+  <url>
+    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_6_markdown.html</loc>
+    <lastmod>2024-02-20T13:18:33.564Z</lastmod>
   </url>
 </urlset>
