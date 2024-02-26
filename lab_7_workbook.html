@@ -12,7 +12,7 @@
 <meta name="author" content />
 
 
-<title>ST117 Lab 6 Workbook</title>
+<title>ST117 Lab 7 Workbook</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -349,69 +349,74 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">ST117 Lab 6 Workbook</h1>
+<h1 class="title toc-ignore">ST117 Lab 7 Workbook</h1>
 <h4 class="author"></h4>
 <h4 class="date">26 February, 2024</h4>
 
 </div>
 
 
-<div id="bernoulli-distribution" class="section level2">
-<h2>1. Bernoulli Distribution</h2>
-<p>Suppose we observe data <span class="math inline">\(\vec{x}=(1,0,0,1,0,1,0,0,1,1)\)</span> where each
-element <span class="math inline">\(X_i\)</span> follows a Bernoulli
-distribution with an unknown success probability <span class="math inline">\(p\)</span>.</p>
+<div id="linear-regression-model" class="section level2">
+<h2>1. Linear Regression Model</h2>
+<p>Generate a sample from the linear regression model:</p>
+<p><span class="math display">\[
+Y = 2X + \varepsilon, \ \varepsilon \sim \mathcal{N}(0,5)
+\]</span></p>
+<pre class="r"><code>#TODO: write your codes here</code></pre>
 <ol style="list-style-type: lower-alpha">
-<li>Find the likelihood function <span class="math inline">\(L(p;\vec{x})\)</span> which represents the joint
-pdf function of <span class="math inline">\(p\)</span> given the
-observed data <span class="math inline">\(\vec{x}\)</span> and define it
-as a function in R. Calculate the value of this function at <span class="math inline">\(p=0.1\)</span>.</li>
+<li>Find the regression line to predict <span class="math inline">\(\hat{y}\)</span> by <span class="math inline">\(x\)</span>, i.e. find <span class="math inline">\(\hat{a}_1\)</span>, <span class="math inline">\(\hat{b}_1\)</span> such that</li>
 </ol>
+<p><span class="math display">\[
+Y = \hat{b}_1 X + \hat{a} _1
+\]</span></p>
+<p>manually using the covraiance and correlation estimators. Then verify
+the values using the <code>lm</code> function in R.</p>
 <pre class="r"><code>#TODO: write your codes here</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Plot the likelihood function for <span class="math inline">\(p\in[0,1]\)</span> and use the
-<code>optimize()</code> function to find the point that maximizes <span class="math inline">\(L(p;\vec{x})\)</span>. Add a vertical line to the
-plot to indicate this maximum point.</li>
+<li>Find the regression line to predict <span class="math inline">\(\hat{x}\)</span> by <span class="math inline">\(y\)</span>, i.e. find <span class="math inline">\(\hat{a}_2\)</span>, <span class="math inline">\(\hat{b}_2\)</span> such that</li>
 </ol>
+<p><span class="math display">\[
+X = \hat{b}_2 Y + \hat{a}_2
+\]</span></p>
+<p>manually using the covraiance and correlation estimators. Then verify
+the values using the <code>lm</code> function in R.</p>
 <pre class="r"><code>#TODO: write your codes here</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>Calculate the log-likelihood function <span class="math inline">\(l(p;\vec{x})\)</span> and define this function in
-R. Plot the log-likelihood function. Verify that <span class="math inline">\(p=0.5\)</span> maximizes the log-likelihood
-function by setting its first derivative equal to zero and ensuring that
-the second derivative is negative.</li>
+<li>Plot the data along with the two regression lines. Which regression
+line appears to be better?</li>
+</ol>
+<pre class="r"><code>#TODO: write your codes here</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>The Least Squared Estimation can also help us derive the estimates
+of <span class="math inline">\(\hat{a}\)</span> and <span class="math inline">\(\hat{b}\)</span>. We just need to find the value
+of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> that minimizes the following
+expression: <span class="math display">\[
+\sum_{i=1}^{n} \Big( y_i-(a+bx_i) \Big)^2
+\]</span> Hint: Use the <code>optim</code> function.</li>
 </ol>
 <pre class="r"><code>#TODO: write your codes here</code></pre>
 </div>
-<div id="binomial-distribution" class="section level2">
-<h2>2. Binomial Distribution</h2>
-<p>Given that <span class="math inline">\(X \sim
-\text{Bin}(n,p)\)</span> and observed that <span class="math inline">\(n=10\)</span> and <span class="math inline">\(x=3\)</span>.</p>
+<div id="mean-squared-error" class="section level2">
+<h2>2. Mean Squared Error</h2>
+<p>Consider a random sample <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> from a normal
+distribution with mean <span class="math inline">\(\mu\)</span> and
+variance <span class="math inline">\(\sigma^2\)</span>. We have the
+following two estimators of the population variance obtained from the
+given sample information. From our previous lab, we derived the Maximum
+Likelihood Estimator(MLE) of the population variance as: <span class="math display">\[
+1.\ \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2.
+\]</span> Additionally, we have the sample variance given by: <span class="math display">\[
+2.\ s^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2,
+\]</span> where <span class="math inline">\(\overline{X}\)</span>
+represents the sample mean.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Define the likelihood function in R and calculate it at <span class="math inline">\(p=0.1\)</span>.</li>
+<li>Simulate a sample of 10 data from <span class="math inline">\(\text{N}(160,10^2)\)</span>. Calculate the values
+of these two estimators and their Mean Squared Error(MSE).</li>
 </ol>
 <pre class="r"><code>#TODO: write your codes here</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Plot the likelihood function for <span class="math inline">\(p\in[0,1]\)</span> and calculate the maximum
-likelihood estimate. Add a vertical line to the plot to indicate this
-maximum point.</li>
-</ol>
-<pre class="r"><code>#TODO: write your codes here</code></pre>
-<pre class="r"><code>#TODO: write your codes here</code></pre>
-</div>
-<div id="normal-distribution" class="section level2">
-<h2>3. Normal Distribution</h2>
-<p>Given the heights(in cm) of a random sample of 20 students:</p>
-<p>182, 154, 147, 150, 164, 177, 169, 173, 160, 173, 170, 160, 178, 175,
-154, 179, 168, 188, 172, 162</p>
-<p>We assume that the heights of students follow a normal distribution
-with unknown mean <span class="math inline">\(\mu\)</span> and standard
-deviation <span class="math inline">\(\sigma\)</span>.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Determine the maximum likelihood estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> based on the given sample.</li>
-</ol>
-<pre class="r"><code>#TODO: write your codes here</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Calculate the log-likelihood of these height estimates.</li>
+<li>Try sample sizes of 100, 1000 and 10000, and show the results in a
+table. Can you provide an interpretation?</li>
 </ol>
 <pre class="r"><code>#TODO: write your codes here</code></pre>
 </div>

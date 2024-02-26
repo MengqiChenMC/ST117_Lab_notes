@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2024-02-21">
+<meta name="author" content="Mengqi Chen, Yujing Lu">
+<meta name="dcterms.date" content="2024-02-26">
 
-<title>ST117 Introduction to Statistical Modelling - Activity 1: Data visualisation</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -152,6 +181,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./lab_6_markdown.html">
  <span class="dropdown-text">Lab 6</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_7_markdown.html">
+ <span class="dropdown-text">Lab 7</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -174,22 +207,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#task-1-visualising-a-small-dataset" id="toc-task-1-visualising-a-small-dataset" class="nav-link active" data-scroll-target="#task-1-visualising-a-small-dataset"><strong>Task 1: Visualising a Small Dataset</strong></a>
+  <li><a href="#introduction-to-linear-regression" id="toc-introduction-to-linear-regression" class="nav-link active" data-scroll-target="#introduction-to-linear-regression">Introduction to Linear Regression</a>
   <ul class="collapse">
-  <li><a href="#find-a-small-dataset" id="toc-find-a-small-dataset" class="nav-link" data-scroll-target="#find-a-small-dataset">1.1 Find a Small Dataset</a></li>
-  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset">1.2 Load the Dataset</a></li>
-  <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">1.3 Visualisation</a></li>
-  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">1.4 Explanation</a></li>
+  <li><a href="#simulating-data-for-linear-regression" id="toc-simulating-data-for-linear-regression" class="nav-link" data-scroll-target="#simulating-data-for-linear-regression">Simulating Data for Linear Regression</a></li>
+  <li><a href="#calculating-sample-covariance-and-correlation-estimators" id="toc-calculating-sample-covariance-and-correlation-estimators" class="nav-link" data-scroll-target="#calculating-sample-covariance-and-correlation-estimators">Calculating Sample Covariance and Correlation Estimators</a></li>
+  <li><a href="#using-the-lm-function-in-r" id="toc-using-the-lm-function-in-r" class="nav-link" data-scroll-target="#using-the-lm-function-in-r">Using the <code>lm</code> Function in R</a></li>
   </ul></li>
-  <li><a href="#task-2-visualising-a-large-dataset" id="toc-task-2-visualising-a-large-dataset" class="nav-link" data-scroll-target="#task-2-visualising-a-large-dataset"><strong>Task 2: Visualising a Large Dataset</strong></a>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a>
   <ul class="collapse">
-  <li><a href="#find-a-large-dataset" id="toc-find-a-large-dataset" class="nav-link" data-scroll-target="#find-a-large-dataset">2.1 Find a Large Dataset</a></li>
-  <li><a href="#load-the-dataset-1" id="toc-load-the-dataset-1" class="nav-link" data-scroll-target="#load-the-dataset-1">2.2 Load the Dataset</a></li>
-  <li><a href="#visualisation-1" id="toc-visualisation-1" class="nav-link" data-scroll-target="#visualisation-1">2.3 Visualisation</a></li>
-  <li><a href="#explanation-1" id="toc-explanation-1" class="nav-link" data-scroll-target="#explanation-1">2.4 Explanation</a></li>
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link" data-scroll-target="#linear-regression-model">1. Linear Regression Model</a></li>
+  <li><a href="#mean-squared-error" id="toc-mean-squared-error" class="nav-link" data-scroll-target="#mean-squared-error">2. Mean Squared Error</a></li>
   </ul></li>
-  <li><a href="#conclusion-optional" id="toc-conclusion-optional" class="nav-link" data-scroll-target="#conclusion-optional"><strong>Conclusion (optional)</strong></a></li>
-  <li><a href="#references-optional" id="toc-references-optional" class="nav-link" data-scroll-target="#references-optional"><strong>References (optional)</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -198,7 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Activity 1: Data visualisation</h1>
+<h1 class="title">ST117 Lab 7</h1>
+<p class="subtitle lead">Linear Regression</p>
 </div>
 
 
@@ -208,14 +237,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>Mengqi Chen, Yujing Lu </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 21, 2024</p>
+      <p class="date">February 26, 2024</p>
     </div>
   </div>
   
@@ -227,68 +256,187 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="task-1-visualising-a-small-dataset" class="level1">
-<h1><strong>Task 1: Visualising a Small Dataset</strong></h1>
-<section id="find-a-small-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="find-a-small-dataset">1.1 Find a Small Dataset</h2>
-<p>&lt;This can be from an online source or a dataset you create manually. Describe the dataset briefly.&gt;</p>
-</section>
-<section id="load-the-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-dataset">1.2 Load the Dataset</h2>
-<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
+<section id="introduction-to-linear-regression" class="level1">
+<h1>Introduction to Linear Regression</h1>
+<p>Linear regression is a fundamental statistical and machine learning method that models the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables) using a linear function:</p>
+<p><span class="math display">\[
+Y = a + bX + \varepsilon, \quad \mathbb{E}(\varepsilon) = 0.
+\]</span></p>
+<section id="simulating-data-for-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-data-for-linear-regression">Simulating Data for Linear Regression</h2>
+<p>To understand linear regression, it’s helpful to start by simulating some data that follows a linear model. In R, we can simulate data using the following approach:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the seed for reproducibility</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># number of observations</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">10</span><span class="sc">/</span>n) <span class="co"># explanatory variable</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># intercept</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># slope</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># standard deviation of errors</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate response variable</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> a <span class="sc">+</span> b <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in a + b * x + rnorm(n, mean = 0, sd = sigma): longer object length is
+not a multiple of shorter object length</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">"Simulated Data for Linear Regression"</span>, <span class="at">xlab =</span> <span class="st">"Explanatory Variable"</span>, <span class="at">ylab =</span> <span class="st">"Response Variable"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_7_markdown_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualisation" class="level2">
-<h2 class="anchored" data-anchor-id="visualisation">1.3 Visualisation</h2>
-<p>&lt;Create a visualisation of the dataset. Consider the type of data and what you wish to convey.&gt;</p>
+<section id="calculating-sample-covariance-and-correlation-estimators" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-sample-covariance-and-correlation-estimators">Calculating Sample Covariance and Correlation Estimators</h2>
+<p>The relationship between the explanatory and response variables in linear regression can be quantified using the sample covariance and correlation. The formulae for these estimators are as follows:</p>
+<ul>
+<li><p>Sample Covariance: <span class="math display">\[
+cov(X, Y) = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})(Y_i - \bar{Y})
+\]</span></p></li>
+<li><p>Sample Correlation: <span class="math display">\[
+corr(X, Y) = \frac{cov(X, Y)}{s_X s_Y}
+\]</span> where <span class="math inline">\(s_X\)</span> and <span class="math inline">\(s_Y\)</span> are the sample standard deviations of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, respectively.</p></li>
+</ul>
+<p>Now, let’s calculate the sample covariance and correlation for our generated data <code>x</code> and <code>y</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate means of x and y</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mean_y <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sample covariance</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>cov_x_y_manual <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> mean_x) <span class="sc">*</span> (y <span class="sc">-</span> mean_y)) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sample correlation</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>corr_x_y_manual <span class="ot">&lt;-</span> cov_x_y_manual <span class="sc">/</span> (<span class="fu">sd</span>(x) <span class="sc">*</span> <span class="fu">sd</span>(y))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Manually Calculated Sample Covariance: "</span>, cov_x_y_manual, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Manually Calculated Sample Covariance:  4.514335 </code></pre>
 </div>
-</section>
-<section id="explanation" class="level2">
-<h2 class="anchored" data-anchor-id="explanation">1.4 Explanation</h2>
-<p>&lt;Explain why you chose the type of plot, what it aims to show, and what insights it provides about the dataset’s context.&gt;</p>
-</section>
-</section>
-<section id="task-2-visualising-a-large-dataset" class="level1">
-<h1><strong>Task 2: Visualising a Large Dataset</strong></h1>
-<section id="find-a-large-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="find-a-large-dataset">2.1 Find a Large Dataset</h2>
-<p>&lt;Look for a large dataset available online. Describe the dataset and its source.&gt;</p>
-</section>
-<section id="load-the-dataset-1" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-dataset-1">2.2 Load the Dataset</h2>
-<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Manually Calculated Sample Correlation: "</span>, corr_x_y_manual, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Manually Calculated Sample Correlation:  0.8678167 </code></pre>
+</div>
+</div>
+<p>Alternatively, just use the <code>cov</code> and <code>cor</code> functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sample covariance</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cov_x_y <span class="ot">&lt;-</span> <span class="fu">cov</span>(x, y)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sample correlation</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>corr_x_y <span class="ot">&lt;-</span> <span class="fu">cor</span>(x, y)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sample Covariance: "</span>, cov_x_y, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample Covariance:  4.469192 </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sample Correlation: "</span>, corr_x_y, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample Correlation:  0.8591386 </code></pre>
+</div>
+</div>
+<p>These estimators can be used to compute the slope (<span class="math inline">\(\hat{b}\)</span>) and intercept (<span class="math inline">\(\hat{a}\)</span>) of the linear regression model:</p>
+<p><span class="math display">\[
+\hat{b} = \frac{cov(X, Y)}{var(X)}, \quad \hat{a} = \bar{Y} - \hat{b}\bar{X}
+\]</span></p>
 </section>
-<section id="visualisation-1" class="level2">
-<h2 class="anchored" data-anchor-id="visualisation-1">2.3 Visualisation</h2>
-<p>&lt;Create a visualisation that highlights key aspects of the dataset.&gt;</p>
+<section id="using-the-lm-function-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-lm-function-in-r">Using the <code>lm</code> Function in R</h2>
+<p>R provides the <code>lm</code> function for fitting linear models. It simplifies the process of fitting a model to the data and making predictions. Here’s how to use it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> data)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the model</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = data)
+
+Coefficients:
+(Intercept)            x  
+     1.9811       0.5206  </code></pre>
 </div>
-</section>
-<section id="explanation-1" class="level2">
-<h2 class="anchored" data-anchor-id="explanation-1">2.4 Explanation</h2>
-<p>&lt;Discuss your choice of visualisation, its relevance, and the insights it offers about the dataset.&gt;</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your written explanation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with regression line</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">"Linear Regression with lm Function"</span>, <span class="at">xlab =</span> <span class="st">"Explanatory Variable"</span>, <span class="at">ylab =</span> <span class="st">"Response Variable"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_7_markdown_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
+</div>
+</div>
+<p>The <code>lm</code> function automatically computes the best-fitting line through the data by minimising the sum of squared residuals. The <code>summary</code> function provides detailed information about the model, including the coefficients, their standard errors, and statistical significance.</p>
 </section>
 </section>
-<section id="conclusion-optional" class="level1">
-<h1><strong>Conclusion (optional)</strong></h1>
-<p>&lt;Reflect on the process of visualising these two datasets. Discuss any challenges you faced and how you overcame them. Consider how the size of a dataset can influence the approach to data visualisation.&gt;</p>
+<section id="assignments" class="level1">
+<h1>Assignments</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Your turn!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Please attempt these questions and write down your answers in the <a href="https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_7_workbook.Rmd">R Mardown workbook</a>.</li>
+<li>Run your codes in your workbook and compare your results with your deskmate.</li>
+<li>Knit your workbook to publish a report in PDF or html.</li>
+</ol>
+</div>
+</div>
+<section id="linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression-model">1. Linear Regression Model</h2>
+<p>Generate a sample from the linear regression model:</p>
+<p><span class="math display">\[
+Y = 2X + \varepsilon, \ \varepsilon \sim \mathcal{N}(0,5)
+\]</span></p>
+<ol type="a">
+<li>Find the regression line to predict <span class="math inline">\(\hat{y}\)</span> by <span class="math inline">\(x\)</span>, i.e.&nbsp;find <span class="math inline">\(\hat{a}_1\)</span>, <span class="math inline">\(\hat{b}_1\)</span> such that</li>
+</ol>
+<p><span class="math display">\[
+Y = \hat{b}_1 X + \hat{a} _1
+\]</span></p>
+<p>manually using the covraiance and correlation estimators. Then verify the values using the <code>lm</code> function in R.</p>
+<ol start="2" type="a">
+<li>Find the regression line to predict <span class="math inline">\(\hat{x}\)</span> by <span class="math inline">\(y\)</span>, i.e.&nbsp;find <span class="math inline">\(\hat{a}_2\)</span>, <span class="math inline">\(\hat{b}_2\)</span> such that</li>
+</ol>
+<p><span class="math display">\[
+X = \hat{b}_2 Y + \hat{a}_2
+\]</span></p>
+<p>manually using the covraiance and correlation estimators. Then verify the values using the <code>lm</code> function in R.</p>
+<ol start="3" type="a">
+<li><p>Plot the data along with the two regression lines. Which regression line appears to be better?</p></li>
+<li><p>The Least Squared Estimation can also help us derive the estimates of <span class="math inline">\(\hat{a}\)</span> and <span class="math inline">\(\hat{b}\)</span>. We just need to find the value of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> that minimizes the following expression: <span class="math display">\[
+\sum_{i=1}^{n} \Big( y_i-(a+bx_i) \Big)^2
+\]</span> Hint: Use the <code>optim</code> function.</p></li>
+</ol>
 </section>
-<section id="references-optional" class="level1">
-<h1><strong>References (optional)</strong></h1>
-<p>&lt;Include any references to data sources or other materials you used in this activity.&gt;</p>
+<section id="mean-squared-error" class="level2">
+<h2 class="anchored" data-anchor-id="mean-squared-error">2. Mean Squared Error</h2>
+<p>Consider a random sample <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> from a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. We have the following two estimators of the population variance obtained from the given sample information. From our previous lab, we derived the Maximum Likelihood Estimator(MLE) of the population variance as: <span class="math display">\[
+1.\ \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2.
+\]</span> Additionally, we have the sample variance given by: <span class="math display">\[
+2.\ s^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2,
+\]</span> where <span class="math inline">\(\overline{X}\)</span> represents the sample mean.</p>
+<ol type="a">
+<li><p>Simulate a sample of 10 data from <span class="math inline">\(\text{N}(160,10^2)\)</span>. Calculate the values of these two estimators and their Mean Squared Error(MSE).</p></li>
+<li><p>Try sample sizes of 100, 1000 and 10000, and show the results in a table. Can you provide an interpretation?</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

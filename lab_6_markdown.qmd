@@ -1,6 +1,6 @@
 ---
 title: "ST117 Lab 6"
-subtitle: "Mathematical Estimations"
+subtitle: "Statistical Estimations"
 author: "Mengqi Chen, Yujing Lu"
 date: last-modified
 format: html

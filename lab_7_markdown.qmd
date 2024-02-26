@@ -1,0 +1,175 @@
+---
+title: "ST117 Lab 7"
+subtitle: "Linear Regression"
+author: "Mengqi Chen, Yujing Lu"
+date: last-modified
+format: html
+editor: visual
+theme: darkly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+# Introduction to Linear Regression
+
+Linear regression is a fundamental statistical and machine learning method that models the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables) using a linear function:
+
+$$
+Y = a + bX + \varepsilon, \quad \mathbb{E}(\varepsilon) = 0.
+$$
+
+## Simulating Data for Linear Regression
+
+To understand linear regression, it's helpful to start by simulating some data that follows a linear model. In R, we can simulate data using the following approach:
+
+```{r}
+# Set the seed for reproducibility
+set.seed(123)
+
+# Simulate data
+n <- 100 # number of observations
+x <- seq(0,10,10/n) # explanatory variable
+a <- 2 # intercept
+b <- 0.5 # slope
+sigma <- 1 # standard deviation of errors
+
+# Generate response variable
+y <- a + b * x + rnorm(n, mean = 0, sd = sigma)
+
+# Plot
+plot(x, y, main = "Simulated Data for Linear Regression", xlab = "Explanatory Variable", ylab = "Response Variable")
+data <- data.frame(x, y)
+```
+
+## Calculating Sample Covariance and Correlation Estimators
+
+The relationship between the explanatory and response variables in linear regression can be quantified using the sample covariance and correlation. The formulae for these estimators are as follows:
+
+- Sample Covariance: 
+$$
+cov(X, Y) = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})(Y_i - \bar{Y})
+$$
+
+- Sample Correlation: 
+$$
+corr(X, Y) = \frac{cov(X, Y)}{s_X s_Y}
+$$
+where $s_X$ and $s_Y$ are the sample standard deviations of $X$ and $Y$, respectively.
+
+Now, let's calculate the sample covariance and correlation for our generated data `x` and `y`:
+
+```{r}
+# Calculate means of x and y
+mean_x <- mean(x)
+mean_y <- mean(y)
+
+# Calculate sample covariance
+cov_x_y_manual <- sum((x - mean_x) * (y - mean_y)) / (n - 1)
+
+# Calculate sample correlation
+corr_x_y_manual <- cov_x_y_manual / (sd(x) * sd(y))
+cat("Manually Calculated Sample Covariance: ", cov_x_y_manual, "\n")
+cat("Manually Calculated Sample Correlation: ", corr_x_y_manual, "\n")
+```
+
+Alternatively, just use the `cov` and `cor` functions.
+```{r}
+# Calculate sample covariance
+cov_x_y <- cov(x, y)
+# Calculate sample correlation
+corr_x_y <- cor(x, y)
+cat("Sample Covariance: ", cov_x_y, "\n")
+cat("Sample Correlation: ", corr_x_y, "\n")
+```
+
+These estimators can be used to compute the slope ($\hat{b}$) and intercept ($\hat{a}$) of the linear regression model:
+
+$$
+\hat{b} = \frac{cov(X, Y)}{var(X)}, \quad \hat{a} = \bar{Y} - \hat{b}\bar{X}
+$$
+
+## Using the `lm` Function in R
+
+R provides the `lm` function for fitting linear models. It simplifies the process of fitting a model to the data and making predictions. Here's how to use it:
+
+```{r}
+# Fit linear model
+model <- lm(y ~ x, data = data)
+
+# Summary of the model
+print(model)
+
+# Plot with regression line
+plot(x, y, main = "Linear Regression with lm Function", xlab = "Explanatory Variable", ylab = "Response Variable")
+abline(model, col = "red")
+```
+
+The `lm` function automatically computes the best-fitting line through the data by minimising the sum of squared residuals. The `summary` function provides detailed information about the model, including the coefficients, their standard errors, and statistical significance.
+
+# Assignments
+::: callout-important
+## Your turn!
+
+1.  Please attempt these questions and write down your answers in the [R Mardown workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_7_workbook.Rmd).
+2.  Run your codes in your workbook and compare your results with your deskmate.
+3.  Knit your workbook to publish a report in PDF or html.
+:::
+
+## 1. Linear Regression Model
+
+Generate a sample from the linear regression model:
+
+$$
+Y = 2X + \varepsilon, \ \varepsilon \sim \mathcal{N}(0,5)
+$$
+
+
+(a) Find the regression line to predict $\hat{y}$ by $x$, i.e. find $\hat{a}_1$, $\hat{b}_1$ such that 
+
+$$
+Y = \hat{b}_1 X + \hat{a} _1
+$$
+
+manually using the covraiance and correlation estimators. Then verify the values using the `lm` function in R.
+
+
+(b) Find the regression line to predict $\hat{x}$ by $y$, i.e. find $\hat{a}_2$, $\hat{b}_2$ such that 
+
+$$
+X = \hat{b}_2 Y + \hat{a}_2 
+$$
+
+manually using the covraiance and correlation estimators. Then verify the values using the `lm` function in R.
+
+
+(c) Plot the data along with the two regression lines. Which regression line appears to be better?
+
+
+(d) The Least Squared Estimation can also help us derive the estimates of $\hat{a}$ and $\hat{b}$. We just need to find the value of $a$ and $b$ that minimizes the following expression:
+$$
+\sum_{i=1}^{n} \Big( y_i-(a+bx_i) \Big)^2
+$$
+Hint: Use the `optim` function.
+
+
+## 2. Mean Squared Error
+Consider a random sample $X_1,X_2,\ldots,X_n$ from a normal distribution with mean $\mu$ and variance $\sigma^2$. We have the following two estimators of the population variance obtained from the given sample information. From our previous lab, we derived the Maximum Likelihood Estimator(MLE) of the population variance as:
+$$
+1.\ \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2.
+$$
+Additionally, we have the sample variance given by:
+$$
+2.\ s^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2,
+$$
+where $\overline{X}$ represents the sample mean.
+
+(a) Simulate a sample of 10 data from $\text{N}(160,10^2)$. Calculate the values of these two estimators and their Mean Squared Error(MSE).
+
+
+(b) Try  sample sizes of 100, 1000 and 10000, and show the results in a table. Can you provide an interpretation?
+
+
+
