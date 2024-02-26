@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_6_workbook.html</loc>
-    <lastmod>2024-02-21T13:49:13.219Z</lastmod>
+    <lastmod>2024-02-26T12:08:30.795Z</lastmod>
   </url>
   <url>
-    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_1_markdown.html</loc>
-    <lastmod>2024-01-23T18:56:10.694Z</lastmod>
+    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_6_markdown.html</loc>
+    <lastmod>2024-02-26T11:46:02.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_7_markdown.html</loc>
+    <lastmod>2024-02-26T11:45:58.519Z</lastmod>
   </url>
   <url>
     <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/activity1_template.html</loc>
@@ -41,7 +45,11 @@
     <lastmod>2024-01-24T13:57:59.983Z</lastmod>
   </url>
   <url>
-    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_6_markdown.html</loc>
-    <lastmod>2024-02-20T13:22:59.354Z</lastmod>
+    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_1_markdown.html</loc>
+    <lastmod>2024-01-23T18:56:10.694Z</lastmod>
+  </url>
+  <url>
+    <loc>https://MengqiChenMC.github.io/ST117_Lab_notes/lab_7_workbook.html</loc>
+    <lastmod>2024-02-26T12:08:10.048Z</lastmod>
   </url>
 </urlset>

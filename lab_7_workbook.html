@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="">
-<meta name="dcterms.date" content="2024-01-28">
+<meta name="dcterms.date" content="2024-02-26">
 
-<title>ST117 Introduction to Statistical Modelling - ST117 Lab 3 Workbook</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 7 Workbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -207,9 +207,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#simulating-and-visualizing-binomial-distribution" id="toc-simulating-and-visualizing-binomial-distribution" class="nav-link active" data-scroll-target="#simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</a></li>
-  <li><a href="#calculating-probabilities-from-the-normal-distribution" id="toc-calculating-probabilities-from-the-normal-distribution" class="nav-link" data-scroll-target="#calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</a></li>
-  <li><a href="#approximating-the-binomial-with-the-normal-distribution" id="toc-approximating-the-binomial-with-the-normal-distribution" class="nav-link" data-scroll-target="#approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</a></li>
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link active" data-scroll-target="#linear-regression-model">1. Linear Regression Model</a></li>
+  <li><a href="#mean-squared-error" id="toc-mean-squared-error" class="nav-link" data-scroll-target="#mean-squared-error">2. Mean Squared Error</a></li>
   </ul>
 </nav>
     </div>
@@ -218,7 +217,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ST117 Lab 3 Workbook</h1>
+<h1 class="title">ST117 Lab 7 Workbook</h1>
 </div>
 
 
@@ -229,7 +228,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 28, 2024</p>
+      <p class="date">February 26, 2024</p>
     </div>
   </div>
   
@@ -241,72 +240,69 @@ window.Quarto = {
 </header>
 
 
-<section id="simulating-and-visualizing-binomial-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-and-visualizing-binomial-distribution">1. Simulating and Visualizing Binomial Distribution</h2>
-<ol type="a">
-<li>Generate a random sample of 1000 observations from a binomial distribution with parameters <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>, then create a histogram to visualize the distribution.</li>
-</ol>
+<section id="linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression-model">1. Linear Regression Model</h2>
+<p>Generate a sample from the linear regression model:</p>
+<p><span class="math display">\[
+Y = 2X + \varepsilon, \ \varepsilon \sim \mathcal{N}(0,5)
+\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: generate binomial samples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol type="a">
+<li>Find the regression line to predict <span class="math inline">\(\hat{y}\)</span> by <span class="math inline">\(x\)</span>, i.e.&nbsp;find <span class="math inline">\(\hat{a}_1\)</span>, <span class="math inline">\(\hat{b}_1\)</span> such that</li>
+</ol>
+<p><span class="math display">\[
+Y = \hat{b}_1 X + \hat{a} _1
+\]</span></p>
+<p>manually using the covraiance and correlation estimators. Then verify the values using the <code>lm</code> function in R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write down your codes to plot the histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="a">
-<li>Calculate the mean and standard deviation of the generated data. Compare these values with the theoretical mean and variance.</li>
+<li>Find the regression line to predict <span class="math inline">\(\hat{x}\)</span> by <span class="math inline">\(y\)</span>, i.e.&nbsp;find <span class="math inline">\(\hat{a}_2\)</span>, <span class="math inline">\(\hat{b}_2\)</span> such that</li>
 </ol>
+<p><span class="math display">\[
+X = \hat{b}_2 Y + \hat{a}_2
+\]</span></p>
+<p>manually using the covraiance and correlation estimators. Then verify the values using the <code>lm</code> function in R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate mean and variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="a">
-<li>Flipping a coin 20 times, where it has 50% chance of getting a head. The total number of head <span class="math inline">\(X\)</span> follows a Binomial distribution with <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>. Find the probability of getting between 5 and 12 heads when tossing 20 coins, which is sum of the orange bars.</li>
+<li>Plot the data along with the two regression lines. Which regression line appears to be better?</li>
 </ol>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lab_3_workbook_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
+<ol start="4" type="a">
+<li>The Least Squared Estimation can also help us derive the estimates of <span class="math inline">\(\hat{a}\)</span> and <span class="math inline">\(\hat{b}\)</span>. We just need to find the value of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> that minimizes the following expression: <span class="math display">\[
+\sum_{i=1}^{n} \Big( y_i-(a+bx_i) \Big)^2
+\]</span> Hint: Use the <code>optim</code> function.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="calculating-probabilities-from-the-normal-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="calculating-probabilities-from-the-normal-distribution">2. Calculating Probabilities from the Normal Distribution</h2>
+<section id="mean-squared-error" class="level2">
+<h2 class="anchored" data-anchor-id="mean-squared-error">2. Mean Squared Error</h2>
+<p>Consider a random sample <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> from a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. We have the following two estimators of the population variance obtained from the given sample information. From our previous lab, we derived the Maximum Likelihood Estimator(MLE) of the population variance as: <span class="math display">\[
+1.\ \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2.
+\]</span> Additionally, we have the sample variance given by: <span class="math display">\[
+2.\ s^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2,
+\]</span> where <span class="math inline">\(\overline{X}\)</span> represents the sample mean.</p>
 <ol type="a">
-<li>Suppose <span class="math inline">\(X \sim \text{N}(0,1)\)</span>, find the value <span class="math inline">\(m\)</span> (green point) such that <span class="math inline">\(P(X\leq m)=0.95\)</span>.</li>
+<li>Simulate a sample of 10 data from <span class="math inline">\(\text{N}(160,10^2)\)</span>. Calculate the values of these two estimators and their Mean Squared Error(MSE).</li>
 </ol>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lab_3_workbook_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: find m with qnorm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="a">
-<li>Given <span class="math inline">\(X \sim \text{N}(2,0.7^2)\)</span>, find the probability of <span class="math inline">\(X\)</span> being between 1 and 4.</li>
+<li>Try sample sizes of 100, 1000 and 10000, and show the results in a table. Can you provide an interpretation?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="a">
-<li>Find the probability <span class="math inline">\(P(5\leq X\leq 12)\)</span> for <span class="math inline">\(X \sim \text{N}(10,5)\)</span>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: calculate the probability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="approximating-the-binomial-with-the-normal-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="approximating-the-binomial-with-the-normal-distribution">3. Approximating the Binomial with the Normal distribution</h2>
-<p>Please write down the questions and answers yourself, following the format above.</p>
 
 
 </section>
