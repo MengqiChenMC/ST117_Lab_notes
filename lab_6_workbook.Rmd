@@ -1,7 +1,7 @@
 ---
 title: "ST117 Lab 6 Workbook"
 author: ""
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "2024-02-16"
 output:
   html_document: default
   pdf_document: default

@@ -3,9 +3,9 @@ title: "ST117 Lab 7 Workbook"
 author: ""
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document: 
   pdf_document:
     latex_engine: xelatex
+  html_document: 
 ---
 
 ```{r setup, include=FALSE}
