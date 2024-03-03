@@ -278,9 +278,9 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     8
-2  2     9
-3  3     6</code></pre>
+1  1     5
+2  2     7
+3  3     5</code></pre>
 </div>
 </div>
 <p>Now, we write <code>data</code> into a CSV file</p>
@@ -294,9 +294,9 @@ window.Quarto = {
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_read_header</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id score
-1  1     8
-2  2     9
-3  3     6</code></pre>
+1  1     5
+2  2     7
+3  3     5</code></pre>
 </div>
 </div>
 <p>However, if we read with <code>header=FALSE</code>, then “id” and “score” are regarded as values</p>
@@ -306,9 +306,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>  V1    V2
 1 id score
-2  1     8
-3  2     9
-4  3     6</code></pre>
+2  1     5
+3  2     7
+4  3     5</code></pre>
 </div>
 </div>
 <p>In this case, you would run into problems if you simply take the first column of <code>data_read</code>:</p>

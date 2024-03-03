@@ -1,0 +1,55 @@
+---
+title: "Activity 2 Presentation: Exploring Bivariate Data Relationships"
+author: "Your Name"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: 
+bibliography: references.bib
+---
+
+## Introduction
+
+This presentation explores the relationship between two variables from a real-world dataset. Our objective is to determine if there exists a causal, no, or spurious relationship between these variables. This analysis is inspired by the Harvard Business Review article [@HBR2015] about the Spurious Correlation website [@VigenSC].
+
+## Data Preparation
+
+The dataset used in this analysis was sourced from [describe data source here]. The variables of interest are [Variable 1] and [Variable 2], chosen because [briefly explain why].
+
+```{r load-data}
+# Your R code to load (and preview) the dataset
+```
+
+## Data Visualization
+
+```{r base-plot}
+# Create a scatterplot of your variables + any other plots you find necessary
+```
+
+## Discussion
+
+The plot(s) generated reveals [describe the overall pattern]. This pattern suggests that the relationship between Variable 1 and Variable 2 is [causal/no/spurious].
+
+### Relationship Analysis
+
+-   **Form of Relationship**: The relationship appears to be [linear/non-linear/etc.], indicating [explain].
+
+-   **Causality**: Given the nature of the data, it is [likely/unlikely] that this relationship is causal because [reason].
+
+-   **Alternative Explanations**: It is also possible that [other variables/confounding factors] could explain this relationship.
+
+### Conclusion
+
+In conclusion, the analysis of [Variable 1] and [Variable 2] provides [summarise findings]. While definitive conclusions about causality cannot be drawn without further information, the data suggests [final thoughts].
+
+## References (optional)
+
+-   \<To display the references, you need to make sure that `references.bib` is in the same directory as this R Markdown file. The `bibliography: references.bib` line in the header tells R Markdown where to find your bibliography file.\>
+
+-   \<To add references, simply add entries of the same format in `references.bib`.\>
+
+```{=html}
+<!-- -->
+```
+-   \<To remove the references, you simply need to delete the line `bibliography: references.bib` in the header, and remove [@HBR2015] and [@VigenSC] in the introduction section.\>
