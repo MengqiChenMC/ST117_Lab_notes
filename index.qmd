@@ -29,4 +29,4 @@ Please fill out the [**anonymous feedback form**](https://forms.gle/AGjRMmWt4eae
 
 [Faculty Feedback Form](https://warwick.ac.uk/fac/sci/statistics/currentstudents/modules/gta-evaluation/)
 
-![](feedback form.png)
+![](feedback%20form.png)
