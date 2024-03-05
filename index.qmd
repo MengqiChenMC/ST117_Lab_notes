@@ -26,3 +26,7 @@ The following cheatsheets can be helpful for quick references:
 ## Feedback
 
 Please fill out the [**anonymous feedback form**](https://forms.gle/AGjRMmWt4eaecu1R7) to help make the lab sessions better for everyone!
+
+[Faculty Feedback Form](https://warwick.ac.uk/fac/sci/statistics/currentstudents/modules/gta-evaluation/)
+
+![](feedback form.png)

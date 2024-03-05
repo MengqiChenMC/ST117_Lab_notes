@@ -49,7 +49,6 @@ In conclusion, the analysis of [Variable 1] and [Variable 2] provides [summarise
 
 -   \<To add references, simply add entries of the same format in `references.bib`.\>
 
-```{=html}
 <!-- -->
-```
+
 -   \<To remove the references, you simply need to delete the line `bibliography: references.bib` in the header, and remove [@HBR2015] and [@VigenSC] in the introduction section.\>
