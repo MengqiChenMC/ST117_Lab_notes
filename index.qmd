@@ -3,7 +3,7 @@ title: "Home"
 format: html
 ---
 
-Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. It also contains a variety of resources to assist you in learning R and statistical modelling.
+Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. Labs 5 and 8 are for student presentations, so there are no lab notes for these two sessions. It also contains a variety of resources to assist you in learning R and statistical modelling.
 
 ## Useful Resources
 
@@ -22,6 +22,12 @@ The following cheatsheets can be helpful for quick references:
 6.  [**Statistical Distributions Cheatsheet**](https://www.statslab.cam.ac.uk/~rjs57/Distribtns.pdf): A sheet summarising the properties of some basic discrete and continuous distributions.
 
 7.  [**Mathematics in R Markdown**](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html): This pages summarises common LaTex syntax for R markdown.
+
+## Lab workbooks
+
+Here are the links to the R Markdown workbooks:
+
+[Lab 3 Workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_3_workbook.Rmd) **·** [Lab 4 Workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_4_workbook.Rmd) **·** [Lab 6 Workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_6_workbook.Rmd) **·** [Lab 7 Workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_7_workbook.Rmd) **·** [Lab 9 Workbook](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_9_workbook.Rmd)
 
 ## Feedback
 

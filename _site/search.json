@@ -186,7 +186,7 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. It also contains a variety of resources to assist you in learning R and statistical modelling."
+    "text": "Welcome to the website for the ST117 Introduction to Statistics Lab sessions. This site is regularly updated with lab notes for each session. Labs 5 and 8 are for student presentations, so there are no lab notes for these two sessions. It also contains a variety of resources to assist you in learning R and statistical modelling."
   },
   {
     "objectID": "index.html#useful-resources",
@@ -670,5 +670,12 @@
     "title": "ST117 Lab 7 Workbook",
     "section": "2. Mean Squared Error",
     "text": "2. Mean Squared Error\nConsider a random sample \\(X_1,X_2,\\ldots,X_n\\) from a normal distribution with mean \\(\\mu\\) and variance \\(\\sigma^2\\). We have the following two estimators of the population variance obtained from the given sample information. From our previous lab, we derived the Maximum Likelihood Estimator(MLE) of the population variance as: \\[\n1.\\ \\hat{\\sigma}^2=\\frac{1}{n}\\sum_{i=1}^{n}(X_i-\\overline{X})^2.\n\\] Additionally, we have the sample variance given by: \\[\n2.\\ s^2=\\frac{1}{n-1}\\sum_{i=1}^{n}(X_i-\\overline{X})^2,\n\\] where \\(\\overline{X}\\) represents the sample mean.\n\nSimulate a sample of 10 data from \\(\\text{N}(160,10^2)\\). Calculate the values of these two estimators and their Mean Squared Error(MSE).\n\n\n#TODO: write your codes here\n\n\nTry sample sizes of 100, 1000 and 10000, and show the results in a table. Can you provide an interpretation?\n\n\n#TODO: write your codes here"
+  },
+  {
+    "objectID": "index.html#lab-workbooks",
+    "href": "index.html#lab-workbooks",
+    "title": "Home",
+    "section": "Lab workbooks",
+    "text": "Lab workbooks\nHere are the links to the R Markdown workbooks:\nLab 3 Workbook · Lab 4 Workbook · Lab 6 Workbook · Lab 7 Workbook · Lab 9 Workbook"
   }
 ]
