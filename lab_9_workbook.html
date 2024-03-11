@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
+<meta name="author" content="">
 <meta name="dcterms.date" content="2024-03-11">
 
-<title>ST117 Introduction to Statistical Modelling - Activity 1: Data visualisation</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 9 Workbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -178,22 +207,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#task-1-visualising-a-small-dataset" id="toc-task-1-visualising-a-small-dataset" class="nav-link active" data-scroll-target="#task-1-visualising-a-small-dataset"><strong>Task 1: Visualising a Small Dataset</strong></a>
-  <ul class="collapse">
-  <li><a href="#find-a-small-dataset" id="toc-find-a-small-dataset" class="nav-link" data-scroll-target="#find-a-small-dataset">1.1 Find a Small Dataset</a></li>
-  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset">1.2 Load the Dataset</a></li>
-  <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">1.3 Visualisation</a></li>
-  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">1.4 Explanation</a></li>
-  </ul></li>
-  <li><a href="#task-2-visualising-a-large-dataset" id="toc-task-2-visualising-a-large-dataset" class="nav-link" data-scroll-target="#task-2-visualising-a-large-dataset"><strong>Task 2: Visualising a Large Dataset</strong></a>
-  <ul class="collapse">
-  <li><a href="#find-a-large-dataset" id="toc-find-a-large-dataset" class="nav-link" data-scroll-target="#find-a-large-dataset">2.1 Find a Large Dataset</a></li>
-  <li><a href="#load-the-dataset-1" id="toc-load-the-dataset-1" class="nav-link" data-scroll-target="#load-the-dataset-1">2.2 Load the Dataset</a></li>
-  <li><a href="#visualisation-1" id="toc-visualisation-1" class="nav-link" data-scroll-target="#visualisation-1">2.3 Visualisation</a></li>
-  <li><a href="#explanation-1" id="toc-explanation-1" class="nav-link" data-scroll-target="#explanation-1">2.4 Explanation</a></li>
-  </ul></li>
-  <li><a href="#conclusion-optional" id="toc-conclusion-optional" class="nav-link" data-scroll-target="#conclusion-optional"><strong>Conclusion (optional)</strong></a></li>
-  <li><a href="#references-optional" id="toc-references-optional" class="nav-link" data-scroll-target="#references-optional"><strong>References (optional)</strong></a></li>
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link active" data-scroll-target="#linear-regression-model">1. Linear Regression Model</a></li>
+  <li><a href="#diagnostic-check" id="toc-diagnostic-check" class="nav-link" data-scroll-target="#diagnostic-check">2. Diagnostic Check</a></li>
   </ul>
 </nav>
     </div>
@@ -202,19 +217,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Activity 1: Data visualisation</h1>
+<h1 class="title">ST117 Lab 9 Workbook</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -231,66 +240,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="task-1-visualising-a-small-dataset" class="level1">
-<h1><strong>Task 1: Visualising a Small Dataset</strong></h1>
-<section id="find-a-small-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="find-a-small-dataset">1.1 Find a Small Dataset</h2>
-<p>&lt;This can be from an online source or a dataset you create manually. Describe the dataset briefly.&gt;</p>
-</section>
-<section id="load-the-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-dataset">1.2 Load the Dataset</h2>
-<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
+<section id="linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression-model">1. Linear Regression Model</h2>
+<p>Consider the regression model: <span class="math display">\[
+y_i= \alpha + \beta x_i + \epsilon_i
+\]</span></p>
+<p>where <span class="math inline">\(\epsilon_i \sim \text{N}(0,\sigma^2)\)</span> for <span class="math inline">\(i = 1,\ldots,n\)</span>. Here, y represents heights(in cm) and x represents weights(in kg).</p>
+<p>Given a sample of heights and weights,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">82.62954</span>, <span class="fl">66.73767</span>, <span class="fl">83.29799</span>, <span class="fl">82.72429</span>, <span class="fl">74.14641</span>, <span class="fl">54.60050</span>, <span class="fl">60.71433</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="fl">67.05280</span>, <span class="fl">69.94233</span>, <span class="fl">94.04653</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">202.5511</span>,<span class="fl">166.1328</span>,<span class="fl">194.1981</span>,<span class="fl">197.4564</span>,<span class="fl">181.9675</span>,<span class="fl">146.2233</span>,<span class="fl">160.5469</span>, <span class="fl">166.2354</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="fl">178.0746</span>, <span class="fl">213.0961</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li>Find the maximum likelihood estimates for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> based on the given sample.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li>Plot a scatter plot of the sample and include the estimated regression line using the MLE of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. Providing the exact regression equation <span class="math inline">\(y=50+1.8*x+\epsilon\)</span>, where <span class="math inline">\(\epsilon \sim N(0,5^2)\)</span>, add this line into the plot.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li>Generate 100 simulations and calculate 100 values of <span class="math inline">\(\hat{\alpha}\)</span> and <span class="math inline">\(\hat{\beta}\)</span> using the regression <span class="math inline">\(y=50+1.8*x+\epsilon\)</span>, where <span class="math inline">\(\epsilon \sim N(0,5^2)\)</span> and <span class="math inline">\(x \sim N(70,10^2)\)</span>. Calculate the variance of the MLE <span class="math inline">\((\hat{\alpha},\hat{\beta})\)</span> using R and the formulas provided in Tuesday-1 Week 8 Lecture notes:</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \operatorname{Var}(\hat{\beta})=\frac{\sigma^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \\
+&amp; \operatorname{Var}(\hat{\alpha})=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right)
+\end{aligned}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="a">
+<li>Find the estimators’ variances as the sample size <span class="math inline">\(n\)</span> increases, considering <span class="math inline">\(n = 100, 1000, 10000\)</span>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualisation" class="level2">
-<h2 class="anchored" data-anchor-id="visualisation">1.3 Visualisation</h2>
-<p>&lt;Create a visualisation of the dataset. Consider the type of data and what you wish to convey.&gt;</p>
+<section id="diagnostic-check" class="level2">
+<h2 class="anchored" data-anchor-id="diagnostic-check">2. Diagnostic Check</h2>
+<ol type="a">
+<li>Consider <code>women</code> dataset which contains average heights and weights for American Women. Create a scatter plot of this data to examine the relationship between heights and weights. Is there evidence of a linear relationship?</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#access the dataset</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(women) <span class="co">#access the dataset</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(women)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  height weight
+1     58    115
+2     59    117
+3     60    120
+4     61    123
+5     62    126
+6     63    129</code></pre>
 </div>
-</section>
-<section id="explanation" class="level2">
-<h2 class="anchored" data-anchor-id="explanation">1.4 Explanation</h2>
-<p>&lt;Explain why you chose the type of plot, what it aims to show, and what insights it provides about the dataset’s context.&gt;</p>
-</section>
-</section>
-<section id="task-2-visualising-a-large-dataset" class="level1">
-<h1><strong>Task 2: Visualising a Large Dataset</strong></h1>
-<section id="find-a-large-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="find-a-large-dataset">2.1 Find a Large Dataset</h2>
-<p>&lt;Look for a large dataset available online. Describe the dataset and its source.&gt;</p>
-</section>
-<section id="load-the-dataset-1" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-dataset-1">2.2 Load the Dataset</h2>
-<p>&lt;Use R to load your dataset into a data frame. Show the code you used. You may use functions such as <code>head()</code> or <code>glimpse</code>(from <code>dplyr</code>) to display the data frame&gt;</p>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code to load (and display) the dataset </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="visualisation-1" class="level2">
-<h2 class="anchored" data-anchor-id="visualisation-1">2.3 Visualisation</h2>
-<p>&lt;Create a visualisation that highlights key aspects of the dataset.&gt;</p>
+<ol start="2" type="a">
+<li>Fit a linear model to the data and perform a regression diagnostics check, including standard linear model diagnostics.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code for the visualisation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="explanation-1" class="level2">
-<h2 class="anchored" data-anchor-id="explanation-1">2.4 Explanation</h2>
-<p>&lt;Discuss your choice of visualisation, its relevance, and the insights it offers about the dataset.&gt;</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your written explanation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="conclusion-optional" class="level1">
-<h1><strong>Conclusion (optional)</strong></h1>
-<p>&lt;Reflect on the process of visualising these two datasets. Discuss any challenges you faced and how you overcame them. Consider how the size of a dataset can influence the approach to data visualisation.&gt;</p>
-</section>
-<section id="references-optional" class="level1">
-<h1><strong>References (optional)</strong></h1>
-<p>&lt;Include any references to data sources or other materials you used in this activity.&gt;</p>
 
 
 </section>

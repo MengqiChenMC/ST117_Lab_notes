@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
+<meta name="author" content="Mengqi Chen, Yujing Lu">
 <meta name="dcterms.date" content="2024-03-11">
 
-<title>ST117 Introduction to Statistical Modelling - ST117 Lab 7 Workbook</title>
+<title>ST117 Introduction to Statistical Modelling - ST117 Lab 9</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -207,8 +207,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link active" data-scroll-target="#linear-regression-model">1. Linear Regression Model</a></li>
-  <li><a href="#mean-squared-error" id="toc-mean-squared-error" class="nav-link" data-scroll-target="#mean-squared-error">2. Mean Squared Error</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link active" data-scroll-target="#linear-regression">Linear regression</a>
+  <ul class="collapse">
+  <li><a href="#using-the-lm-function" id="toc-using-the-lm-function" class="nav-link" data-scroll-target="#using-the-lm-function">Using the lm Function</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a>
+  <ul class="collapse">
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link" data-scroll-target="#linear-regression-model">1. Linear Regression Model</a></li>
+  <li><a href="#diagnostic-check" id="toc-diagnostic-check" class="nav-link" data-scroll-target="#diagnostic-check">2. Diagnostic Check</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -217,13 +225,20 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ST117 Lab 7 Workbook</h1>
+<h1 class="title">ST117 Lab 9</h1>
+<p class="subtitle lead">Linear regression, Model diagnostics</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mengqi Chen, Yujing Lu </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -240,71 +255,387 @@ window.Quarto = {
 </header>
 
 
-<section id="linear-regression-model" class="level2">
-<h2 class="anchored" data-anchor-id="linear-regression-model">1. Linear Regression Model</h2>
-<p>Generate a sample from the linear regression model:</p>
-<p><span class="math display">\[
-Y = 2X + \varepsilon, \ \varepsilon \sim \mathcal{N}(0,5)
+<section id="linear-regression" class="level1">
+<h1>Linear regression</h1>
+<p>Given data <span class="math inline">\((X_1,Y_1),\dots,(X_n,Y_n)\)</span>, we wish to fit a linear regression model. <span class="math display">\[
+Y = a + bX + \varepsilon, \quad \mathbb{E}(\varepsilon) = 0.
 \]</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol type="a">
-<li>Find the regression line to predict <span class="math inline">\(\hat{y}\)</span> by <span class="math inline">\(x\)</span>, i.e.&nbsp;find <span class="math inline">\(\hat{a}_1\)</span>, <span class="math inline">\(\hat{b}_1\)</span> such that</li>
-</ol>
+<p>Recall that we have estimators</p>
 <p><span class="math display">\[
-Y = \hat{b}_1 X + \hat{a} _1
+\begin{aligned}
+\hat{b} &amp;= \frac{cov(X, Y)}{var(X)} = \frac{\sum_i (X_i-\bar{X})Y_i}{\sum_i (X_i-\bar{X})^2} \\
+\hat{a} &amp;= \bar{Y} - \hat{b}\bar{X}
+\end{aligned}
 \]</span></p>
-<p>manually using the covraiance and correlation estimators. Then verify the values using the <code>lm</code> function in R.</p>
+<section id="using-the-lm-function" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-lm-function">Using the lm Function</h2>
+<p>The <code>lm</code> function in R is used for fitting linear models. It is a powerful tool for regression analysis, allowing researchers to understand the relationship between a dependent variable and one or more independent variables.</p>
+<p>The basic syntax of the <code>lm</code> function is as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="a">
-<li>Find the regression line to predict <span class="math inline">\(\hat{x}\)</span> by <span class="math inline">\(y\)</span>, i.e.&nbsp;find <span class="math inline">\(\hat{a}_2\)</span>, <span class="math inline">\(\hat{b}_2\)</span> such that</li>
-</ol>
-<p><span class="math display">\[
-X = \hat{b}_2 Y + \hat{a}_2
-\]</span></p>
-<p>manually using the covraiance and correlation estimators. Then verify the values using the <code>lm</code> function in R.</p>
+<ul>
+<li><code>formula</code>: describes the model (e.g., <code>y ~ x</code> indicates y is modeled as a function of x).</li>
+<li><code>data</code>: the data frame containing the variables mentioned in the formula.</li>
+</ul>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the mtcars dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(mtcars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hornet 4 Drive</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hornet Sportabout</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
 </div>
-<ol start="3" type="a">
-<li>Plot the data along with the two regression lines. Which regression line appears to be better?</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="4" type="a">
-<li>The Least Squared Estimation can also help us derive the estimates of <span class="math inline">\(\hat{a}\)</span> and <span class="math inline">\(\hat{b}\)</span>. We just need to find the value of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> that minimizes the following expression: <span class="math display">\[
-\sum_{i=1}^{n} \Big( y_i-(a+bx_i) \Big)^2
-\]</span> Hint: Use the <code>optim</code> function.</li>
-</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear model predicting mpg (miles per gallon) from wt (weight)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the model to display basic informations</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ wt, data = mtcars)
+
+Coefficients:
+(Intercept)           wt  
+     37.285       -5.344  </code></pre>
+</div>
+</div>
+<section id="summary-output" class="level3">
+<h3 class="anchored" data-anchor-id="summary-output">Summary Output</h3>
+<p>The <code>summary</code> function provides a comprehensive summary of the model fit.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the summary of the linear model</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ wt, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.5432 -2.3647 -0.1252  1.4096  6.8727 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  37.2851     1.8776  19.858  &lt; 2e-16 ***
+wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.046 on 30 degrees of freedom
+Multiple R-squared:  0.7528,    Adjusted R-squared:  0.7446 
+F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10</code></pre>
+</div>
+</div>
+<p>Interpretation:</p>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Output Component</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Call</td>
+<td>Shows the function call, including the formula and data set used. Useful for tracking the model configuration.</td>
+</tr>
+<tr class="even">
+<td>Residuals</td>
+<td>Summary statistics (min, 1st Quartile, Median, 3rd Quartile, max) of residuals (observed - predicted values). Aids in assessing model fit.</td>
+</tr>
+<tr class="odd">
+<td>Coefficients - Estimate</td>
+<td>The estimate for each coefficient, i.e.&nbsp;the slope and the intercept.</td>
+</tr>
+<tr class="even">
+<td>Coefficients - Std. Error</td>
+<td>The standard error of the coefficient estimate, with lower values indicating more precise estimates.</td>
+</tr>
+<tr class="odd">
+<td>Coefficients - t value</td>
+<td>The t-statistic for each coefficient, used to assess the significance of the estimates. Calculated as Estimate/Std. Error.</td>
+</tr>
+<tr class="even">
+<td>Coefficients - Pr(&gt;|t|)</td>
+<td>The p-value for the coefficient’s t-test, indicating the significance of the estimates. Lower values suggest significant contributions of the variable.</td>
+</tr>
+<tr class="odd">
+<td>Signif. codes</td>
+<td>Symbols (<code>***</code>, <code>**</code>, <code>*</code>, <code>.</code>) representing p-value ranges. From <code>&lt; 0.001</code> (strong evidence against the null hypothesis) to <code>&gt;= 0.1</code> (weak evidence).</td>
+</tr>
+<tr class="even">
+<td>Residual Standard Error</td>
+<td>Measures the average distance that the observed values fall from the regression line. Lower values indicate a better fit.</td>
+</tr>
+<tr class="odd">
+<td>Multiple R-squared</td>
+<td>The proportion of variance in the dependent variable explained by the model. Higher values indicate a better fit.</td>
+</tr>
+<tr class="even">
+<td>Adjusted R-squared</td>
+<td>Adjusts R-squared for the number of predictors. Provides a more accurate measure of model goodness of fit for models with different numbers of predictors.</td>
+</tr>
+<tr class="odd">
+<td>F-statistic</td>
+<td>Overall measure of the model’s significance. Tests if at least one predictor variable has a non-zero coefficient.</td>
+</tr>
+<tr class="even">
+<td>P-value</td>
+<td>P-value associated with the F-statistic. Indicates the overall statistical significance of the model. A low value suggests the model is statistically significant.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="diagnostic-plots" class="level3">
+<h3 class="anchored" data-anchor-id="diagnostic-plots">Diagnostic Plots</h3>
+<p>After fitting a model with <code>lm</code>, use the <code>plot</code> function to generate diagnostic plots.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate diagnostic plots</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_9_markdown_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Interpretations:</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plot</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Residuals vs Fitted</td>
+<td>Checks the linearity assumption. Ideally, the residuals should be randomly scattered around 0, indicating that the model accurately captures the data’s trend.</td>
+</tr>
+<tr class="even">
+<td>Normal Q-Q</td>
+<td>Assesses the normality of residuals. Points closely following the reference line suggest that residuals are normally distributed.</td>
+</tr>
+<tr class="odd">
+<td>Scale-Location (or Spread-Location)</td>
+<td>Evaluates homoscedasticity, which is the equal spread of residuals across all levels of the fitted values. A horizontal line with equally spread points indicates homoscedasticity.</td>
+</tr>
+<tr class="even">
+<td>Residuals vs Leverage</td>
+<td>Identifies influential cases that might unduly affect the model’s predictions. Points far from the center suggest a high influence on the model estimate.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Your turn!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Please attempt these questions and write down your answers in the <a href="https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/lab_9_workbook.Rmd">R Mardown workbook</a>.</li>
+<li>Run your codes in your workbook and compare your results with your deskmate.</li>
+<li>Knit your workbook to publish a report in PDF or html.</li>
+</ol>
+</div>
 </div>
 </section>
-<section id="mean-squared-error" class="level2">
-<h2 class="anchored" data-anchor-id="mean-squared-error">2. Mean Squared Error</h2>
-<p>Consider a random sample <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> from a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. We have the following two estimators of the population variance obtained from the given sample information. From our previous lab, we derived the Maximum Likelihood Estimator(MLE) of the population variance as: <span class="math display">\[
-1.\ \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2.
-\]</span> Additionally, we have the sample variance given by: <span class="math display">\[
-2.\ s^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2,
-\]</span> where <span class="math inline">\(\overline{X}\)</span> represents the sample mean.</p>
+</section>
+</section>
+<section id="assignments" class="level1">
+<h1>Assignments</h1>
+<section id="linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression-model">1. Linear Regression Model</h2>
+<p>Consider the regression model: <span class="math display">\[
+y_i= \alpha + \beta x_i + \epsilon_i
+\]</span></p>
+<p>where <span class="math inline">\(\epsilon_i \sim \text{N}(0,\sigma^2)\)</span> for <span class="math inline">\(i = 1,\ldots,n\)</span>. Here, y represents heights(in cm) and x represents weights(in kg).</p>
+<p>Given a sample of heights and weights,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">82.62954</span>, <span class="fl">66.73767</span>, <span class="fl">83.29799</span>, <span class="fl">82.72429</span>, <span class="fl">74.14641</span>, <span class="fl">54.60050</span>, <span class="fl">60.71433</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>     <span class="fl">67.05280</span>, <span class="fl">69.94233</span>, <span class="fl">94.04653</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">202.5511</span>,<span class="fl">166.1328</span>,<span class="fl">194.1981</span>,<span class="fl">197.4564</span>,<span class="fl">181.9675</span>,<span class="fl">146.2233</span>,<span class="fl">160.5469</span>, <span class="fl">166.2354</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     <span class="fl">178.0746</span>, <span class="fl">213.0961</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol type="a">
-<li>Simulate a sample of 10 data from <span class="math inline">\(\text{N}(160,10^2)\)</span>. Calculate the values of these two estimators and their Mean Squared Error(MSE).</li>
+<li><p>Find the maximum likelihood estimates for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> based on the given sample (Refer to Monday-1 Week 8 Lecture notes).</p></li>
+<li><p>Plot a scatter plot of the sample and include the estimated regression line using the MLE of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. Providing the exact regression equation <span class="math inline">\(y=50+1.8*x+\epsilon\)</span>, where <span class="math inline">\(\epsilon \sim N(0,5^2)\)</span>, add this line into the plot.</p></li>
+<li><p>Generate 100 simulations and calculate 100 values of <span class="math inline">\(\hat{\alpha}\)</span> and <span class="math inline">\(\hat{\beta}\)</span> using the regression <span class="math inline">\(y=50+1.8*x+\epsilon\)</span>, where <span class="math inline">\(\epsilon \sim N(0,5^2)\)</span> and <span class="math inline">\(x \sim N(70,10^2)\)</span>. Calculate the variance of the MLE <span class="math inline">\((\hat{\alpha},\hat{\beta})\)</span> using R and the formulas provided in Tuesday-1 Week 8 Lecture notes:</p></li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \operatorname{Var}(\hat{\beta})=\frac{\sigma^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \\
+&amp; \operatorname{Var}(\hat{\alpha})=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\right)
+\end{aligned}
+\]</span></p>
+<ol start="4" type="a">
+<li>Find the estimators’ variances as the sample size <span class="math inline">\(n\)</span> increases, considering <span class="math inline">\(n = 100, 1000, 10000\)</span>.</li>
+</ol>
+</section>
+<section id="diagnostic-check" class="level2">
+<h2 class="anchored" data-anchor-id="diagnostic-check">2. Diagnostic Check</h2>
+<ol type="a">
+<li>Consider <code>women</code> dataset which contains average heights and weights for American Women. Create a scatter plot of this data to examine the relationship between heights and weights. Is there evidence of a linear relationship?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#access the dataset</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(women) <span class="co">#access the dataset</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(women)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  height weight
+1     58    115
+2     59    117
+3     60    120
+4     61    123
+5     62    126
+6     63    129</code></pre>
+</div>
 </div>
 <ol start="2" type="a">
-<li>Try sample sizes of 100, 1000 and 10000, and show the results in a table. Can you provide an interpretation?</li>
+<li>Fit a linear model to the data and perform a regression diagnostics check, including standard linear model diagnostics.</li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: write your codes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
