@@ -211,7 +211,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link active" data-scroll-target="#linear-regression">Linear regression</a>
+  <li><a href="#final-project-checklist" id="toc-final-project-checklist" class="nav-link active" data-scroll-target="#final-project-checklist">Final Project checklist</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear regression</a>
   <ul class="collapse">
   <li><a href="#using-the-lm-function" id="toc-using-the-lm-function" class="nav-link" data-scroll-target="#using-the-lm-function">Using the lm Function</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
@@ -259,6 +260,18 @@ window.Quarto = {
 </header>
 
 
+<section id="final-project-checklist" class="level1">
+<h1>Final Project checklist</h1>
+<p>Before we start, here is a list of a few useful sanity checks before submitting your final project:</p>
+<ul class="task-list">
+<li><p><label><input type="checkbox">Line width: make sure that all codes are fully displayed and not cut out mid-line.</label></p></li>
+<li><p><label><input type="checkbox">Reading datasets: check the default value of the <code>col_name</code> argument in your method. Use <code>head</code> to check if your data is imported properly.</label></p></li>
+<li><p><label><input type="checkbox">Dealing with NAs: check if you have dealt with NAs consistently throughout the whole project, especially if different people handled different parts.</label></p></li>
+<li><p><label><input type="checkbox">Estimators: make sure that you estimators are in terms of the observed data - check the four quadrants of random vs fixed and unknown vs known.</label></p></li>
+<li><p><label><input type="checkbox">Variances: the <code>var</code> (and <code>sd</code>) function in R gives you the sample variance <span class="math inline">\(S = \frac{\sum_i (X_i-\bar{X})^2}{n-1}\)</span>, while the MLE and MoM are <span class="math inline">\(\hat{\sigma}^2 = \frac{\sum_i (X_i-\bar{X})^2}{n}\)</span>. Be mindful of which one should be used in your project.</label></p></li>
+<li><p><label><input type="checkbox">(If applicable) Make sure you have listed all your references. <a href="https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/activity2_template.Rmd">activity_2_template</a> and <a href="https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/references.bib">references.bib</a> give an example of how to include references in R markdown.</label></p></li>
+</ul>
+</section>
 <section id="linear-regression" class="level1">
 <h1>Linear regression</h1>
 <p>Given data <span class="math inline">\((X_1,Y_1),\dots,(X_n,Y_n)\)</span>, we wish to fit a linear regression model. <span class="math display">\[
@@ -457,8 +470,8 @@ F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10</code></pre>
 <p>Interpretation:</p>
 <table class="table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 85%">
+<col style="width: 23%">
+<col style="width: 76%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -536,8 +549,8 @@ F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10</code></pre>
 <p>Interpretations:</p>
 <table class="table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 83%">
+<col style="width: 25%">
+<col style="width: 75%">
 </colgroup>
 <thead>
 <tr class="header">
