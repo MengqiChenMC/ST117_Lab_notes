@@ -48,16 +48,13 @@ data <- data.frame(x, y)
 
 The relationship between the explanatory and response variables in linear regression can be quantified using the sample covariance and correlation. The formulae for these estimators are as follows:
 
-- Sample Covariance: 
-$$
-cov(X, Y) = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})(Y_i - \bar{Y})
-$$
+-   Sample Covariance: $$
+    cov(X, Y) = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})(Y_i - \bar{Y})
+    $$
 
-- Sample Correlation: 
-$$
-corr(X, Y) = \frac{cov(X, Y)}{s_X s_Y}
-$$
-where $s_X$ and $s_Y$ are the sample standard deviations of $X$ and $Y$, respectively.
+-   Sample Correlation: $$
+    corr(X, Y) = \frac{cov(X, Y)}{s_X s_Y}
+    $$ where $s_X$ and $s_Y$ are the sample standard deviations of $X$ and $Y$, respectively.
 
 Now, let's calculate the sample covariance and correlation for our generated data `x` and `y`:
 
@@ -76,6 +73,7 @@ cat("Manually Calculated Sample Correlation: ", corr_x_y_manual, "\n")
 ```
 
 Alternatively, just use the `cov` and `cor` functions.
+
 ```{r}
 # Calculate sample covariance
 cov_x_y <- cov(x, y)
@@ -110,6 +108,7 @@ abline(model, col = "red")
 The `lm` function automatically computes the best-fitting line through the data by minimising the sum of squared residuals. The `summary` function provides detailed information about the model, including the coefficients, their standard errors, and statistical significance.
 
 # Assignments
+
 ::: callout-important
 ## Your turn!
 
@@ -126,8 +125,7 @@ $$
 Y_i = 2X_i + \varepsilon, \ \varepsilon_i \sim \mathcal{N}(0,5)
 $$
 
-
-(a) Find the regression line to predict $\hat{y}$ by $x$, i.e. find $\hat{a}_1$, $\hat{b}_1$ such that 
+(a) Find the regression line to predict $\hat{y}$ by $x$, i.e. find $\hat{a}_1$, $\hat{b}_1$ such that
 
 $$
 Y = \hat{b}_1 X + \hat{a} _1
@@ -135,8 +133,7 @@ $$
 
 manually using the covraiance and correlation estimators. Then verify the values using the `lm` function in R.
 
-
-(b) Find the regression line to predict $\hat{x}$ by $y$, i.e. find $\hat{a}_2$, $\hat{b}_2$ such that 
+(b) Find the regression line to predict $\hat{x}$ by $y$, i.e. find $\hat{a}_2$, $\hat{b}_2$ such that
 
 $$
 X = \hat{b}_2 Y + \hat{a}_2 
@@ -144,32 +141,20 @@ $$
 
 manually using the covraiance and correlation estimators. Then verify the values using the `lm` function in R.
 
-
 (c) Plot the data along with the two regression lines. Which regression line appears to be better?
 
-
-(d) The Least Squared Estimation can also help us derive the estimates of $\hat{a}$ and $\hat{b}$. We just need to find the value of $a$ and $b$ that minimizes the following expression:
-$$
-\sum_{i=1}^{n} \Big( y_i-(a+bx_i) \Big)^2
-$$
-Hint: Use the `optim` function.
-
+(d) The Least Squared Estimation can also help us derive the estimates of $\hat{a}$ and $\hat{b}$. We just need to find the value of $a$ and $b$ that minimizes the following expression: $$
+    \sum_{i=1}^{n} \Big( y_i-(a+bx_i) \Big)^2
+    $$ Hint: Use the `optim` function.
 
 ## 2. Mean Squared Error
-Consider a random sample $X_1,X_2,\ldots,X_n$ from a normal distribution with mean $\mu$ and variance $\sigma^2$. We have the following two estimators of the population variance obtained from the given sample information. From our previous lab, we derived the Maximum Likelihood Estimator(MLE) of the population variance as:
-$$
+
+Consider a random sample $X_1,X_2,\ldots,X_n$ from a normal distribution with mean $\mu$ and variance $\sigma^2$. We have the following two estimators of the population variance obtained from the given sample information. From our previous lab, we derived the Maximum Likelihood Estimator(MLE) of the population variance as: $$
 1.\ \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2.
-$$
-Additionally, we have the sample variance given by:
-$$
+$$ Additionally, we have the sample variance given by: $$
 2.\ s^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2,
-$$
-where $\overline{X}$ represents the sample mean.
+$$ where $\overline{X}$ represents the sample mean.
 
 (a) Simulate a sample of 10 data from $\text{N}(160,10^2)$. Calculate the values of these two estimators and their Mean Squared Error(MSE).
 
-
-(b) Try  sample sizes of 100, 1000 and 10000, and show the results in a table. Can you provide an interpretation?
-
-
-
+(b) Try sample sizes of 100, 1000 and 10000, and show the results in a table. Can you provide an interpretation?
