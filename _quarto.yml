@@ -21,6 +21,8 @@ website:
             href: lab_6_markdown.qmd
           - text: "Lab 7"
             href: lab_7_markdown.qmd
+          - text: "Lab 9"
+            href: lab_9_markdown.qmd
       - text: "About"
         href: about.qmd
 
@@ -44,3 +46,5 @@ format:
           href: lab_6_markdown.qmd
         - text: "Lab 7"
           href: lab_7_markdown.qmd
+        - text: "Lab 9"
+          href: lab_9_markdown.qmd
