@@ -13,6 +13,22 @@ knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 ```
 
+# Final Project checklist
+
+Before we start, here is a list of a few useful sanity checks before submitting your final project:
+
+-   [ ] Line width: make sure that all codes are fully displayed and not cut out mid-line.
+
+-   [ ] Reading datasets: check the default value of the `col_name` argument in your method. Use `head` to check if your data is imported properly.
+
+-   [ ] Dealing with NAs: check if you have dealt with NAs consistently throughout the whole project, especially if different people handled different parts.
+
+-   [ ] Estimators: make sure that you estimators are in terms of the observed data - check the four quadrants of random vs fixed and unknown vs known.
+
+-   [ ] Variances: the `var` (and `sd`) function in R gives you the sample variance $S = \frac{\sum_i (X_i-\bar{X})^2}{n-1}$, while the MLE and MoM are $\hat{\sigma}^2 = \frac{\sum_i (X_i-\bar{X})^2}{n}$. Be mindful of which one should be used in your project.
+
+-   [ ] (If applicable) Make sure you have listed all your references. [activity_2_template](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/activity2_template.Rmd) and [references.bib](https://github.com/MengqiChenMC/ST117_Lab_notes/blob/main/references.bib) give an example of how to include references in R markdown.
+
 # Linear regression
 
 Given data $(X_1,Y_1),\dots,(X_n,Y_n)$, we wish to fit a linear regression model. $$
@@ -71,7 +87,7 @@ summary(model)
 Interpretation:
 
 | Output Component           | Explanation                                                                                                                                                        |
-|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-----------------|-------------------------------------------------------|
 | Call                       | Shows the function call, including the formula and data set used. Useful for tracking the model configuration.                                                     |
 | Residuals                  | Summary statistics (min, 1st Quartile, Median, 3rd Quartile, max) of residuals (observed - predicted values). Aids in assessing model fit.                         |
 | Coefficients - Estimate    | The estimate for each coefficient, i.e. the slope and the intercept.                                                                                               |
@@ -98,7 +114,7 @@ plot(model)
 Interpretations:
 
 | Plot                                | Interpretation                                                                                                                                                                      |
-|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | Residuals vs Fitted                 | Checks the linearity assumption. Ideally, the residuals should be randomly scattered around 0, indicating that the model accurately captures the data's trend.                      |
 | Normal Q-Q                          | Assesses the normality of residuals. Points closely following the reference line suggest that residuals are normally distributed.                                                   |
 | Scale-Location (or Spread-Location) | Evaluates homoscedasticity, which is the equal spread of residuals across all levels of the fitted values. A horizontal line with equally spread points indicates homoscedasticity. |
